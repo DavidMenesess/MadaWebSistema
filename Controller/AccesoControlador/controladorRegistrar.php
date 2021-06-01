@@ -3,6 +3,7 @@ require_once('../../Model/conexion.php');
 require_once('../../Model/usuario.php');
 require_once('../../Model/AccesoModelo/crudRegistrar.php');
 
+
     class controladorRegistrar{
 
         public function __construct(){
@@ -19,8 +20,7 @@ require_once('../../Model/AccesoModelo/crudRegistrar.php');
             $Usuario->setContrasena($contrasena);//Recibe el valor de la contrasena pero encriptado
 
             $crudRegistrar = new crudRegistrar();
-            $crudRegistrar->RegistrarUsuario($Usuario);
-            header('Location:../../View/AccesoVista/login.php');
+            return $crudRegistrar->RegistrarUsuario($Usuario);
         }
     }
 
@@ -28,16 +28,21 @@ require_once('../../Model/AccesoModelo/crudRegistrar.php');
 
     if(isset($_POST['registrarUsuario'])){
         //enviamos los parametros que va a recibir la función registrarUsuario.
-
-        $controladorRegistrar->registrarUsuario($_POST['nombre'], $_POST['apellido'],
+       $mensaje = $controladorRegistrar->registrarUsuario($_POST['nombre'], $_POST['apellido'],
         $_POST['correo'],$_POST['contrasena']);
 
-
-
+        if($mensaje == "El usuario ya existe"){
+            echo "<script>
+                    location.replace('../../View/AccesoVista/registrar.php');
+                    alert('El correo ya existe, por favor intente con otro');
+                </script>";
+        }
+        else if($mensaje = "Registro exitoso"){
+        header('Location:../../View/AccesoVista/login.php');
+        }
+        else{
+        header('Location:../../404.html');
+        }
     }
-
-
-
-
 
 ?>

@@ -35,8 +35,8 @@ require_once('../../Model/conexion.php')
                                             </div>
                                             
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="recuperarContrasena.php">¿Olvidó su contaseña?</a>
-                                                <button type="submit" class="btn btn-primary" name="validarAcceso">Ingresar</button>
+                                                <a class="small" href="recuperarContrasena.php">¿Olvidó su contraseña?</a>
+                                                <button type="button" class="btn btn-primary" id="validarAcceso" name="validarAcceso" onclick="validarIngreso();">Ingresar</button>
                                             </div>
                                         </form>
                                     </div>
@@ -67,7 +67,7 @@ require_once('../../Model/conexion.php')
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../../js/scripts.js"></script>
-        <script src="../librerias/sweetalert2@11.js"></script>
-        <script src="../js/validarFormularios.js"></script>
+        <script src="../../js/validacionesLogin.js"></script>
+        <script src="../../libraries/sweetalert2@11.js"></script>
     </body>
 </html>

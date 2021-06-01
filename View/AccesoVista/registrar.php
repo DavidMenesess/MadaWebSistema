@@ -49,7 +49,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block" name="registrarUsuario">Crear cuenta</button></div>
+                                            <div class="form-group mt-4 mb-0">
+                                            <button type="button" class="btn btn-primary btn-block" id="registrarUsuario" name="registrarUsuario"  onclick="validarRegistro();">Crear cuenta</button>
+                                            </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
@@ -79,5 +81,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../../js/scripts.js"></script>
+        <script src="../../js/validacionesLogin.js"></script>
+        <script src="../../libraries/sweetalert2@11.js"></script>
     </body>
 </html>

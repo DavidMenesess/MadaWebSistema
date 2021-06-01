@@ -24,15 +24,17 @@ require_once('../../Model/AccesoModelo/crudAcceso.php');
         //echo "Pudo ingresar";
       $usuario = ($controladorAcceso->validarAcceso($_POST['correoUsuario'],$_POST['contrasenaUsuario']));//Recibe los dato desde el formulario.
 
-      if($usuario->getExiste() == 1 && $usuario->getRol() == 1 || $usuario->getRol() == 3){
+      if($usuario->getExiste() == 1 && $usuario->getRol() == 1 || $usuario->getRol() == 2){
           //Las variables session son variables que nos van a permitir si el usuario esta o no en la bd
           session_start(); //Funcion propia de php para indicar que vamos a iniciar una session. Inicializa la variable de session
           $_SESSION['correoUsuario'] = $usuario->getCorreo();//Variable de sesión global.
           $_SESSION['Rol'] = $usuario->getRol();
 
-          header("Location: ../../View/AccesoVista/dashboard.php");
+          header("Location: ../../View/dashboard.php");
 
       }
+
+      //Debo integrar un if para validar el acceso de los clientes.
 
       else{
         header("Location: ../../View/AccesoVista/login.php");
