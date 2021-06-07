@@ -2,7 +2,7 @@
 
 class usuario{
 
-    //private $idusuario;
+    private $IdUsuario;
     private $nombre;
     private $apellido;
     private $correo;
@@ -15,6 +15,10 @@ class usuario{
     public function __construct(){
 
     }
+
+    public function setIdUsuario($IdUsuario){
+		$this -> IdUsuario = $IdUsuario;
+	}
 
     public function setNombre($nombre){
         $this->nombre = $nombre;
@@ -44,6 +48,10 @@ class usuario{
         $this->existe = $existe;
     }
     //GET
+
+    public function getIdUsuario(){
+		return $this -> IdUsuario;
+	}
 
     public function getNombre(){
         return $this->nombre;

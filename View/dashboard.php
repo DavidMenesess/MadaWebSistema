@@ -13,7 +13,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Mada - Administración</title>
+        <title>Mada || Administración</title>
         <link href="../css/styles.css" rel="stylesheet" />
         <link href="../libraries/dataTables.bootstrap4.min.css" rel="stylesheet"/>
         <script src="../libraries/fontawesome.js"></script>
@@ -49,8 +49,8 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Administradores</a>
-                                    <a class="nav-link" href="#">Clientes</a>
+                                    <a class="nav-link" href="../View/UsuariosVista/administradores.php">Administradores</a>
+                                    <a class="nav-link" href="../View/UsuariosVista/clientes.php">Clientes</a>
                                 </nav>
                             </div>
                              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -65,12 +65,16 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                  </nav>
                              </div>
                              <div class="sb-sidenav-menu-heading">Principal</div>
-                                <a class="nav-link" href="charts.html">
+                                <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
                                     Pedidos
-                            </a>
+                                </a>
+                                <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-piggy-bank"></i></div>
+                                    Ventas
+                                </a>
                                 
-                        </div>
+                            </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Frase o slogan</div>
@@ -83,7 +87,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                     <div class="container-fluid">
                         <h1 class="mt-4">Administración</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Bienvenido de vuelta nombre usuario</li>
+                            <li class="breadcrumb-item active">¡Bienvenid@ nuevamente!</li>
                         </ol>
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
@@ -123,26 +127,6 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area mr-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar mr-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                        </div>-->
                         <br>
                         <br>
                         <div class="card mb-4">
