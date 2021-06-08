@@ -115,7 +115,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 				      </div>
 				      <div class="modal-body">
 
-				      	<form class="form" action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8">
+				      	<form class="form" action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8" autocomplete="off">
 				      		<div class="form-row">
 				      			<div class="form-group col-md-6">
 				      				<label for="Nombre">Nombre: </label>

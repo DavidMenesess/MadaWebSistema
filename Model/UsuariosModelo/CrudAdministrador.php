@@ -9,7 +9,7 @@ class CrudAdministrador{
 	public function listarAdministrador(){
 		$Db = Db::Conectar();
 
-		$sql = $Db -> query('SELECT * FROM usuarios WHERE IdRol = 1');
+		$sql = $Db -> query('SELECT * FROM usuarios WHERE IdRol = 1 OR IdRol = 2');
 		$sql -> execute();
 		Db::CerrarConexion($Db);
 		return $sql -> fetchAll();
@@ -34,7 +34,7 @@ class CrudAdministrador{
 			else{
 				$sql = $Db->prepare('INSERT INTO
 				usuarios(Nombre, Apellido, Correo, Contrasena,Estado,IdRol )
-				VALUES (:nombre, :apellido, :correo, :contrasena,1,1)');
+				VALUES (:nombre, :apellido, :correo, :contrasena,1,2)');
 				$sql->bindvalue('nombre',$usuario->getNombre());//dentro del value cuenta como variables las que tienen los dos puntos :
 				$sql->bindvalue('apellido',$usuario->getApellido());//recciben los datos que se mandaron por el set en controladorRegistrar
 				$sql->bindvalue('correo',$usuario->getCorreo());
@@ -78,6 +78,35 @@ class CrudAdministrador{
 	    }
 	    Db::CerrarConexion($Db);
 	    return $mensaje;
+	}
+
+
+	public function actualizarDatosAdmin($usuario){
+
+		$mensaje = "";
+
+		$Db = Db::Conectar();
+		$sql = $Db->prepare('UPDATE usuarios SET 
+		Nombre=:nombre,
+		Apellido=:apellido,
+		Contrasena=:contrasena
+		WHERE IdUsuario=:idUsuario');
+
+		$sql->bindvalue('nombre',$usuario->getNombre());
+		$sql->bindvalue('apellido',$usuario->getApellido());
+		$sql->bindvalue('contrasena',$usuario->getContrasena());
+		$sql->bindvalue('idUsuario',$usuario->getIdUsuario());
+
+		try{
+			$sql->execute();
+			$mensaje = "Modificación exitosa";
+		}
+		catch(Exception $e){
+			$mensaje = $e->getMessage();
+		}
+		Db::CerrarConexion($Db);
+		return $mensaje;
+
 	}
 
 	// public function eliminarUsuario($IdUsuario){

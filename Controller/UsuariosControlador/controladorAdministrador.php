@@ -35,7 +35,7 @@ class ControladorAdministrador{
 
 	public function buscarAdministrador($IdUsuario){
 		$crudAdministrador = new CrudAdministrador();
-    	return $crudAdministrador->buscarCliente($IdUsuario);
+    	return $crudAdministrador->buscarAdministrador($IdUsuario);
 
     }
 
@@ -54,6 +54,21 @@ class ControladorAdministrador{
 	    header('Location:../../View/UsuariosVista/administradores.php');
 		
     }
+
+	public function actualizarDatosAdmin($idUsuario,$nombre,$apellido,$contrasena){
+
+		$contrasena = hash('sha512', $contrasena);
+		$usuario = new usuario();
+		$usuario->setIdUsuario($idUsuario);
+		$usuario->setNombre($nombre);
+		$usuario->setApellido($apellido);
+		$usuario->setContrasena($contrasena);
+
+		$crudAdministrador = new CrudAdministrador();
+		$crudAdministrador->actualizarDatosAdmin($usuario);
+		header('Location:../../View/UsuariosVista/administradores.php');
+
+	}
 
 
 }
@@ -79,6 +94,14 @@ if(isset($_POST['registrarAdministrador'])){
 
 if(isset($_POST['actualizarEstadoAdministrador'])){
 	$ControladorAdministrador->actualizarEstadoAdministrador($_POST['IdUsuario'],$_POST['Estado']);
+}
+
+if(isset($_POST['editarAdministrador'])){
+	header('Location:../../View/UsuariosVista/editarAdministrador.php?IdUsuario='.$_POST['IdUsuario']);
+}
+
+if(isset($_POST['actualizarDatosAdmin'])){
+	$ControladorAdministrador->actualizarDatosAdmin($_POST['idUsuario'],$_POST['nombre'],$_POST['apellido'],$_POST['contrasena']);
 }
 
 ?>

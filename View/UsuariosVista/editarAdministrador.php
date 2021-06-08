@@ -1,6 +1,6 @@
 <?php
 require_once('../../Controller/UsuariosControlador/controladorAdministrador.php');
-$administrador = $controladorAdministrador->buscarAdministrador($_GET['IdUsuario']);
+$listarAdministrador = $ControladorAdministrador->buscarAdministrador($_GET['IdUsuario']);
 session_start();
 if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo redirecciona al login
     header("Location: ../../View/AccesoVista/login.php");
@@ -91,47 +91,45 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">¡Los cambios que aquí se realicen se veran en el perfil del usuario!</li>
                         </ol>
-
-                    <form>
-                        <div class="form-row">
-                            <div class="col-md-4 mb-3">
-                            <label for="validationDefault01">Nombre</label>
-                            <input type="text" class="form-control" id="validationDefault01" value="<?php echo $administrador['Nombre'] ?>" name="nombre" >
+                        <form action="../../Controller/UsuariosControlador/ControladorAdministrador.php" method="POST" accept-charset="utf-8">
+                            <div class="form-group">
+                                <label for="idUsuario">ID</label>
+                                <input type="number" class="form-control" id="idUsuario" name="idUsuario" autocomplete="of" readonly value="<?php echo $listarAdministrador['IdUsuario']?>">
                             </div>
-                            <div class="col-md-4 mb-3">
-                            <label for="validationDefault02">Apellido</label>
-                            <input type="text" class="form-control" id="validationDefault02" placeholder="Last name" value="Otto" required>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                            <label for="validationDefaultUsername">Username</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="of" value="<?php echo $listarAdministrador['Nombre']?>">
                                 </div>
-                                <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Username" aria-describedby="inputGroupPrepend2" required>
+                                <div class="form-group col-md-6">
+                                <label for="apellido">Apellidos</label>
+                                <input type="text" class="form-control" id="apellido" name="apellido" autocomplete="of" value="<?php echo $listarAdministrador['Apellido']?>">
+                                </div>
                             </div>
+                            <div class="form-group">
+                                <label for="correo">Correo</label>
+                                <input type="email" class="form-control" id="correo" name="correo" autocomplete="of" readonly value="<?php echo $listarAdministrador['Correo']?>">
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-6 mb-3">
-                            <label for="validationDefault03">City</label>
-                            <input type="text" class="form-control" id="validationDefault03" placeholder="City" required>
+                            <div class="form-group">
+                                <label for="contrasena">Contraseña</label>
+                                <input type="text" class="form-control" id="contrasena" name="contrasena" autocomplete="of" value="<?php echo $listarAdministrador['Contrasena'] ?>">
                             </div>
-                            <div class="col-md-3 mb-3">
-                            <label for="validationDefault04">State</label>
-                            <input type="text" class="form-control" id="validationDefault04" placeholder="State" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                <label for="rol">Rol</label>
+                                <input type="text" class="form-control" id="rol" name="rol" readonly value="<?php echo $listarAdministrador['IdRol'] ?>">
+                                </div>
+                                <div class="form-group col-md-6">
+                                <label for="estado">Estado</label>
+                                <input type="text" class="form-control" id="estado" name="estado" readonly value="<?php echo $listarAdministrador['Estado']?>">
+                                </div>
                             </div>
-                            <div class="col-md-3 mb-3">
-                            <label for="validationDefault05">Zip</label>
-                            <input type="text" class="form-control" id="validationDefault05" placeholder="Zip" required>
-                            </div>
-                        </div>
-                        <button class="btn btn-success" type="submit">Guardar cambios</button>
-                        <a href="../" class="btn btn-danger">Cancelar</a>
-                    </form>
+                            <button type="submit" class="btn btn-success" name="actualizarDatosAdmin" id="actualizarDatosAdmin">Guardar cambios</button>
+                            <a href="administradores.php" class="btn btn-danger">Cancelar</a>
+                        </form>
                         <br>
                         <br>
-                        </div>
+                    </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">

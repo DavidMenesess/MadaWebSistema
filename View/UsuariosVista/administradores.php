@@ -1,6 +1,6 @@
 <?php
 include "../../Controller/UsuariosControlador/ControladorAdministrador.php";
-$listarAdministrador = $ControladorAdministrador -> listarAdministrador();
+$listarAdministrador = $ControladorAdministrador ->listarAdministrador();
 
 session_start();
 if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo redirecciona al login
@@ -119,32 +119,25 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 				      		<div class="form-row">
 				      			<div class="form-group col-md-6">
 				      				<label for="Nombre">Nombre: </label>
-									<input type="text" class="form-control" name="Nombre" id="Nombre">
+									<input type="text" class="form-control" name="Nombre" id="Nombre" autocomplete="off">
 					      		</div>
 					      		<div class="form-group col-md-6">
 					      			<label for="Apellido">Apellido: </label>
-									<input type="text" class="form-control" name="Apellido" id="Apellido">
+									<input type="text" class="form-control" name="Apellido" id="Apellido" autocomplete="off">
 					      		</div>
 					      		<div class="form-group col-md-6">
 					      			<label for="Correo">Correo: </label>
-									<input type="email" class="form-control" name="Correo" id="Correo">
+									<input type="email" class="form-control" name="Correo" id="Correo" autocomplete="off">
 					      		</div>
 					      		<div class="form-group col-md-6">
 					      			<label for="Contrasena">Contraseña: </label>
-									<input type="password" class="form-control" name="Contrasena" id="Contrasena">
+									<input type="password" class="form-control" name="Contrasena" id="Contrasena" autocomplete="off">
 					      		</div>
 				      		<div >
 								<input type="hidden" class="form-control" name="IdRol" id="IdRol" value="1" placeholder="Cliente" readonly>
 				      		</div>
 				      			
 				      		</div>
-
-				      		
-							<!-- <select name="IdRol" id="IdRol" class="camposInputs">
-								<option value="">Seleccione</option>
-								<option value="2">Administrador</option>
-								<option value="1">Cliente</option>
-							</select> -->
 
                             <div class="modal-footer">
 				      	        <button type="submit"  class="btn btn-primary btn-lg active" id="registrarUsuario" name="registrarAdministrador">Registrar</button>

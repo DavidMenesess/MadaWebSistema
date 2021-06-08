@@ -25,13 +25,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="nombre">Nombre</label>
-                                                        <input class="form-control py-4" id="nombre" name="nombre" type="text" placeholder="Nombre"/>
+                                                        <input class="form-control py-4" id="nombre" name="nombre" type="text" placeholder="Nombre" autocomplete="off"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="apellido">Apellidos</label>
-                                                        <input class="form-control py-4" id="apellido" name="apellido" type="text" placeholder="Apellidos"/>
+                                                        <input class="form-control py-4" id="apellido" name="apellido" type="text" placeholder="Apellidos" autocomplete="off"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -39,13 +39,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="correo">Correo electrónico</label>
-                                                        <input class="form-control py-4" id="correo" name="correo" type="email" placeholder="correo electrónico"/>
+                                                        <input class="form-control py-4" id="correo" name="correo" type="email" placeholder="correo electrónico" autocomplete="off"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="contrasena">Contraseña</label>
-                                                        <input class="form-control py-4" id="contrasena" name="contrasena" type="password" placeholder="contraseña"/>
+                                                        <input class="form-control py-4" id="contrasena" name="contrasena" type="password" placeholder="contraseña" autocomplete="off"/>
                                                     </div>
                                                 </div>
                                             </div>

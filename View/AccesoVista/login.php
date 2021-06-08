@@ -27,7 +27,7 @@ require_once('../../Model/conexion.php')
                                         <form action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="correoUsuario">Correo</label>
-                                                <input class="form-control py-4" id="correoUsuario" name="correoUsuario" type="email" placeholder="Correo electrónico" autofocus/>
+                                                <input class="form-control py-4" id="correoUsuario" name="correoUsuario" type="email" placeholder="Correo electrónico"/>
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="contrasenaUsuario">Contraseña</label>
