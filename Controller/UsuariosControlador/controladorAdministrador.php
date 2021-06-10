@@ -70,6 +70,11 @@ class ControladorAdministrador{
 
 	}
 
+	public function eliminarAdministrador($idUsuario){
+		$crudAdministrador = new CrudAdministrador();
+		return $crudAdministrador->eliminarAdministrador($idUsuario);
+	}
+
 
 }
 
@@ -102,6 +107,15 @@ if(isset($_POST['editarAdministrador'])){
 
 if(isset($_POST['actualizarDatosAdmin'])){
 	$ControladorAdministrador->actualizarDatosAdmin($_POST['idUsuario'],$_POST['nombre'],$_POST['apellido'],$_POST['contrasena']);
+}
+
+if(isset($_POST['eliminarAdministrador'])){
+	echo $ControladorAdministrador->eliminarAdministrador($_POST['IdUsuario']);	
+	//header('Location:../../View/UsuariosVista/administradores.php');
+	/*echo "<script>
+				location.replace('../../View/UsuariosVista/administradores.php');
+				confirm('¿Estás seguro que deseas eliminar el usuario?.');
+			  </script>";*/
 }
 
 ?>

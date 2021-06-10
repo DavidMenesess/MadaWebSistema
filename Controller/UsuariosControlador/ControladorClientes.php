@@ -66,13 +66,13 @@ if(isset($_POST['registrarCliente'])){
 	if($mensaje == "El usuario ya existe"){
 		echo "<script>
 				location.replace('../../View/UsuariosVista/clientes.php');
-				alert('El correo ya existe, por favor intente con otro');
+				alert('El correo ya existe, por favor intente con otro.');
 			  </script>";
 	}
 	else{
 		echo "<script>
 				location.replace('../../View/UsuariosVista/clientes.php');
-				alert('Se registro exitosamente al cliente.');
+				alert('Registro realizado con éxito.');
 			  </script>";
 	}
 }

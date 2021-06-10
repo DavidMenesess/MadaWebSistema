@@ -119,33 +119,21 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 				      		<div class="form-row">
 				      			<div class="form-group col-md-6">
 				      				<label for="Nombre">Nombre: </label>
-									<input type="text" class="form-control" name="Nombre" id="Nombre">
+									<input type="text" class="form-control" name="Nombre" id="Nombre" required>
 					      		</div>
 					      		<div class="form-group col-md-6">
 					      			<label for="Apellido">Apellido: </label>
-									<input type="text" class="form-control" name="Apellido" id="Apellido">
+									<input type="text" class="form-control" name="Apellido" id="Apellido" required>
 					      		</div>
 					      		<div class="form-group col-md-6">
 					      			<label for="Correo">Correo: </label>
-									<input type="email" class="form-control" name="Correo" id="Correo">
+									<input type="email" class="form-control" name="Correo" id="Correo" required>
 					      		</div>
 					      		<div class="form-group col-md-6">
 					      			<label for="Contrasena">Contraseña: </label>
-									<input type="password" class="form-control" name="Contrasena" id="Contrasena">
+									<input type="password" class="form-control" name="Contrasena" id="Contrasena" required>
 					      		</div>
-					      		
-				      		<div >
-								<input type="hidden" class="form-control" name="IdRol" id="IdRol" value="1" placeholder="Cliente" readonly>
 				      		</div>
-				      			
-				      		</div>
-
-				      		
-							<!-- <select name="IdRol" id="IdRol" class="camposInputs">
-								<option value="">Seleccione</option>
-								<option value="2">Administrador</option>
-								<option value="1">Cliente</option>
-							</select> -->
                             <div class="modal-footer">
 				      	<button type="submit"  class="btn btn-primary btn-lg active" id="registrarUsuario" name="registrarCliente">Registrar</button>
 
@@ -175,7 +163,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                         <th>Apellido</th>
                                         <th>Correo</th>
                                         <th>Estado</th>
-                                        <th>Acciones</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                   <tbody>
@@ -199,7 +187,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                                     <form action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8">
                                                         <input type="hidden" name="IdUsuario" value="<?php echo $cliente['IdUsuario'];?>">
                                                         <input type="hidden" name="Estado" value="<?php echo $cliente['Estado'];?>">
-                                                        <button type="" id="actualizarUsuario" name="actualizarCliente" class="btn btn-primary">Cambiar Estado</button>
+                                                        <button type="" id="actualizarUsuario" name="actualizarCliente" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
                                                     </form>
                                                     </td> 
                                                 </tr>

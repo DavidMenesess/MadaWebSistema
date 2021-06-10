@@ -109,14 +109,25 @@ class CrudAdministrador{
 
 	}
 
-	// public function eliminarUsuario($IdUsuario){
-	// 	$Db = Db::Conectar();
+	public function eliminarAdministrador($idUsuario){
 
-	// 	$sql = $Db -> query("DELETE FROM usuarios WHERE IdUsuario = $IdUsuario");
-	// 	$sql -> execute();
-	// 	Db::CerrarConexion($Db);
+		$mensaje = "";
 
-	// }
+		$Db = Db::Conectar();
+
+		$sql = $Db->prepare('DELETE FROM usuarios WHERE IdUsuario = :idUsuario');
+		$sql->bindvalue('idUsuario',$idUsuario);
+
+		try{
+			$sql->execute();
+			$mensaje = "1";
+		}
+		catch(Exception $e){
+			$mensaje = $e->getMessage();
+		}
+		Db::CerrarConexion($Db);
+		return $mensaje;
+	}
 
 
 

@@ -38,3 +38,5 @@ function validarRegistro(){
         btnRegistrar.setAttribute("type", "submit");
     }
 }
+
+
