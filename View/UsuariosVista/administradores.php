@@ -32,7 +32,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#!" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#!">Mi perfíl</a>
+                    <a class="dropdown-item" href="#">Mi perfíl</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
                 </div>
@@ -90,9 +90,15 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <h1 class="mt-4" style="text-align:center;">Gestión de administradores</h1>
                         <br>
                         <br>
+                        <?php
+                        if($_SESSION['Rol']==1){
+                        ?>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
 							  Nuevo Administrador
 						</button>
+                        <?php
+                        }
+                        ?>
                         </div>
                         <div>
                         	
@@ -150,7 +156,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                       <div class="card mb-4">
                       <div class="card-header">
                         <i class="fas fa-table mr-1"></i>
-                        Administradores 👮‍♀️👮‍♂️❤
+                        Supervisores 👮‍♀️👮‍♂️❤
                      </div>
                       <div class="card-body">
                          <div class="table-responsive">
@@ -163,7 +169,13 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                         <th>Correo</th>
                                         <th>Rol</th>
                                         <th>Estado</th>
+                                        <?php
+                                         if($_SESSION['Rol']==1){
+                                        ?>
                                         <th>Accioneㅤㅤㅤ</th>
+                                        <?php
+                                         }
+                                        ?>
                                     </tr>
                                 </thead>
                                   <tbody>
@@ -184,25 +196,50 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                                         }
                                                 ?>    
                                             </td>
+                                                
                                                 <td>
                                                     <form action="../../Controller/UsuariosControlador/ControladorAdministrador.php" method="POST" accept-charset="utf-8">
                                                         <input type="hidden" name="IdUsuario" value="<?php echo $administrador['IdUsuario'];?>">
                                                         <input type="hidden" name="Estado" value="<?php echo $administrador['Estado'];?>">
+                                                        <?php
+                                                        if($_SESSION['Rol'] == 1 && $administrador['IdUsuario'] != 1)
+                                                        {
+                                                        ?>
                                                         <button type="" id="actualizarUsuario" name="actualizarEstadoAdministrador" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                        if($_SESSION['Rol'] == 1)
+                                                        {
+                                                        ?>
                                                         <button type="submit" name="editarAdministrador" id="editarAdministrador" class="btn btn-info"><i class="fas fa-edit"></i></button>
-                                                        <button type="button" name="eliminarAdministrador" id="eliminarAdministrador" class="btn btn-danger" onclick="eliminar(<?php echo $administrador['IdUsuario']; ?>);"><i class="fas fa-trash-alt"></i></button>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                        if($_SESSION['Rol'] == 1 && $administrador['IdUsuario'] != 1)
+                                                        {
+                                                        ?>
+                                                        <button type="submit" name="eliminarAdministrador" id="eliminarAdministrador" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </form>
-                                                </td> 
+                                                </td>
+                                                 
                                         </tr>
-                                                <?php   
-                                                    }
-                                                ?>
+                                        <?php   
+                                        }
+                                        ?>
                                     </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-            </div>
+                <button type="button" class="btn btn-danger">Descargar <i class="fas fa-file-pdf"></i> pdf</button>
+                <button type="button" class="btn btn-success">Descargar <i class="fas fa-file-excel"></i> excel</button>
+             </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
@@ -256,60 +293,6 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
     
 });
 
-function eliminar(idUsuario){
-
-//confirm("ssssss");
-let formData = new FormData();
-formData.append('IdUsuario',idUsuario);
-formData.append('eliminar','');
-
-Swal.fire({
-    title: '¿Seguro que deseas eliminar el usuario?',
-    //text: "Usted no podrá revertir este cambio!"
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: '¡Si, bórralo!'
-}).then((result) => {
-    if (result.isConfirmed) {
-
-        $.ajax({
-            url:'../../Controller/UsuariosControlador/controladorAdministradr.php', //petición asincrona al controlador
-            type: 'post',
-            data:formData,
-            contentType:false,
-            processData:false,
-            success: function(response){
-                if(response == 1){
-                    Swal.fire(
-                    'Eliminado!',
-                    'El registro ha sido eliminado',
-                    'success'
-                    );
-                    //document.location.href="listarProductos.php";
-                }
-                else{
-                    Swal.fire(
-                    'Ocurrio un error!',
-                    response,
-                    'info'
-                    );
-                }
-                
-            }
-        }); 
-        /*Swal.fire(
-        'Eliminado!'
-        'El registro ha sido eliminado. ',
-        'warning'
-        ) */
-
-
-
-    }
-});
-}
 
 
 

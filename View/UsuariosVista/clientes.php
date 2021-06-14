@@ -90,9 +90,15 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <h1 class="mt-4" style="text-align:center;">Gestión de clientes</h1>
                         <br>
                         <br>
+                        <?php
+                        if($_SESSION['Rol']==1){
+                        ?>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
 							  Nuevo Cliente
 						</button>
+                        <?php
+                         }
+                        ?>
                         </div>
                         <div>
                         	
@@ -163,7 +169,13 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                         <th>Apellido</th>
                                         <th>Correo</th>
                                         <th>Estado</th>
+                                        <?php
+                                        if($_SESSION['Rol']==1){
+                                        ?>
                                         <th>Acción</th>
+                                        <?php
+                                        }
+                                        ?>
                                     </tr>
                                 </thead>
                                   <tbody>
@@ -183,13 +195,19 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                                         }
                                                 ?>    
                                             </td>
+                                                <?php
+                                                 if($_SESSION['Rol']==1){
+                                                ?>
                                                 <td>
                                                     <form action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8">
                                                         <input type="hidden" name="IdUsuario" value="<?php echo $cliente['IdUsuario'];?>">
                                                         <input type="hidden" name="Estado" value="<?php echo $cliente['Estado'];?>">
                                                         <button type="" id="actualizarUsuario" name="actualizarCliente" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
                                                     </form>
-                                                    </td> 
+                                                </td> 
+                                                <?php
+                                                 }
+                                                ?>
                                                 </tr>
                                                 <?php   
                                                     }
@@ -199,6 +217,8 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         </div>
                     </div>
                 </div>
+                <button type="button" class="btn btn-danger">Descargar <i class="fas fa-file-pdf"></i> pdf</button>
+                <button type="button" class="btn btn-success">Descargar <i class="fas fa-file-excel"></i> excel</button>
             </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

@@ -110,12 +110,8 @@ if(isset($_POST['actualizarDatosAdmin'])){
 }
 
 if(isset($_POST['eliminarAdministrador'])){
-	echo $ControladorAdministrador->eliminarAdministrador($_POST['IdUsuario']);	
-	//header('Location:../../View/UsuariosVista/administradores.php');
-	/*echo "<script>
-				location.replace('../../View/UsuariosVista/administradores.php');
-				confirm('¿Estás seguro que deseas eliminar el usuario?.');
-			  </script>";*/
+	$ControladorAdministrador->eliminarAdministrador($_POST['IdUsuario']);
+	header('Location:../../View/UsuariosVista/administradores.php');
 }
 
 ?>

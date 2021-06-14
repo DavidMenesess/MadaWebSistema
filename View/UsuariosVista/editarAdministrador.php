@@ -89,7 +89,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                     <div class="container-fluid">
                         <h1 class="mt-4">Editar información</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">¡Los cambios que aquí se realicen se veran en el perfil del usuario!</li>
+                            <li class="breadcrumb-item active">¡Los cambios realizados se podrán editar nuevamente</li>
                         </ol>
                         <form action="../../Controller/UsuariosControlador/ControladorAdministrador.php" method="POST" accept-charset="utf-8">
                             <div class="form-group">
@@ -112,7 +112,9 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             </div>
                             <div class="form-group">
                                 <label for="contrasena">Contraseña</label>
-                                <input type="text" class="form-control" id="contrasena" name="contrasena" autocomplete="of" value="<?php echo $listarAdministrador['Contrasena'] ?>">
+                                <input type="password" class="form-control" id="contrasena" name="contrasena" autocomplete="of" value="<?php echo $listarAdministrador['Contrasena'] ?>">
+                                <label for="">Mostrar contraseña</label>
+                                <input type="checkbox" id="mostrarContra" onclick="mostrarContrasena();">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -152,32 +154,14 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
     </body>
     <script>
-    $(document).ready(function() {
-    $('#dataTable').DataTable();
-    } );
-
-    let table = $('#dataTable').DataTable({
-    language: {
-        "decimal": "",
-        "emptyTable": "No hay información",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-        "infoPostFix": "",
-        "thousands": ",",
-        "lengthMenu": "Mostrar _MENU_ Entradas",
-        "loadingRecords": "Cargando...",
-        "processing": "Procesando...",
-        "search": "Buscar:",
-        "zeroRecords": "Sin resultados encontrados",
-        "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
+        function mostrarContrasena(){
+           var mostrar = document.getElementById("contrasena");
+           if(mostrar.type=="password"){
+               mostrar.type="text";
+           } 
+           else{
+               mostrar.type="password";
+           }
         }
-    },
-    
-});
     </script>
 </html>

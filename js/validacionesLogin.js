@@ -1,7 +1,7 @@
 function validarIngreso(){
 
     let correo = document.getElementById('correoUsuario').value;
-    let contrasena = document.getElementById('contrasenaUsuario').value; 
+    let contrasena = document.getElementById('contrasena').value; 
 
     if(correo.trim() == "" ||contrasena.trim() == ""){
 
@@ -38,5 +38,6 @@ function validarRegistro(){
         btnRegistrar.setAttribute("type", "submit");
     }
 }
+
 
 

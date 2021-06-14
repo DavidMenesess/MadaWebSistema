@@ -9,7 +9,7 @@ require_once('../../Model/AccesoModelo/crudAcceso.php');
         }
 
         public function validarAcceso($correo,$contrasena){//Envia como parametros los valores al modelo
-          
+
             $usuario = new usuario(); //Le asigno un objeto del tipo Usuario que esta en el modelo
             $contrasena = hash('sha512', $contrasena);//Se ecripta la contrasena nuevamente para que realice la comparacion con la qu se registro en la bd
             $usuario->setCorreo($correo);
@@ -29,6 +29,7 @@ require_once('../../Model/AccesoModelo/crudAcceso.php');
           session_start(); //Funcion propia de php para indicar que vamos a iniciar una session. Inicializa la variable de session
           $_SESSION['correoUsuario'] = $usuario->getCorreo();//Variable de sesión global.
           $_SESSION['Rol'] = $usuario->getRol();
+          //$_SESSION['nombre'] = $usuario->getNombre();
 
           header("Location: ../../View/dashboard.php");
 
@@ -37,7 +38,10 @@ require_once('../../Model/AccesoModelo/crudAcceso.php');
       //Debo integrar un if para validar el acceso de los clientes.
 
       else{
-        header("Location: ../../View/AccesoVista/login.php");
+        echo "<script>
+                    location.replace('../../View/AccesoVista/login.php');
+                    alert('Datos incorrectos por favor intente nuevamente.');
+                </script>";
       }
 
     }
@@ -48,5 +52,6 @@ require_once('../../Model/AccesoModelo/crudAcceso.php');
       header("Location: ../../View/AccesoVista/login.php");
     }
 
+    
 
 ?>
