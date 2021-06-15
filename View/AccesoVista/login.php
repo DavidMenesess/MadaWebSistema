@@ -31,7 +31,7 @@ require_once('../../Model/conexion.php')
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="contrasenaUsuario">Contraseña</label>
-                                                <input class="form-control py-4" id="contrasenaUsuario" name="contrasenaUsuario" type="password" placeholder="Contraseña"/>
+                                                <input class="form-control py-4" id="contrasena" name="contrasenaUsuario" type="password" placeholder="Contraseña"/>
                                             </div>
                                             
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">

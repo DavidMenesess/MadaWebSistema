@@ -1,7 +1,7 @@
 function validarIngreso(){
 
     let correo = document.getElementById('correoUsuario').value;
-    let contrasena = document.getElementById('contrasena').value; 
+    let contrasena = document.getElementById('contrasena').value;
 
     if(correo.trim() == "" ||contrasena.trim() == ""){
 
