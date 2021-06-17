@@ -39,5 +39,22 @@ function validarRegistro(){
     }
 }
 
+function validaRecuperar(){
+
+    let correoRestablecer = document.getElementById("recuperarContra").value;
+
+    if(correoRestablecer.trim() == ""){
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Por favor ingresa todos los datos.\n🙄😁',
+          })
+    }
+    else{
+        
+        let botonRestablecer = document.getElementById('restablecer').value;
+        botonRestablecer.setAttribute("type","submit");
+    }
+}
 
 

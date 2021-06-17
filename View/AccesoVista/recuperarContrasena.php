@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>Recuperar contraseña</title>
         <link href="../../css/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="../../libraries/fontawesome.js"></script>
     </head>
     <body class="bg-dark">
         <div id="layoutAuthentication">
@@ -21,14 +21,14 @@
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Recuperar contraseña</h3></div>
                                     <div class="card-body">
                                         <div class="small mb-3 text-muted">Ingrese su dirección de correo electrónico y le enviaremos un enlace para restablecer su contraseña.</div>
-                                        <form>
+                                        <form action="../../Controller/AccesoControlador/controladorRecuperar.php" method="POST" autocomplete="off"/>
                                             <div class="form-group">
-                                                <label class="small mb-1" for="inputEmailAddress">Correo electrónico</label>
-                                                <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Ingresa tu correo electrónico" />
+                                                <label class="small mb-1" for="recuperarContra">Correo electrónico</label>
+                                                <input class="form-control py-4" id="correoRecuperar" name="correoRecuperar" type="email" aria-describedby="emailHelp" placeholder="Ingresa tu correo electrónico" />
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="login.php">Volver a iniciar sesión</a>
-                                                <a class="btn btn-primary" href="login.html">Restablecer contraseña</a>
+                                                <button type="submit" class="btn btn-primary" id="restablecer" name="restablecerContra">Restablecer contraseña</button>
                                             </div>
                                         </form>
                                     </div>
@@ -56,8 +56,10 @@
                 </footer>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
+        <script src="../../libraries/bootstrap.bundle.min.js"></script>
         <script src="../../js/scripts.js"></script>
+        <script src="../../js/validacionesLogin.js"></script>
+        <script src="../../libraries/sweetalert2@11.js"></script>
     </body>
 </html>
