@@ -1,12 +1,14 @@
 <?php
 
+require_once('../../Controller/AccesoControlador/controladorRecuperar.php');
+
  class crudRecuperar{
 
     public function __construct(){
 
     }
 
-    public function recuperarContrasena($usuario){
+    public function validarExisteCorreo($usuario){
 
         $mensaje = "";
         $mensajeValidar = "";
@@ -32,6 +34,8 @@
          Db::CerrarConexion($Db);
          return $mensaje;
     }
+
+    
 }
 
 ?>

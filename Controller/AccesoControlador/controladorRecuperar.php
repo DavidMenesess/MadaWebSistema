@@ -17,25 +17,34 @@ class controladorRecuperar{
     public function __construct(){
 
     }
-    public function recuperarContrasena($correo){
+    public function validarExisteCorreo($correo){
 
         $usuario = new usuario();
         $usuario->setCorreo($correo);
 
         $crudRecuperar = new crudRecuperar();
-        return $crudRecuperar->recuperarContrasena($usuario);
+        return $crudRecuperar->validarExisteCorreo($usuario);
     }
+
+    /*public function insertarDatos($correo,$codigo){
+        $usuario = new usuario();
+        $usuario->setCorreo($correo);
+        $usuario->setCodigo($codigo);
+    }*/
 }
 
 $controladorRecuperar = new controladorRecuperar();
 
 if(isset($_POST['restablecerContra'])){
     // al guardar lo que recibimos en el input en mensaje podemos obtener aqui el valor de retorno del modelo
-    $mensaje = $controladorRecuperar->recuperarContrasena($_POST['correoRecuperar']);
+    $mensaje = $controladorRecuperar->validarExisteCorreo($_POST['correoRecuperar']);
     //Recibo el valor de retorno de la variable mensaje y según el caso hago una accion u otra... mandar el correo o la alerta.
     if($mensaje == "El correo existe"){
         
-            $mail = new PHPMailer(true);
+        $correoRecuperar = $_POST['correoRecuperar'];
+        $codigo = uniqid(true);
+        
+        $mail = new PHPMailer(true);
 
     try {
         //Server settings
@@ -50,7 +59,7 @@ if(isset($_POST['restablecerContra'])){
 
         //Recipients
         $mail->setFrom('madaprueba123@gmail.com', 'Administrador Mada');
-        $mail->addAddress('davidmeneses07123@gmail.com',);     //Add a recipient
+        $mail->addAddress($correoRecuperar);     //Add a recipient
         /*$mail->addAddress('ellen@example.com');               //Name is optional
         $mail->addReplyTo('info@example.com', 'Information');
         $mail->addCC('cc@example.com');
@@ -63,7 +72,7 @@ if(isset($_POST['restablecerContra'])){
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Este es el asunto del correo';
-        $mail->Body    = 'Hola este es un correo de prueba y aquí va el cuerpo del mensaje';
+        $mail->Body    = 'Hola, da clic en el siguiente link para restablecer tu contrasena. '; //. $codigo;
         /*$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';*/
 
         $mail->send();
