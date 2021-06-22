@@ -1,3 +1,6 @@
+<?php
+    if(isset($_GET["codigo"])) $codigo = $_GET["codigo"];
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -22,9 +25,10 @@
                                     <div class="card-body">
                                         <div class="small mb-3 text-muted">Ingrese una nueva contraseña</div>
                                         <form action="../../Controller/AccesoControlador/controladorRecuperar.php" method="POST" autocomplete="off"/>
+                                            <input type="hidden" name="codigo" id="codigo" value="<?php echo $codigo ?>">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="recuperarContra">Nueva contraseña</label>
-                                                <input class="form-control py-4" id="correoRecuperar" name="nuevaContrasena" type="email" aria-describedby="emailHelp"/>
+                                                <input class="form-control py-4" id="correoRecuperar" name="nuevaContrasena" type="text"/>
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="login.php">Volver a iniciar sesión</a>
