@@ -9,7 +9,7 @@ class CrudCliente{
 	public function listarCliente(){
 		$Db = Db::Conectar();
 
-		$sql = $Db -> query('SELECT * FROM usuarios WHERE IdRol = 3');
+		$sql = $Db -> query('SELECT * FROM usuarios WHERE IdRol = 2');
 		$sql -> execute();
 		Db::CerrarConexion($Db);
 		return $sql -> fetchAll();
@@ -34,7 +34,7 @@ class CrudCliente{
 			else{
 				$sql = $Db->prepare('INSERT INTO
 				usuarios(Nombre, Apellido, Correo, Contrasena,Estado,IdRol )
-				VALUES (:nombre, :apellido, :correo, :contrasena,1,3)');
+				VALUES (:nombre, :apellido, :correo, :contrasena,1,2)');
 				$sql->bindvalue('nombre',$usuario->getNombre());//dentro del value cuenta como variables las que tienen los dos puntos :
 				$sql->bindvalue('apellido',$usuario->getApellido());//recciben los datos que se mandaron por el set en controladorRegistrar
 				$sql->bindvalue('correo',$usuario->getCorreo());

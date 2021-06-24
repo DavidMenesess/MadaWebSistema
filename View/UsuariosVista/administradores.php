@@ -210,7 +210,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                                         }
                                                         ?>
                                                         <?php
-                                                        if($_SESSION['Rol'] == 1)
+                                                        if($_SESSION['Rol'] == 1  && $administrador['IdUsuario'] != 1)
                                                         {
                                                         ?>
                                                         <button type="submit" name="editarAdministrador" id="editarAdministrador" class="btn btn-info"><i class="fas fa-edit"></i></button>
