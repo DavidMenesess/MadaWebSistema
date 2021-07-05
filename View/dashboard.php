@@ -60,7 +60,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                              </a>
                              <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                  <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                 <a class="nav-link" href="#">Categorías</a>
+                                 <a class="nav-link" href="ProduccionVista/categorias.php">Categorías</a>
                                     <a class="nav-link" href="#">Productos</a>
                                  </nav>
                              </div>
