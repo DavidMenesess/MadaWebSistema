@@ -29,15 +29,17 @@ class controladorCategoria{
         return $crudcategoria->buscarCategorias($IdCategoria);
     }
     
-    public function ActualizarCategoria($idCategoria,$nombreCategoria,$imagen){
+    public function actualizarCategoria($id_categoria,$nombreCategoria,$nuevaImagen){
         $categoria = new categoria();//crear objeto del tippo producto
-        $categoria->setId_Categoria($idCategoria);
+        $categoria->setId_Categoria($id_categoria);
         $categoria->setNombreCategoria($nombreCategoria);//asignar valores a los atributos
-        $categoria->setUrlImagen($imagen);
-
+        $categoria->setUrlImagen($nuevaImagen);
+        echo $nuevaImagen;
 
         $crudcategoria = new crudcategoria();
+        //var_dump($categoria);
         $crudcategoria->ActualizarCategoria($categoria);
+         
         header('Location: ../../View/ProduccionVista/categorias.php');
         
 
@@ -56,13 +58,13 @@ $controladorCategoria = new controladorCategoria();//crear un objeto de la clase
 
 if(isset($_POST['registrarCategoria'])){
     //llamado al metodo registrar el producto del controlador
-
+    
     $nombreFoto = $_FILES['foto']['name'];
     $tipoArchivo = $_FILES['foto']['type'];
     $tamanoImagen = $_FILES['foto']['size'];
     $nombreCategoria = $_POST['nombreCategoria'];
 
-    if($tamanoImagen <= 2097152){
+    if($tamanoImagen <= 5097152){
 
         if($tipoArchivo == "image/jpeg" || $tipoArchivo == "image/jpg" || $tipoArchivo == "image/png"){
             //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
@@ -71,12 +73,15 @@ if(isset($_POST['registrarCategoria'])){
             //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
             move_uploaded_file($_FILES['foto']['tmp_name'],$carpetaDestino.$nombreFoto);
 
+             $controladorCategoria->registrarCategoria($nombreCategoria,$nombreFoto);
+
+
         }
 
         else{
             echo "<script>
             location.replace('../../View/ProduccionVista/categorias.php');
-            alert('El formato seleccionado no corresponde al de una imagen.');
+            alert('El formato seleccionado no corresponde a una imagen.');
             </script>";
         }
     }
@@ -84,12 +89,12 @@ if(isset($_POST['registrarCategoria'])){
     else{
         echo "<script>
         location.replace('../../View/ProduccionVista/categorias.php');
-        alert('La imagn super el tamaño esperado. Debe ser de 2Mb');
+        alert('La imagn super el tamaño esperado. Debe ser menor o igual a 5Mb');
     </script>";
     }
 
     
-    $controladorCategoria->registrarCategoria($nombreCategoria,$nombreFoto);
+    //$controladorCategoria->registrarCategoria($nombreCategoria,$nombreFoto);
 
     //header('Location: ../../View/produccionVista/categorias.php');
 }
@@ -100,14 +105,60 @@ if(isset($_POST['editarCategoria'])){ //sirve para comprovar si una variable est
 }
 
 if(isset($_POST['actualizarCategoria'])){
-    //llamado al metodo Actualizar el producto del controlador
-    $controladorCategoria->ActualizarCategoria($_POST['idCategoria'],$_POST['nombreCategoria'],$_POST['imagen']);
-    //var_dump($Controlador->ActualizarCategorias($_POST['Id_categoria'],$_POST['Nombre']));
+
+    $idCategoria = $_POST['idCategoria'];
+    $nombreFoto = $_FILES['fotoNueva']['name'];
+    $tipoArchivo = $_FILES['fotoNueva']['type'];
+    $tamanoImagen = $_FILES['fotoNueva']['size'];
+    $nombreCategoria = $_POST['nombreCategoria'];
+    $fotoAntigua = $_POST['fotoAntigua'];
+    
+    if($tamanoImagen <= 5097152){
+
+        if($tipoArchivo == "image/jpeg" || $tipoArchivo == "image/jpg" || $tipoArchivo == "image/png"){
+            //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
+            $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/categorias/';
+
+            //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+            move_uploaded_file($_FILES['fotoNueva']['tmp_name'],$carpetaDestino.$nombreFoto);
+
+            //$controladorCategoria->registrarCategoria($nombreCategoria,$nombreFoto);
+        }
+
+        else{
+            echo "<script>
+            location.replace('../../View/ProduccionVista/categorias.php');
+            alert('El formato seleccionado no corresponde a una imagen.');
+            </script>";
+        }
+    }
+
+    else{
+        echo "<script>
+        location.replace('../../View/ProduccionVista/categorias.php');
+        alert('La imagn super el tamaño esperado. Debe ser menor o igual a 5Mb');
+    </script>";
+    }
+    
+    $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/categorias/$fotoAntigua";
+    unlink($carpetaDestinoEliminarFoto);
+    $controladorCategoria->actualizarCategoria($idCategoria,$nombreCategoria,$nombreFoto);
+
+
 }
 
 if(isset($_POST['eliminarCategoria'])){
-   // echo 'eliminando producto'.$_POST['Id_producto'];
+   
+   $imagen = $_POST['imagen'];
+   $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/categorias/$imagen";
+   unlink($carpetaDestinoEliminarFoto); 
    $controladorCategoria->eliminarCategoria($_POST['IdCategoria']);
+
+   /* unlink elimina un fichero de una ruta
+    especifica o de la misma carpeta, recibe como 
+    parametro la ruta o el nombre del archivo. En este
+    caso ecibe la ruta del fichero y el nombre del archivo.
+    */
 
 }
 ?>

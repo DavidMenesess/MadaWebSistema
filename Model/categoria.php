@@ -16,7 +16,7 @@ class categoria{
         $this->NombreCategoria = $NombreCategoria;
     }
     public function setUrlImagen($UrlImagen){
-        $this->setUrlImagen = $UrlImagen;
+        $this->UrlImagen = $UrlImagen;
     }
     
 

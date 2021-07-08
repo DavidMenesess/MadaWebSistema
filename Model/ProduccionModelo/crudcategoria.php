@@ -6,8 +6,7 @@ class crudcategoria
 
     public function listarCategorias(){
         $Db = Db::Conectar();//cadena de conexion
-        $sql = $Db->query('SELECT * FROM categorias
-        ORDER BY NombreCategoria ASC');//definicion de sql
+        $sql = $Db->query('SELECT * FROM categorias');//definicion de sql
         $sql->execute();//ejectar la consulta
         Db::CerrarConexion($Db);
         return $sql->fetchAll();//retornar todo el listado de la consulta
@@ -51,12 +50,12 @@ class crudcategoria
         $sql->bindvalue('IdCategoria',$categoria-> getId_Categoria());
         $sql->bindvalue('nombreCategoria',$categoria-> getNombreCategoria());
         $sql->bindvalue('imagen',$categoria-> getUrlImagen());
+    
         
-
         try{
             $sql->execute();//ejecutar el sql
             $mensaje= "Actualizacion exitosa"; //mostrar mensaje de un registro exitoso
-
+            //$mensaje = $categoria->getUrlImagen().$nombreCategoria;
         }
         catch(Exception $e)
         {

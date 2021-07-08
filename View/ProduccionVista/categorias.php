@@ -32,8 +32,6 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#!" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">Mi perfíl</a>
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
                 </div>
             </li>
@@ -142,11 +140,11 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                       <div class="card mb-4">
                       <div class="card-header">
                         <i class="fas fa-table mr-1"></i>
-                        Categorias 🌌❤
+                        Categorías 👗👖💄❤
                      </div>
                       <div class="card-body">
                          <div class="table-responsive">
-                          <table class="table table-hover table-bordered" id="tablaClientes">      
+                          <table class="table table-hover table-bordered" id="tablaCategorias">      
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -162,11 +160,11 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                           <tr>
                                           <td><?php echo $categoria['IdCategoria'];?></td>
                                           <td><?php echo $categoria['NombreCategoria'];?></td>
-                                          <td> <img class="img-thumbnail" width="100px" src="../../images/categorias/<?php echo $categoria['UrlImagen'];?>" alt="foto categoria"/></td>
-                                          <td></td>
+                                          <td><img class="img-thumbnail" width="100px" src="../../images/categorias/<?php echo $categoria['UrlImagen'];?>" alt="foto categoria"/></td>
                                                 <td>
                                                     <form action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST" accept-charset="utf-8">
                                                         <input type="hidden" name="IdCategoria" value="<?php echo $categoria['IdCategoria'];?>">
+                                                        <input type="hidden" name="imagen" value="<?php echo $categoria['UrlImagen']; ?>">
                                                         <button type="submit" name="editarCategoria" id="editarCategoria" class="btn btn-info"><i class="fas fa-edit"></i></button>
                                                         <button type="submit" name="eliminarCategoria" id="eliminarCategoria" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
                                                     </form>
@@ -209,10 +207,10 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
     </body>
     <script>
     $(document).ready(function() {
-    $('#tablaClientes').DataTable();
+    $('#tablaCategorias').DataTable();
     } );
 
-    let table = $('#tablaClientes').DataTable({
+    let table = $('#tablaCategorias').DataTable({
     language: {
         "decimal": "",
         "emptyTable": "No hay información",
@@ -235,9 +233,6 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
     },
     
 });
-
-
-
 
     </script>
 </html>

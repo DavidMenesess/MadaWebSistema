@@ -91,7 +91,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">¡Los cambios realizados se podrán editar nuevamente</li>
                         </ol>
-                        <form action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST" accept-charset="utf-8" autocomplete="off">
+                        <form action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST" accept-charset="utf-8" autocomplete="off" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="idUsuario">ID</label>
                                 <input type="number" class="form-control" id="idCategoria" name="idCategoria" autocomplete="of" readonly value="<?php echo $listarCategoria['IdCategoria']?>">
@@ -101,9 +101,14 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 <label for="nombreCategoria">Nombre</label>
                                 <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" value="<?php echo $listarCategoria['NombreCategoria']?>">
                                 </div>
+                                <div class="form-group col-md-12">
+                                <label for="imagenActual">Imagen actual: </label>
+                                <input type="hidden" name="fotoAntigua" value="<?php echo $listarCategoria['UrlImagen']; ?>">
+                                <img class="img-thumbnail" width="100px" name="fotoAntigua" src="../../images/categorias/<?php echo $listarCategoria['UrlImagen'];?>" alt="foto categoria"/>
+                                </div>
                                 <div class="form-group col-md-6">
-                                <label for="imagen">Imagen</label>
-                                <input type="file" class="form-control" id="imagen" name="imagen" value="<?php echo $listarCategoria['UrlImagen']?>">
+                                <label for="fotoNueva">Nueva imagen</label>
+                                <input type="file" class="form-control-file" id="fotoNueva" name="fotoNueva">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success" name="actualizarCategoria" id="actualizarCategoria">Guardar cambios</button>
