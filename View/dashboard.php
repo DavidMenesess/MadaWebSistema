@@ -29,8 +29,6 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#!" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#!">Mi perfíl</a>
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
                 </div>
             </li>
@@ -103,7 +101,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">Categorías</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Ver detalles</a>
+                                        <a class="small text-white stretched-link" href="ProduccionVista/categorias.php">Ver detalles</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>

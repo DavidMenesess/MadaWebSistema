@@ -81,5 +81,18 @@ if(isset($_POST['actualizarCliente'])){
 	$ControladorCliente->actualizarCliente($_POST['IdUsuario'],$_POST['Estado']);
 }
 
+if(isset($_POST['descargarPdf'])){
+	
+	$rutaArchivo = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/View/UsuariosVista/reporteClientes.php';
+
+	//header('Content-Type: application/octet-stream');
+	//header("Content-Transfer-Encoding: Binary");
+	//header("Content-disposition: attachment;");
+
+	readfile($rutaArchivo);
+
+
+}
+
 ?>
 

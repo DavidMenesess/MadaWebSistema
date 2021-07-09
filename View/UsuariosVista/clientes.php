@@ -32,8 +32,6 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#!" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#!">Mi perfíl</a>
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
                 </div>
             </li>
@@ -63,7 +61,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                              </a>
                              <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                  <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                 <a class="nav-link" href="#">Categorías</a>
+                                 <a class="nav-link" href="../ProduccionVista/categorias.php">Categorías</a>
                                     <a class="nav-link" href="#">Productos</a>
                                  </nav>
                              </div>
@@ -217,8 +215,10 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-danger">Descargar <i class="fas fa-file-pdf"></i> pdf</button>
+                <form action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8">
+                <button type="submit" class="btn btn-danger" name="descargarPdf">Descargar <i class="fas fa-file-pdf"></i> pdf</button>
                 <button type="button" class="btn btn-success">Descargar <i class="fas fa-file-excel"></i> excel</button>
+                </form>
             </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

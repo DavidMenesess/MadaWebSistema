@@ -50,8 +50,8 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="administradores.php">Administradores</a>
-                                    <a class="nav-link" href="clientes.php">Clientes</a>
+                                    <a class="nav-link" href="../UsuariosVista/administradores.php">Administradores</a>
+                                    <a class="nav-link" href="../UsuariosVista/clientes.php">Clientes</a>
                                 </nav>
                             </div>
                              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -61,7 +61,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                              </a>
                              <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                  <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                 <a class="nav-link" href="#">Categorías</a>
+                                 <a class="nav-link" href="categorias.php">Categorías</a>
                                     <a class="nav-link" href="#">Productos</a>
                                  </nav>
                              </div>

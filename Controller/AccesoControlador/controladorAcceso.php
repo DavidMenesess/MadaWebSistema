@@ -29,8 +29,6 @@ require_once('../../Model/AccesoModelo/crudAcceso.php');
           session_start(); //Funcion propia de php para indicar que vamos a iniciar una session. Inicializa la variable de session
           $_SESSION['correoUsuario'] = $usuario->getCorreo();//Variable de sesión global.
           $_SESSION['Rol'] = $usuario->getRol();
-          //$_SESSION['nombre'] = $usuario->getNombre();
-
           header("Location: ../../View/dashboard.php");
 
       }
