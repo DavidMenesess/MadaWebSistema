@@ -5,6 +5,8 @@ require('../../Controller/UsuariosControlador/ControladorClientes.php');
 
 $listarCliente = $ControladorCliente -> listarCliente();
 
+
+
 class PDF extends FPDF
 {
 // Cabecera de página

@@ -87,15 +87,9 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <h1 class="mt-4" style="text-align:center;">Gestión de administradores</h1>
                         <br>
                         <br>
-                        <?php
-                        if($_SESSION['Rol']==1){
-                        ?>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
 							  Nuevo Administrador
 						</button>
-                        <?php
-                        }
-                        ?>
                         </div>
                         <div>
                         	
@@ -166,13 +160,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                         <th>Correo</th>
                                         <th>Rol</th>
                                         <th>Estado</th>
-                                        <?php
-                                         if($_SESSION['Rol']==1){
-                                        ?>
-                                        <th>Accioneㅤㅤㅤ</th>
-                                        <?php
-                                         }
-                                        ?>
+                                        <th>Accionesㅤㅤㅤ</th>
                                     </tr>
                                 </thead>
                                   <tbody>
@@ -234,8 +222,8 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-danger">Descargar <i class="fas fa-file-pdf"></i> pdf</button>
-                <button type="button" class="btn btn-success">Descargar <i class="fas fa-file-excel"></i> excel</button>
+                <a href="reporteAdministradoresPdf.php" target="_blank" class="btn btn-danger">Descargar <i class="fas fa-file-pdf"></i> pdf</a>
+                <a  href="reporteAdministradoresExcel.php" class="btn btn-success">Descargar <i class="fas fa-file-excel"></i> excel</a>
              </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
