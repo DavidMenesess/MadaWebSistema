@@ -59,7 +59,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                              <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                  <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                  <a class="nav-link" href="ProduccionVista/categorias.php">Categorías</a>
-                                    <a class="nav-link" href="#">Productos</a>
+                                    <a class="nav-link" href="ProduccionVista/productos.php">Productos</a>
                                  </nav>
                              </div>
                              <div class="sb-sidenav-menu-heading">Principal</div>
@@ -85,7 +85,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                     <div class="container-fluid">
                         <h1 class="mt-4">Administración</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">¡Bienvenid@ nuevamente! <?php echo $_SESSION['correoUsuario'];?></li>
+                            <li class="breadcrumb-item active">¡Bienvenid@ nuevamente! <b><?php echo $_SESSION['Nombre'];?></b></li>
                         </ol>
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
@@ -622,7 +622,9 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Todos los derechos reservados &copy; Mada 2021</div>
+                            <div class="text-muted">
+                                Todos los derechos reservados &copy; <script>document.write(new Date().getFullYear());</script> | Mada <i class="fa fa-heart" aria-hidden="true"></i>
+                            </div>
                             <div>
                                 <a href="#">Política de privacidad</a>
                                 &middot;

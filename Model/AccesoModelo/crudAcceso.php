@@ -23,6 +23,7 @@ class CrudAcceso{
                 $usuario->setContrasena('');//Despues de determinar que el usuario existe asginamos un valor vacio a la contrasena, para no manejarla en el objeto
                 $usuario->setExiste(1);
                 $usuario->setRol($datosUsuario['IdRol']);//Asignando al atributo rol el id del usuario
+                $usuario->setNombre($datosUsuario['Nombre']);
 
             }
         }

@@ -29,11 +29,20 @@ require_once('../../Model/AccesoModelo/crudAcceso.php');
           session_start(); //Funcion propia de php para indicar que vamos a iniciar una session. Inicializa la variable de session
           $_SESSION['correoUsuario'] = $usuario->getCorreo();//Variable de sesión global.
           $_SESSION['Rol'] = $usuario->getRol();
+          $_SESSION['Nombre'] = $usuario->getNombre();
           header("Location: ../../View/dashboard.php");
 
       }
 
-      //Debo integrar un if para validar el acceso de los clientes.
+      if($usuario->getExiste() == 1 && $usuario->getRol() == 2){
+
+        session_start();
+        $_SESSION['correo'] = $usuario->getCorreo();
+        $_SESSION['rol'] = $usuario->getRol();
+        $_SESSION['nombre'] = $usuario->getNombre();
+        header("Location: ../../index.php");
+
+      }
 
       else{
         echo "<script>
@@ -47,7 +56,7 @@ require_once('../../Model/AccesoModelo/crudAcceso.php');
     else if(isset($_GET['cerrarSesion'])){//Destruir la variable de sesión
       session_start();
       session_destroy();
-      header("Location: ../../View/AccesoVista/login.php");
+      header("Location: ../../index.php");
     }
 
     

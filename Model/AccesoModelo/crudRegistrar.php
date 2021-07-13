@@ -24,7 +24,7 @@
                 else{
                     $sql = $Db->prepare('INSERT INTO
                     usuarios(Nombre, Apellido, Correo, Contrasena,Estado,IdRol )
-                    VALUES (:nombre, :apellido, :correo, :contrasena,1,1)');
+                    VALUES (:nombre, :apellido, :correo, :contrasena,1,2)');
                     $sql->bindvalue('nombre',$Usuario->getNombre());//dentro del value cuenta como variables las que tienen los dos puntos :
                     $sql->bindvalue('apellido',$Usuario->getApellido());//recciben los datos que se mandaron por el set en controladorRegistrar
                     $sql->bindvalue('correo',$Usuario->getCorreo());
