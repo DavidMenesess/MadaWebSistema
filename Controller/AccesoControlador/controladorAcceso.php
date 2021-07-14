@@ -2,7 +2,8 @@
 require_once('../../Model/conexion.php');
 require_once('../../Model/usuario.php');
 require_once('../../Model/AccesoModelo/crudAcceso.php');
-    class controladorAcceso{
+    
+class controladorAcceso{
 
         public function __construct(){
 
@@ -40,6 +41,7 @@ require_once('../../Model/AccesoModelo/crudAcceso.php');
         $_SESSION['correo'] = $usuario->getCorreo();
         $_SESSION['rol'] = $usuario->getRol();
         $_SESSION['nombre'] = $usuario->getNombre();
+        $_SESSION['id'] = $usuario->getIdUsuario();
         header("Location: ../../index.php");
 
       }

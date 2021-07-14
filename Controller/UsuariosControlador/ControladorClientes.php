@@ -1,4 +1,5 @@
 <?php
+//error_reporting(0);
 include "../../Model/conexion.php";
 include "../../Model/UsuariosModelo/CrudCliente.php";
 include "../../Model/usuario.php";
@@ -10,8 +11,8 @@ class ControladorCliente{
 
 	public function listarCliente(){
 		$crudCliente = new CrudCliente();
-
 		return $crudCliente->listarCliente(); 
+
 	}
 
 	
@@ -34,7 +35,7 @@ class ControladorCliente{
 	
 
 	public function buscarCliente($IdUsuario){
-    	$CrudUsuarios = new CrudUsuarios();
+    	$CrudUsuarios = new CrudCliente();
     	return $CrudUsuarios -> buscarCliente($IdUsuario);
 
     }
@@ -49,7 +50,7 @@ class ControladorCliente{
     	$usuario = new usuario();
     	$usuario->setIdUsuario($IdUsuario);
 		$usuario->setEstado($EstadoActualizado);		
-		$CrudCliente = new crudCliente();
+		$CrudCliente = new CrudCliente();
 	    $CrudCliente -> actualizarCliente($usuario);	
 	    header('Location:../../View/UsuariosVista/clientes.php');
 		
@@ -81,6 +82,12 @@ if(isset($_POST['actualizarCliente'])){
 	$ControladorCliente->actualizarCliente($_POST['IdUsuario'],$_POST['Estado']);
 }
 
+/*if(isset($_GET['idCliente'])){
+	$ControladorCliente->perfilCliente($_GET['idCliente']);
+	//header('Location: ../../perfilCliente.php?idCliente='.$_GET['idCliente']);
+
+	
+}*/
 
 ?>
 

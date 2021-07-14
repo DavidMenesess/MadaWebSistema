@@ -56,19 +56,8 @@ class CrudCliente{
 		$sql = $Db -> query("SELECT * FROM usuarios WHERE IdUsuario = $IdUsuario");
 		$sql -> execute();
 	    Db::CerrarConexion($Db);
-	    return $sql -> fetch(); //Retorna un registro
+	    return $sql -> fetch();
 	}
-
-	// public function validarPedido($IdUsuario){
-	// 	$Db = Db::Conectar();
-	// 	$sql = $Db -> query("SELECT IdEstadoPedido FROM pedidos WHERE IdUsuario = $IdUsuario");
-	// 	$sql -> execute();
-	//     Db::CerrarConexion($Db);
-	//     $vali = $sql -> fetch();
-	   
-	//     return $vali['IdEstadoPedido'];
-
-	// }
 
 	public function actualizarCliente($usuario){
 		$mensaje="";
@@ -90,18 +79,6 @@ class CrudCliente{
 	    Db::CerrarConexion($Db);
 	    return $mensaje;
 	}
-
-	// public function eliminarUsuario($IdUsuario){
-	// 	$Db = Db::Conectar();
-
-	// 	$sql = $Db -> query("DELETE FROM usuarios WHERE IdUsuario = $IdUsuario");
-	// 	$sql -> execute();
-	// 	Db::CerrarConexion($Db);
-
-	// }
-
-
-
 
 }
 

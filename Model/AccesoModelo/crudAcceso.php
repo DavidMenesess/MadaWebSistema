@@ -24,6 +24,7 @@ class CrudAcceso{
                 $usuario->setExiste(1);
                 $usuario->setRol($datosUsuario['IdRol']);//Asignando al atributo rol el id del usuario
                 $usuario->setNombre($datosUsuario['Nombre']);
+                $usuario->setIdUsuario($datosUsuario['IdUsuario']);
 
             }
         }

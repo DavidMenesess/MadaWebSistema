@@ -94,7 +94,7 @@ session_start();
 							?>
 
 							<li>
-								<a href="perfilCliente.php">Mí perfíl</a>
+								<a href="perfilCliente.php?idCliente=<?php echo $_SESSION['id'] ?>">Mí perfíl</a>
 							</li>
 
 							<li>
