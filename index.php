@@ -61,11 +61,11 @@ session_start();
 							</li>
 
 							<li>
-								<a href="product.html">Productos</a>
+								<a href="productosC.php">Productos</a>
 							</li>
 
 							<li>
-								<a href="shoping-cart.html">Categorías</a>
+								<a href="#">Categorías</a>
 								<ul class="sub-menu">
 									<li><a href="#">Categoría 1</a></li>
 									<li><a href="#">Categoría 2</a></li>
@@ -94,7 +94,7 @@ session_start();
 							?>
 
 							<li>
-								<a href="perfilCliente.php?idCliente=<?php echo $_SESSION['id'] ?>">Mí perfíl</a>
+								<a href="View/UsuariosVista/perfilCliente.php?idCliente=<?php echo $_SESSION['id'] ?>">Mí perfíl</a>
 							</li>
 
 							<li>
@@ -188,7 +188,7 @@ session_start();
 				if(isset($_SESSION['correo'])){
 				?>
 				<li>
-					<a href="blog.html">Mí perfíl</a>
+					<a href="View/UsuariosVista/perfilCliente.php?idCliente=<?php echo $_SESSION['id'] ?>">Mí perfíl</a>
 				</li>
 
 				<li>
@@ -1181,29 +1181,7 @@ session_start();
 									</div>
 								</div>	
 							</div>
-
-							  
-							<!--<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-									<i class="fa fa-google-plus"></i>
-								</a>
-							 </div>
-						</div>-->
-					</div>
+					  </div>
 				</div>
 			</div>
 		</div>

@@ -7,13 +7,12 @@
 //$crudCliente = new CrudCliente;
 //$cliente = $crudCliente->buscarCliente($_GET['idCliente']);
 
-include "Model/conexion.php";
-include "Model/UsuariosModelo/CrudCliente.php";
-include "Model/usuario.php";
+//include "../../Model/conexion.php";
+//include "../../Model/UsuariosModelo/CrudCliente.php";
+//include "../../Model/usuario.php";
 //include "Controller/AccesoControlador/controladorAcceso.php";
-require_once('Controller/UsuariosControlador/ControladorClientes.php');
-$controladorCliente = new ControladorCliente();
-$cliente = $controladorCliente->buscarCliente($_GET['idCliente']);
+require_once('../../Controller/UsuariosControlador/ControladorClientes.php');
+$cliente = $ControladorCliente->buscarCliente($_GET['idCliente']);
 
 
 session_start();
@@ -30,28 +29,28 @@ if(!isset($_SESSION['correo'])){
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="../../images/icons/favicon.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../../fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../../fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="../../css/util.css">
+	<link rel="stylesheet" type="text/css" href="../../css/main.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -66,7 +65,7 @@ if(!isset($_SESSION['correo'])){
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="../../images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -115,7 +114,7 @@ if(!isset($_SESSION['correo'])){
 							</li>
 
 							<li>
-							  <a href="Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
+							  <a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
 							</li>
 							<?php
 							}
@@ -207,7 +206,7 @@ if(!isset($_SESSION['correo'])){
 				</li>
 
 				<li>
-					<a href="Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
+					<a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
 				</li>
 				<?php
 					}
@@ -303,7 +302,7 @@ if(!isset($_SESSION['correo'])){
 
 
 	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../../images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
 			<?php echo $_SESSION['nombre']; ?>
 		</h2>
@@ -344,6 +343,10 @@ if(!isset($_SESSION['correo'])){
 				<input type="password" class="form-control" id="contrasena" name="contrasena" autocomplete="of" value="<?php echo $cliente['Contrasena'] ?>">
 				<label for="mostrarContra" class="text-dark">Mostrar contraseña</label>
 				<input type="checkbox" id="mostrarContra" onclick="mostrarContrasena();">
+			</div>
+			<div class="form-group">
+				<label for="mostrarContra" class="text-dark">Editar</label>
+				<input type="checkbox" id="activarInputs" onclick="activarInputs();">
 			</div>
 			<button type="submit" class="btn btn-success" name="" id="">Guardar cambios</button>
 		</form>
@@ -501,14 +504,14 @@ if(!isset($_SESSION['correo'])){
 	</div>
 
 <!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../../vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="../../vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../vendor/bootstrap/js/popper.js"></script>
+	<script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+	<script src="../../vendor/select2/select2.min.js"></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -518,9 +521,9 @@ if(!isset($_SESSION['correo'])){
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script src="../../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="../../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');
@@ -537,7 +540,7 @@ if(!isset($_SESSION['correo'])){
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src="../../js/main.js"></script>
 
 	<script>
         function mostrarContrasena(){
@@ -550,6 +553,16 @@ if(!isset($_SESSION['correo'])){
            }
         }
     </script>
+
+	<script>
+
+		var nombre = document.getElementById('nombre').readOnly = true;
+		var apellido = document.getElementById('apellido').readOnly = true;
+		var contrasena = document.getElementById('contrasena').readOnly = true;
+
+		
+	</script>
+	
 
 </body>
 </html>
