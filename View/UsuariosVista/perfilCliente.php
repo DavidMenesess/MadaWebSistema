@@ -327,11 +327,11 @@ if(!isset($_SESSION['correo'])){
 			<div class="form-row">
 				<div class="form-group col-md-6">
 				<label for="nombre" class="text-dark">Nombre</label>
-				<input type="text" class="form-control" id="nombre" name="" autocomplete="of" value="<?php echo $cliente['Nombre']; ?>">
+				<input type="text" class="form-control" id="nombre" name="" autocomplete="of" readonly value="<?php echo $cliente['Nombre']; ?>">
 				</div>
 				<div class="form-group col-md-6">
 				<label for="apellido" class="text-dark">Apellidos</label>
-				<input type="text" class="form-control" id="apellido" name="" autocomplete="of" value="<?php echo $cliente['Apellido']; ?>">
+				<input type="text" class="form-control" id="apellido" name="" autocomplete="of" readonly value="<?php echo $cliente['Apellido']; ?>">
 				</div>
 			</div>
 			<div class="form-group">
@@ -340,15 +340,13 @@ if(!isset($_SESSION['correo'])){
 			</div>
 			<div class="form-group">
 				<label for="contrasena" class="text-dark">Contraseña</label>
-				<input type="password" class="form-control" id="contrasena" name="contrasena" autocomplete="of" value="<?php echo $cliente['Contrasena'] ?>">
+				<input type="password" class="form-control" id="contrasena" name="contrasena" autocomplete="of" readonly value="<?php echo $cliente['Contrasena'] ?>">
 				<label for="mostrarContra" class="text-dark">Mostrar contraseña</label>
 				<input type="checkbox" id="mostrarContra" onclick="mostrarContrasena();">
 			</div>
-			<div class="form-group">
-				<label for="mostrarContra" class="text-dark">Editar</label>
-				<input type="checkbox" id="activarInputs" onclick="activarInputs();">
-			</div>
-			<button type="submit" class="btn btn-success" name="" id="">Guardar cambios</button>
+			<button type="submit" class="btn btn-success" name="" id="btnGuardar" style="display: none;">Guardar cambios</button>
+			<button type="button" class="btn btn-info" name="" id="btnEditar" onclick="activarInputs();">Editar información</button>
+			<button type="button" class="btn btn-danger" name="" id="btnCancelar" style="display: none;" onclick="mostrarBotones();">Cancelar</button>
 		</form>
 	</div>
 	<div class="container">
@@ -556,11 +554,42 @@ if(!isset($_SESSION['correo'])){
 
 	<script>
 
-		var nombre = document.getElementById('nombre').readOnly = true;
-		var apellido = document.getElementById('apellido').readOnly = true;
-		var contrasena = document.getElementById('contrasena').readOnly = true;
+		function activarInputs(){
+			
+			document.getElementById('nombre').readOnly = false;
+			document.getElementById('apellido').readOnly = false;
+			document.getElementById('contrasena').readOnly = false;
 
+			var btnEditar = document.getElementById('btnEditar');
+			var btnCancelar = document.getElementById('btnCancelar');
+			var btnGuardar = document.getElementById('btnGuardar');
+
+			btnEditar.style.display = 'none';
+			btnGuardar.style.display = 'inline';
+			btnCancelar.style.display = 'inline';
+
+			
+		}
 		
+	</script>
+
+	<script>
+
+		function mostrarBotones(){
+
+			document.getElementById('nombre').readOnly = true;
+			document.getElementById('apellido').readOnly = true;
+			document.getElementById('contrasena').readOnly = true;
+
+			var btnEditar = document.getElementById('btnEditar');
+			var btnCancelar = document.getElementById('btnCancelar');
+			var btnGuardar = document.getElementById('btnGuardar');
+
+			btnEditar.style.display = 'inline';
+			btnGuardar.style.display = 'none';
+			btnCancelar.style.display = 'none';
+		}
+
 	</script>
 	
 
