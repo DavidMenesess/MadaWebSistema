@@ -40,7 +40,7 @@ class ControladorCliente{
 
     }
 
-    public function actualizarCliente($IdUsuario,$Estado){
+    public function actualizarEstadoCliente($IdUsuario,$Estado){
     	$EstadoActualizado=null;
     	if ($Estado==1) {
     		$EstadoActualizado = 0;
@@ -51,10 +51,23 @@ class ControladorCliente{
     	$usuario->setIdUsuario($IdUsuario);
 		$usuario->setEstado($EstadoActualizado);		
 		$CrudCliente = new CrudCliente();
-	    $CrudCliente -> actualizarCliente($usuario);	
+	    $CrudCliente -> actualizarEstadoCliente($usuario);	
 	    header('Location:../../View/UsuariosVista/clientes.php');
 		
     }
+
+	public function actualizarDatosCliente($idCliente,$nombre,$apellido,$contrasena){
+
+		$contrasena = hash('sha512', $contrasena);
+		$cliente = new usuario();
+		$cliente->setIdUsuario($idCliente);
+		$cliente->setNombre($nombre);
+		$cliente->setApellido($apellido);
+		$cliente->setContrasena($contrasena);
+		$crudCliente = new CrudCliente();
+		$crudCliente->actualizarDatosCliente($cliente);
+		header('Location: ../../index.php');
+	}
 
 
 }
@@ -79,15 +92,12 @@ if(isset($_POST['registrarCliente'])){
 }
 
 if(isset($_POST['actualizarCliente'])){
-	$ControladorCliente->actualizarCliente($_POST['IdUsuario'],$_POST['Estado']);
+	$ControladorCliente->actualizarEstadoCliente($_POST['IdUsuario'],$_POST['Estado']);
 }
 
-/*if(isset($_GET['idCliente'])){
-	$ControladorCliente->perfilCliente($_GET['idCliente']);
-	//header('Location: ../../perfilCliente.php?idCliente='.$_GET['idCliente']);
-
-	
-}*/
+if(isset($_POST['btnActualizarDatos'])){
+	$ControladorCliente->actualizarDatosCliente($_POST['idCliente'],$_POST['nombre'],$_POST['apellido'],$_POST['contrasena']);
+}
 
 ?>
 

@@ -59,7 +59,7 @@ class CrudCliente{
 	    return $sql -> fetch();
 	}
 
-	public function actualizarCliente($usuario){
+	public function actualizarEstadoCliente($usuario){
 		$mensaje="";
 	    $Db = Db::Conectar();
 
@@ -72,12 +72,36 @@ class CrudCliente{
 
 	    try{
 	    	$sql->execute();
-	    	$mensaje= "Modificación cool";
+	    	$mensaje= "Se ha modificado el estado";
 	    }catch(exeption $e){
 	    	$mensaje = $e->getMessage();
 	    }
 	    Db::CerrarConexion($Db);
 	    return $mensaje;
+	}
+
+	public function actualizarDatosCliente($cliente){
+		$mensaje = "";
+		$Db = Db::Conectar();
+
+		$sql = $Db->prepare('UPDATE usuarios SET Nombre = :nombre, Apellido = :apellido,
+							Contrasena = :contrasena WHERE IdUsuario = :idCliente;');
+		
+		$sql->bindvalue('nombre',$cliente->getNombre());
+		$sql->bindvalue('apellido',$cliente->getApellido());
+		$sql->bindvalue('contrasena',$cliente->getContrasena());
+		$sql->bindvalue('idCliente',$cliente->getIdUsuario());
+
+		try{
+			$sql->execute();
+			$mensaje = "Datos actualizados de forma correcta";
+		}
+		catch(Exception $e){
+			$mensaje = $e->getMessage();
+		}
+		Db::CerrarConexion($Db);
+		return $mensaje;
+
 	}
 
 }

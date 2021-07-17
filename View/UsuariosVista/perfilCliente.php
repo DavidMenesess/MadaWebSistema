@@ -1,16 +1,6 @@
 
 <?php
 
-
-//require_once('Model/conexion.php');
-//require_once 'Model/UsuariosModelo/CrudCliente.php';
-//$crudCliente = new CrudCliente;
-//$cliente = $crudCliente->buscarCliente($_GET['idCliente']);
-
-//include "../../Model/conexion.php";
-//include "../../Model/UsuariosModelo/CrudCliente.php";
-//include "../../Model/usuario.php";
-//include "Controller/AccesoControlador/controladorAcceso.php";
 require_once('../../Controller/UsuariosControlador/ControladorClientes.php');
 $cliente = $ControladorCliente->buscarCliente($_GET['idCliente']);
 
@@ -319,24 +309,24 @@ if(!isset($_SESSION['correo'])){
             </ol>
 		</div>
 		<div class="container">
-		<form action="" method="POST" accept-charset="utf-8">
+		<form action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8">
 			<div class="form-group">
-				<label for="idUsuario" class="text-dark">ID</label>
-				<input type="number" class="form-control" id="idUsuario" name="" autocomplete="of" readonly value="<?php echo $cliente['IdUsuario'] ?>">
+				<label for="idCliente" class="text-dark">ID</label>
+				<input type="number" class="form-control" id="idCliente" name="idCliente" autocomplete="of" readonly value="<?php echo $cliente['IdUsuario'] ?>">
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 				<label for="nombre" class="text-dark">Nombre</label>
-				<input type="text" class="form-control" id="nombre" name="" autocomplete="of" readonly value="<?php echo $cliente['Nombre']; ?>">
+				<input type="text" class="form-control" id="nombre" name="nombre" autocomplete="of" readonly value="<?php echo $cliente['Nombre']; ?>">
 				</div>
 				<div class="form-group col-md-6">
 				<label for="apellido" class="text-dark">Apellidos</label>
-				<input type="text" class="form-control" id="apellido" name="" autocomplete="of" readonly value="<?php echo $cliente['Apellido']; ?>">
+				<input type="text" class="form-control" id="apellido" name="apellido" autocomplete="of" readonly value="<?php echo $cliente['Apellido']; ?>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="correo" class="text-dark">Correo</label>
-				<input type="email" class="form-control" id="correo" name="" autocomplete="of" readonly value="<?php echo $cliente['Correo']; ?>">
+				<input type="email" class="form-control" id="correo" name="correo" autocomplete="of" readonly value="<?php echo $cliente['Correo']; ?>">
 			</div>
 			<div class="form-group">
 				<label for="contrasena" class="text-dark">Contraseña</label>
@@ -344,9 +334,9 @@ if(!isset($_SESSION['correo'])){
 				<label for="mostrarContra" class="text-dark">Mostrar contraseña</label>
 				<input type="checkbox" id="mostrarContra" onclick="mostrarContrasena();">
 			</div>
-			<button type="submit" class="btn btn-success" name="" id="btnGuardar" style="display: none;">Guardar cambios</button>
-			<button type="button" class="btn btn-info" name="" id="btnEditar" onclick="activarInputs();">Editar información</button>
-			<button type="button" class="btn btn-danger" name="" id="btnCancelar" style="display: none;" onclick="mostrarBotones();">Cancelar</button>
+			<button type="submit" class="btn btn-success" name="btnActualizarDatos" id="btnGuardar" style="display: none;">Guardar cambios</button>
+			<button type="button" class="btn btn-info" id="btnEditar" onclick="activarInputs();">Editar información</button>
+			<button type="button" class="btn btn-danger" id="btnCancelar" style="display: none;" onclick="mostrarBotones();">Cancelar</button>
 		</form>
 	</div>
 	<div class="container">
