@@ -24,7 +24,7 @@
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Recuperar contraseña</h3></div>
                                     <div class="card-body">
                                         <div class="small mb-3 text-muted">Ingrese una nueva contraseña</div>
-                                        <form action="../../Controller/AccesoControlador/controladorRecuperar.php" method="POST" autocomplete="off"/>
+                                        <form action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST" autocomplete="off"/>
                                             <input type="hidden" name="codigo" id="codigo" value="<?php echo $codigo ?>">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="recuperarContra">Nueva contraseña</label>

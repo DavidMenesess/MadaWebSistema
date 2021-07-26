@@ -132,7 +132,6 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 							
 						</form>
 				      </div>
-				      
 				    </div>
 				  </div>
 				</div> 

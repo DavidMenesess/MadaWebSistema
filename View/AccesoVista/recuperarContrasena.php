@@ -21,7 +21,7 @@
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Recuperar contraseña</h3></div>
                                     <div class="card-body">
                                         <div class="small mb-3 text-muted">Ingrese su dirección de correo electrónico y le enviaremos un enlace para restablecer su contraseña.</div>
-                                        <form action="../../Controller/AccesoControlador/controladorRecuperar.php" method="POST" autocomplete="off"/>
+                                        <form action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST" autocomplete="off"/>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="recuperarContra">Correo electrónico</label>
                                                 <input class="form-control py-4" id="correoRecuperar" name="correoRecuperar" type="email" aria-describedby="emailHelp" placeholder="Ingresa tu correo electrónico" />

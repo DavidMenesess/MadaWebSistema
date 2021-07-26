@@ -20,7 +20,7 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Crear mi cuenta</h3></div>
                                     <div class="card-body">
-                                        <form action="../../Controller/AccesoControlador/controladorRegistrar.php" method="POST">
+                                        <form action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST">
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
