@@ -2,7 +2,7 @@
 //error_reporting(0);
 include "../../Model/conexion.php";
 include "../../Model/UsuariosModelo/CrudCliente.php";
-include "../../Model/usuario.php";
+include "../../Model/UsuariosModelo/usuario.php";
 include "../../Controller/AccesoControlador/controladorAcceso.php";
 
 class ControladorCliente{

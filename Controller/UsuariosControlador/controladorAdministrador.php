@@ -1,7 +1,7 @@
 <?php
 include "../../Model/conexion.php";
 include "../../Model/UsuariosModelo/CrudAdministrador.php";
-include "../../Model/usuario.php";
+include "../../Model/UsuariosModelo/usuario.php";
 include "../../Controller/AccesoControlador/controladorAcceso.php";
 
 class ControladorAdministrador{

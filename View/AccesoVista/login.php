@@ -22,15 +22,15 @@ require_once('../../Model/conexion.php')
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Ingresar</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Mada</h3></div>
                                     <div class="card-body">
                                         <form action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="correoUsuario">Correo</label>
+                                                <!--<label class="small mb-1" for="correoUsuario">Correo</label>-->
                                                 <input class="form-control py-4" id="correoUsuario" name="correoUsuario" type="email" placeholder="Correo electrónico"/>
                                             </div>
                                             <div class="form-group">
-                                                <label class="small mb-1" for="contrasena">Contraseña</label>
+                                                <!--<label class="small mb-1" for="contrasena">Contraseña</label>-->
                                                 <input class="form-control py-4" id="contrasena" name="contrasenaUsuario" type="password" placeholder="Contraseña"/>
                                             </div>
                                             

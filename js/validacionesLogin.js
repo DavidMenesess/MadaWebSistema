@@ -57,4 +57,20 @@ function validaRecuperar(){
     }
 }
 
+function validaRestablecer(){
+
+    let contrasena = document.getElementById("nuevaContrasena").value;
+    
+    if(contrasena.trim == ""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Por favor ingresa todos los datos.\n🙄😁',
+          })
+    }else{
+        let botonGuardarContrasena = document.getElementById('guardarNuevaContra').value;
+        botonGuardarContrasena.setAttribute("type","submit");
+    }
+
+}
+
 

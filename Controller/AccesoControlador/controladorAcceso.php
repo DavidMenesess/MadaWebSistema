@@ -1,7 +1,7 @@
 <?php
 require_once('../../Model/conexion.php');
-require_once('../../Model/usuario.php');
-require_once('../../Model/recuperarcontrasena.php');
+require_once('../../Model/UsuariosModelo/usuario.php');
+require_once('../../Model/AccesoModelo/recuperarcontrasena.php');
 require_once('../../Model/AccesoModelo/crudAcceso.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -183,7 +183,7 @@ class controladorAcceso{
                   $mail->isHTML(true); 
                   $mail->CharSet = 'UTF-8';                                 //Set email format to HTML
                   $mail->Subject = 'Mada || - Restablecer contraseña';
-                  $mail->Body    = "<div style='border: 1px solid #000; width:600px; height:500px; background-color: #F7F9F9; text-align:center;'><h1 style='text-align:center; color: Black'>Mada</h1><br>".
+                  $mail->Body    = "<div style='border: 1px solid #000; width:600px; height:300px; background-color: #F7F9F9; text-align:center;'><h1 style='text-align:center; color: Black'>Mada</h1><br>".
                                       "<p style='color:Black; text-align:center;'><b>Hola, recibimos la solicitud para cambiar tu contraseña, presiona el botón para hacerlo.</b></p><br>"
                                       ."<a href='$url' style='color: white; cursor: pointer; width:35px; height:38px; background-color: #8E44AD; border-radius: 4px; text-decoration:none; padding: 4px 25px; border: 1px solid #5B2C6F';><b>Restablecer Contraseña</b></a></div>"; //. $codigo;
                   /*$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';*/

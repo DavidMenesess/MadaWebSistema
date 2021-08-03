@@ -73,7 +73,7 @@ class CrudCliente{
 	    try{
 	    	$sql->execute();
 	    	$mensaje= "Se ha modificado el estado";
-	    }catch(exeption $e){
+	    }catch(Exception $e){
 	    	$mensaje = $e->getMessage();
 	    }
 	    Db::CerrarConexion($Db);

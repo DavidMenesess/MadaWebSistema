@@ -1,6 +1,6 @@
 <?php
 include("../../Model/conexion.php");
-include("../../Model/categoria.php");
+include("../../Model/ProduccionModelo/categoria.php");
 include("../../Model/ProduccionModelo/crudcategoria.php");
 
 class controladorCategoria{

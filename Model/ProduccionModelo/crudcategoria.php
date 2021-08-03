@@ -65,36 +65,6 @@ class crudcategoria
         return $mensaje;
     }
 
-    
-    public function editarCategorias($categoria){
-        $mensaje = "";
-        $Db = Db::Conectar();//conexion a bd
-        //definir la sentencia sql
-        $sql = $Db->prepare('UPDATE 
-        categorias SET
-         IdCategoria=:IdCategoria,
-         NombreCategoria=:NombreCategoria
-         UrlImagen=:UrlImagen
-         WHERE IdCategoria=:IdCategoria
-         ');
-        $sql->bindvalue('IdCategoria',$categoria-> getIdCategoria());
-        $sql->bindvalue('NombreCategoria',$categoria-> getNombreCategoria());
-        $sql->bindvalue('UrlImagen',$categoria-> getUrlImagen());
-
-        
-
-        try{
-            $sql->execute();//ejecutar el sql
-            $mensaje= "Actualizacion exitosa"; //mostrar mensaje de un registro exitoso
-
-        }
-        catch(Exception $e)
-        {
-            $mensaje= $e->getMessage(); //obtener mensaje error
-        }
-        Db::CerrarConexion($Db);
-        return $mensaje;
-    }
     public function eliminarCategoria($IdCategoria){
         $Db = Db::Conectar();//conexion a bd
         //definir la sentencia sql

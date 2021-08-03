@@ -23,12 +23,12 @@
                                         <div class="small mb-3 text-muted">Ingrese su dirección de correo electrónico y le enviaremos un enlace para restablecer su contraseña.</div>
                                         <form action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST" autocomplete="off"/>
                                             <div class="form-group">
-                                                <label class="small mb-1" for="recuperarContra">Correo electrónico</label>
-                                                <input class="form-control py-4" id="correoRecuperar" name="correoRecuperar" type="email" aria-describedby="emailHelp" placeholder="Ingresa tu correo electrónico" />
+                                                <!--<label class="small mb-1" for="recuperarContra">Correo electrónico</label>-->
+                                                <input class="form-control py-4" id="recuperarContra" name="correoRecuperar" type="email" aria-describedby="emailHelp" placeholder="Ingresa tu correo electrónico"/>
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="login.php">Volver a iniciar sesión</a>
-                                                <button type="submit" class="btn btn-primary" id="restablecer" name="restablecerContra">Restablecer contraseña</button>
+                                                <button type="submit" class="btn btn-primary" id="restablecer" name="restablecerContra" onclick="validaRecuperar()">Restablecer contraseña</button>
                                             </div>
                                         </form>
                                     </div>
