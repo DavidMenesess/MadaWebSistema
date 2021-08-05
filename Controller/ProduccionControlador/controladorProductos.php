@@ -14,8 +14,16 @@ require("../../Model/ProduccionModelo/crudProducto.php");
             return $crudProducto->listarProductos();
         }
 
+        public function listarCategorias(){
+            $crudProducto = new CrudProducto();
+            return $crudProducto->obtenerCategorias();
+        }
+
     }
 
     $controladorProductos = new ControladorProductos();
 
+    if(isset($_POST["agregarDetalle"])){
+        header("Location: ../../View/ProduccionVista/detalleProducto.php" . $_POST["IdProducto"]);
+    }
 ?>

@@ -1,6 +1,7 @@
 <?php
 require ("../../Controller/ProduccionControlador/controladorProductos.php");
 $listaProductos = $controladorProductos ->listarProductos();
+$listaCategorias = $controladorProductos->listarCategorias();
 
 session_start();
 if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo redirecciona al login
@@ -88,7 +89,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <h1 class="mt-4" style="text-align:center;">Gestión de productos</h1>
                         <br>
                         <br>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalProducto">
 							  Nuevo producto
 						</button>
                         </div>
@@ -102,7 +103,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 				
 
 				<!-- Modal -->
-				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
 				      <div class="modal-header">
@@ -113,30 +114,50 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 				      </div>
 				      <div class="modal-body">
 
-				      	<form class="form" action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
+				      	<form class="form" action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
 				      		<div class="form-row">
 				      			<div class="form-group col-md-6">
-				      				<label for="nombreCategoria">Nombre:</label>
-									<input type="text" class="form-control" name="nombreCategoria" id="nombreCategoria" required>
+				      				<label for="nombreProducto">Nombre:</label>
+									<input type="text" class="form-control" name="nombreProducto" id="nombreProducto" required>
 					      		</div>
                                 <div class="form-group col-md-6">
-				      				<label for="nombreCategoria">Descripción:</label>
-									<input type="text" class="form-control" name="nombreCategoria" id="nombreCategoria" required>
+				      				<label for="descripcionProducto">Descripción:</label>
+									<input type="text" class="form-control" name="descripcionProducto" id="descripcionProducto" required>
 					      		</div>
-					      		<div class="form-group">
-					      			<label for="foto">Imagen:</label>
-									<input type="file" class="form-control-file" name="foto" id="foto" required>
+					      		<div class="form-group col-md-6">
+					      			<label for="precioProducto">Precio:</label>
+									<input type="text" class="form-control" name="precioProducto" id="precioProducto" required>
+					      		</div>
+                                  <div class="form-group col-md-6">
+                                    <div class="input-group-prepend">
+                                        <label for="categoria">Categoría:</label>
+                                    </div>
+                                   
+                                    <select class="custom-select" id="categoria">
+                                        <option selected>Seleccionar</option>
+                                    <?php
+                                        foreach($listaCategorias as $categoria){
+                                    ?>
+                                        <option value="<?php echo $categoria[0];?>"><?php echo $categoria[1];?></option>
+                                    <?php
+                                        }
+                                    ?>
+                                    </select>
+                                    
+                                  </div>
+                                <div class="form-group col-md-6">
+					      			<label for="fechaRegistro">Fecha de registro:</label>
+									<input type="date" class="form-control" name=fechaRegistro" id="fechaRegistro" required>
 					      		</div>
 				      		</div>
 
                             <div class="modal-footer">
-				      	        <button type="submit"  class="btn btn-primary btn-lg active" id="registrarCategoria" name="registrarCategoria">Registrar</button>
+				      	        <button type="submit"  class="btn btn-primary btn-lg active" id="registrarProducto" name="registrarProducto">Registrar</button>
 				                <button type="button" class="btn btn-secondary btn-lg active" data-dismiss="modal">Cerrar</button>
 				            </div>
 							
 						</form>
 				      </div>
-				      
 				    </div>
 				  </div>
 				</div> 
@@ -173,12 +194,13 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                           <td><?php echo $producto['FechaRegistro'];?></td>
                                           <!--<td><img class="img-thumbnail" width="100px" src="../../images/categorias/<?php //echo $categoria['UrlImagen'];?>" alt="foto categoria"/></td>-->
                                                 <td>
-                                                    <form action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST" accept-charset="utf-8">
-                                                        <input type="hidden" name="IdCategoria" value="<?php echo $producto['NombreCategoria'];?>">
+                                                    <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8">
+                                                        <input type="hidden" name="IdCategoria" value="<?php echo $producto['IdProducto'];?>">
                                                         <!--<input type="hidden" name="imagen" value="<?php //echo $producto['UrlImagen']; ?>"-->
                                                         <button type="submit" name="editarProducto" id="editarProducto" class="btn btn-info"><i class="fas fa-edit"></i></button>
                                                         <button type="submit" name="eliminarProducto" id="eliminarProducto" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
-                                                        <button type="submit" name="eliminarProducto" id="eliminarProducto" class="btn btn-warning" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-eye"></i></button>
+                                                        <button type="submit" name="agregarDetalle" id="agregarDetalle" class="btn btn-success"><i class="fas fa-plus"></i></button>
+                                                        <button type="submit" name="verDetalle" id="verDetalle" class="btn btn-secondary"><i class="fas fa-eye"></i></button>
                                                     </form>
                                                 </td>
                                         </tr>
