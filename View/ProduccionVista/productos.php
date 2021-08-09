@@ -133,7 +133,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                         <label for="categoria">Categoría:</label>
                                     </div>
                                    
-                                    <select class="custom-select" id="categoria">
+                                    <select class="custom-select" id="categoria" name="categoria">
                                         <option selected>Seleccionar</option>
                                     <?php
                                         foreach($listaCategorias as $categoria){
@@ -145,10 +145,6 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                     </select>
                                     
                                   </div>
-                                <div class="form-group col-md-6">
-					      			<label for="fechaRegistro">Fecha de registro:</label>
-									<input type="date" class="form-control" name=fechaRegistro" id="fechaRegistro" required>
-					      		</div>
 				      		</div>
 
                             <div class="modal-footer">
@@ -169,7 +165,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                      </div>
                       <div class="card-body">
                          <div class="table-responsive">
-                          <table class="table table-hover table-bordered" id="tablaCategorias">      
+                          <table class="table table-hover table-bordered" id="tablaProductos">      
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -177,30 +173,43 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                         <th>Descripción</th>
                                         <th>Precio</th>
                                         <th>Categoría</th>
-                                        <th>Fecha de registro</th>
-                                        <th>Accionesㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</th>
+                                        <th>Cantidad</th>
+                                        <th>Estado</th>
+                                        <th>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤAccionesㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</th>
                                     </tr>
                                 </thead>
                                   <tbody>
                                      <?php
                                       foreach ($listaProductos as $producto) {
-                                        ?>
+                                     ?>
                                           <tr>
                                           <td><?php echo $producto['IdProducto'];?></td>
                                           <td><?php echo $producto['NombreProducto'];?></td>
                                           <td><?php echo $producto['Descripcion'];?></td>
                                           <td><?php echo $producto['Precio'];?></td>
                                           <td><?php echo $producto['NombreCategoria'];?></td>
-                                          <td><?php echo $producto['FechaRegistro'];?></td>
+                                          <td>Cantidad</td>
+                                          <td>
+                                        <?php 
+                                           if($producto['Estado'] != 1){
+                                            echo '<span class="badge bg-danger text-light">Inactivo</span>';
+                                            }else{
+                                            echo '<span class="badge bg-success text-light">Activo</span>';
+                                             }
+                                        ?>
+                                        </td>
+                                          
                                           <!--<td><img class="img-thumbnail" width="100px" src="../../images/categorias/<?php //echo $categoria['UrlImagen'];?>" alt="foto categoria"/></td>-->
                                                 <td>
                                                     <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8">
-                                                        <input type="hidden" name="IdCategoria" value="<?php echo $producto['IdProducto'];?>">
+                                                        <input type="hidden" name="IdProducto" value="<?php echo $producto['IdProducto'];?>">
+                                                        <input type="hidden" name="estadoProducto" value="<?php echo $producto['Estado'];?>">
                                                         <!--<input type="hidden" name="imagen" value="<?php //echo $producto['UrlImagen']; ?>"-->
+                                                        <button type="submit" name="estadoProducto" id="estadoProducto" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
                                                         <button type="submit" name="editarProducto" id="editarProducto" class="btn btn-info"><i class="fas fa-edit"></i></button>
                                                         <button type="submit" name="eliminarProducto" id="eliminarProducto" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
                                                         <button type="submit" name="agregarDetalle" id="agregarDetalle" class="btn btn-success"><i class="fas fa-plus"></i></button>
-                                                        <button type="submit" name="verDetalle" id="verDetalle" class="btn btn-secondary"><i class="fas fa-eye"></i></button>
+                                                        <button type="submit" name="verDetalle" id="verDetalle" class="btn btn-warning"><i class="fas fa-eye"></i></button>
                                                     </form>
                                                 </td>
                                         </tr>
@@ -241,10 +250,10 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
     </body>
     <script>
     $(document).ready(function() {
-    $('#tablaCategorias').DataTable();
+    $('#tablaProductos').DataTable();
     } );
 
-    let table = $('#tablaCategorias').DataTable({
+    let table = $('#tablaProductos').DataTable({
     language: {
         "decimal": "",
         "emptyTable": "No hay información",

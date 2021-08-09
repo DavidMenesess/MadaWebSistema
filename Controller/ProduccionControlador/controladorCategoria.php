@@ -41,9 +41,30 @@ class controladorCategoria{
         $crudcategoria->ActualizarCategoria($categoria);
          
         header('Location: ../../View/ProduccionVista/categorias.php');
-        
+    }
+
+    public function cambiarEstado($idCategoria, $estado){
+
+        $estadoActualizado = null;
+        //var_dump($idCategoria);
+        if($estado == 1){
+            $estadoActualizado = 0;
+        }
+        elseif($estado == 0){
+            $estadoActualizado = 1;
+        }
+
+        $categoria = new categoria;
+        $categoria->setId_Categoria($idCategoria);
+        $categoria->setEstado($estadoActualizado);
+
+        //var_dump($estadoActualizado);
+        $crudCategoria = new crudCategoria();
+        $crudCategoria->actualizarEstadoCategoria($categoria);
+        header ("Location: ../../View/ProduccionVista/categorias.php");
 
     }
+
     public function eliminarCategoria($IdCategoria){
         $crudcategoria = new crudcategoria();
         $crudcategoria->eliminarCategoria($IdCategoria);
@@ -136,7 +157,7 @@ if(isset($_POST['actualizarCategoria'])){
     else{
         echo "<script>
         location.replace('../../View/ProduccionVista/categorias.php');
-        alert('La imagn super el tamaño esperado. Debe ser menor o igual a 5Mb');
+        alert('La imagen super el tamaño esperado. Debe ser menor o igual a 5Mb');
     </script>";
     }
     
@@ -145,6 +166,10 @@ if(isset($_POST['actualizarCategoria'])){
     $controladorCategoria->actualizarCategoria($idCategoria,$nombreCategoria,$nombreFoto);
 
 
+}
+
+if(isset($_POST['cambiarEstadoCategoria'])){
+    $controladorCategoria->cambiarEstado($_POST["IdCategoria"],$_POST["estadoCategoria"]);
 }
 
 if(isset($_POST['eliminarCategoria'])){

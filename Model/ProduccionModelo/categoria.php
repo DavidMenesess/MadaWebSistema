@@ -4,10 +4,13 @@ class categoria{
     private $IdCategoria;
     private $NombreCategoria;
     private $UrlImagen;
+    private $estado;
 
     public function __construct(){
 
     }
+
+    
 
     public function setId_Categoria($IdCategoria){
         $this->IdCategoria = $IdCategoria;
@@ -17,6 +20,10 @@ class categoria{
     }
     public function setUrlImagen($UrlImagen){
         $this->UrlImagen = $UrlImagen;
+    }
+
+    public function setEstado($estado){
+        $this->estado = $estado;
     }
     
 
@@ -29,6 +36,10 @@ class categoria{
     }
     public function getUrlImagen(){
         return $this->UrlImagen;
+    }
+
+    public function getEstado(){
+        return $this->estado;
     }
     
 }

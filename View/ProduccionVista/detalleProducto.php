@@ -1,4 +1,6 @@
 <?php
+require("../../Controller/ProduccionControlador/controladorProductos.php");
+$controladorProductos->buscarProducto($_GET['idProducto']);
 
 session_start();
 if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo redirecciona al login
@@ -97,6 +99,26 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 <label for="idUsuario">Generar las entradas del producto</label>
                                 <button type="button" class="btn btn-info" id="generarEntrada">Generar entrada</button>
                             </div>
+                            <br>
+                            <div class="container">
+                                <div class="accordion" id="accordionExample">
+                                    <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Da click aquí para ver las entradas existentes de este producto
+                                        </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            En esta parte es donde  las entradas existentes 
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
                             <div class="form-group">
                                 <label for="correo">Fotos del producto</label>
                                 <input type="file" class="form-control" id="" name="" autocomplete="of">
@@ -136,9 +158,9 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
     $("#generarEntrada").click(function(){
         var contador = $("input[type='text']").length;
 
-        $(this).before('<br>');
+        
         $(this).before('<div class="input-group"><div class="input-group-prepend"><span class="input-group-text" id="">Entrada</span></div><input type="text" name="color[]" class="form-control" placeholder="Color"><input type="text" name="talla[]" class="form-control" placeholder="Talla"><input type="text" name="cantidad[]" class="form-control" placeholder="Cantidad"><button type="button" class="btn btn-danger eliminarEntrada">Eliminar</button></div>');
-        $(this).before('<br>');
+        
 
     });
 

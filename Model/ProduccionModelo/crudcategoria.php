@@ -65,6 +65,26 @@ class crudcategoria
         return $mensaje;
     }
 
+    public function actualizarEstadoCategoria($categoria){
+        $mensaje = "";
+        $Db = Db::Conectar();
+        var_dump($categoria);
+        $sql = $Db->prepare('UPDATE categorias SET Estado = :estado WHERE
+        IdCategoria = :idCategoria');
+        $sql->bindvalue('idCategoria',$categoria->getId_Categoria());
+        $sql->bindvalue('estado',$categoria->getEstado());
+
+        try{
+            $sql->execute();
+            $mensaje = "Se ha modificado el estado";
+        }catch (Exception $e) {
+            $mensaje = $e->getMessage();
+        }
+        Db::CerrarConexion($Db);
+
+        return $mensaje;
+    }
+
     public function eliminarCategoria($IdCategoria){
         $Db = Db::Conectar();//conexion a bd
         //definir la sentencia sql
@@ -75,6 +95,7 @@ class crudcategoria
         Db::CerrarConexion($Db);
     }
 }
+
 ?>
 
 

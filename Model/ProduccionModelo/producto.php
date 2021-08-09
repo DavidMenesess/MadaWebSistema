@@ -5,7 +5,7 @@
         private $id;
         private $nombreProducto;
         private $descripción;
-        private $fechaRegistro;
+        private $estado;
         private $precio;
         private $idCategoria;
 
@@ -17,7 +17,7 @@
             $this->id = $id;
         }
 
-        public function setNombreProducto($nombreProducto){
+        public function setNombre($nombreProducto){
             $this->nombreProducto = $nombreProducto;
         }
 
@@ -25,8 +25,8 @@
             $this->descripción = $descripción;
         }
 
-        public function setFechaRegistro($fechaRegistro){
-            $this->fechaRegistro = $fechaRegistro;
+        public function setEstado($estado){
+            $this->estado = $estado;
         }
 
         public function setPrecio($precio){
@@ -44,7 +44,7 @@
             return $this->id;
         }
 
-        public function getNombreProducto(){
+        public function getNombre(){
             return $this->nombreProducto;
         }
 
@@ -52,8 +52,8 @@
             return $this->descripción;
         }
 
-        public function getFechaRegistro(){
-            return $this->fechaRegistro;
+        public function getEstado(){
+            return $this->estado;
         }
 
         public function getPrecio(){
