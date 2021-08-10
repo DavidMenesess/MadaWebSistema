@@ -118,7 +118,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                    </div>
                                    
                                     <select class="custom-select" id="categoria" name="categoria">
-                                        <option selected ><?php echo $listarProducto['IdCategoria'] . "Seleccionar"?></option>
+                                        <option selected value ="<?php echo $listarProducto['IdCategoria'];?>">Seleccionar</option>
                                     <?php
                                         foreach($listaCategorias as $categoria){
                                     ?>
