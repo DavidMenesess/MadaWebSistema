@@ -13,18 +13,35 @@ class crudcategoria
 
     }
 
-    public function registrarCategorias($nombreCategoria,$nombreFoto){
+    public function registrarCategorias($categoria){
         $mensaje = "";
+        $mensajeValidar = "";
         $Db = Db::Conectar();
-        try {
-            $Db->query("INSERT INTO categorias (NombreCategoria, UrlImagen) 
-            VALUES ('$nombreCategoria', '$nombreFoto')");
-            $mensaje = "Registro exitoso";
-        } catch (Exception $e) {
-            $mensaje = $e->getMessage();
+        //Validar que un usuario no registre el mimso correo.
+        $validarExiste = $Db->prepare("SELECT NombreCategoria FROM categorias
+        WHERE NombreCategoria = :nombre");
+        $validarExiste->bindvalue('nombre',$categoria->getNombreCategoria());
+        try{
+            $validarExiste->execute();
+            if($validarExiste->rowCount() > 0){
+                $mensajeValidar = "La categoria ya existe";
+                return $mensajeValidar;
+            }//Si el producto no existe, se ejecuta lo del elese y realiza la inserción
+            else{
+                $sql = $Db->prepare('INSERT INTO
+                categorias(NombreCategoria, UrlImagen, Estado )
+                VALUES (:nombre, :urlImagen, 1)');
+                $sql->bindvalue('nombre',$categoria->getNombreCategoria());//dentro del value cuenta como variables las que tienen los dos puntos :
+                $sql->bindvalue('urlImagen',$categoria->getUrlImagen());//recciben los datos que se mandaron por el set en controladorRegistrar
+                $sql->execute();
+                $mensaje = "Registro exitoso";
+            }
         }
-        Db::CerrarConexion($Db);
-        return $mensaje;
+        catch(Exception $e){
+            $mensaje = $e->getMessage();
+         }
+         Db::CerrarConexion($Db);
+         return $mensaje;
     }
 
 
@@ -68,7 +85,6 @@ class crudcategoria
     public function actualizarEstadoCategoria($categoria){
         $mensaje = "";
         $Db = Db::Conectar();
-        var_dump($categoria);
         $sql = $Db->prepare('UPDATE categorias SET Estado = :estado WHERE
         IdCategoria = :idCategoria');
         $sql->bindvalue('idCategoria',$categoria->getId_Categoria());

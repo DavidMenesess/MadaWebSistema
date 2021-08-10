@@ -59,6 +59,46 @@
              return $mensaje;
         }
 
+        public function actualizarEstadoProducto($productoEstado){
+            $mensaje = "";
+            $Db = Db::Conectar();
+            $sql = $Db->prepare('UPDATE productos SET Estado = :estado
+             WHERE IdProducto = :idProducto ');
+             $sql->bindvalue('estado',$productoEstado->getEstado());
+             $sql->bindvalue('idProducto',$productoEstado->getId());
+
+             try{
+                 $sql->execute();
+                 $mensaje = "Se ha modificado el estado del producto";
+             }catch(Exception $e){
+                 $mensaje = $e->getMessage();
+             }
+             Db::CerrarConexion($Db);
+             return $mensaje;
+        }
+
+        public function actualizarDatosProducto($producto){
+
+            $mensaje = "";
+            $Db = Db::Conectar();
+            $sql = $Db->prepare('UPDATE productos SET NombreProducto = :nombre, Descripcion = :descripcion, 
+            Precio = :precio, IdCategoria = :categoria WHERE IdProducto = :idProducto');
+            $sql->bindvalue('nombre',$producto->getNombre());
+            $sql->bindvalue('descripcion',$producto->getDescripcion());
+            $sql->bindvalue('precio',$producto->getPrecio());
+            $sql->bindvalue('categoria',$producto->getCategoria());
+            $sql->bindvalue('idProducto',$producto->getId());
+
+            try{
+                $sql->execute();
+                $mensaje = "Datos del producto actualizados de manera correcta";
+            }catch(Exception $e){
+                $mensaje = $e->getMessage();
+            }
+            Db::CerrarConexion($Db);
+            return $mensaje;
+        }
+
         public function buscarProducto($idProducto){
             $Db = Db::Conectar();
             $sql = $Db->query("SELECT * FROM productos WHERE IdProducto = $idProducto");
@@ -66,6 +106,15 @@
             $Db = Db::CerrarConexion($Db);
             return $sql->fetch();
         }
+
+        public function eliminarProducto($idProducto){
+            $Db = Db::Conectar();
+            $sql = $Db -> query("DELETE FROM productos WHERE IdProducto = $idProducto");
+            $sql->execute();
+            $Db = Db::CerrarConexion($Db);
+        }
+
+        //ENTRADAS Y DETALLES DEL PRODUCTO
 
     }   
 

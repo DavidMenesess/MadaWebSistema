@@ -39,9 +39,59 @@ require("../../Model/ProduccionModelo/crudProducto.php");
 
             return $crudProducto->registrarProducto($producto);
             header("Location: ../../View/ProduccionVista/productos.php");
-
-
         }
+
+        public function cambiarEstadoProducto($idProducto,$estadoActual){
+
+            $estadoActualizado = null;
+
+            if($estadoActual == 1){
+                $estadoActualizado = 0;
+            }elseif($estadoActual == 0){
+                $estadoActualizado = 1;
+            }
+
+            $productoEstado = new Producto();
+            $productoEstado->setId($idProducto);
+            $productoEstado->setEstado($estadoActualizado);
+
+            $crudProducto = new CrudProducto();
+            $crudProducto->actualizarEstadoProducto($productoEstado);
+            header("Location: ../../View/ProduccionVista/productos.php");
+        }
+
+        public function editarInformacionProducto($idProducto,$nombre,$descripcion,$precioNuevo,$categoria,$precioActual){
+
+            $producto = new Producto();
+
+            if($precioActual == $precioNuevo){
+                $producto->setPrecio($precioActual);
+            }
+            elseif($precioActual != $precioNuevo){
+                $iva = (19 * $precioNuevo)/100;
+                $precioConIva = $iva + $precioNuevo;
+                $producto->setPrecio($precioConIva);
+            }
+
+            $producto->setId($idProducto);
+            $producto->setNombre($nombre);
+            $producto->setDescripcion($descripcion);
+            
+            $producto->setCategoria($categoria);
+
+            $crudProducto = new CrudProducto();
+            $crudProducto->actualizarDatosProducto($producto);
+            header("Location: ../../View/ProduccionVista/productos.php");
+        }
+
+        public function eliminarProducto($idProducto){
+
+            $crudProducto = new CrudProducto();
+            $crudProducto->eliminarProducto($idProducto);
+            header("Location: ../../View/ProduccionVista/productos.php");
+        }
+
+        //ENTRADAS Y DETALLES DEL PRODUCTO!!!
 
     }
 
@@ -67,8 +117,30 @@ require("../../Model/ProduccionModelo/crudProducto.php");
 
     }
 
+    if(isset($_POST['cambiarEstado'])){
+
+        $controladorProductos->cambiarEstadoProducto($_POST['IdProducto'],$_POST['estadoProducto']);
+
+    }
+
+    //Lllevar a la vista de editar
+    if(isset($_POST['editarProducto'])){
+        header('Location: ../../View/ProduccionVista/editarProducto.php?idProducto='.$_POST['IdProducto']);
+    }
+
+    if(isset($_POST['actualizarDatosProducto'])){
+        $controladorProductos->editarInformacionProducto($_POST['idProducto'],$_POST['nombre'],$_POST['descripcion'],$_POST['precioNuevo'],$_POST['categoria'],$_POST['precioActual']);
+    }
+
     //Buscar producto para agregar el detalle.
     if(isset($_POST["agregarDetalle"])){
         header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=" . $_POST["IdProducto"]);
     }
+
+    if(isset($_POST['eliminarProducto'])){
+        $controladorProductos->eliminarProducto($_POST['IdProducto']);
+    }
+
+    //ENTRADAS Y DETALLES DEL PRODUCTO!!!
+
 ?>

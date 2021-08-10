@@ -13,12 +13,12 @@ class controladorCategoria{
     }
 
     public function registrarCategoria($nombreCategoria,$nombreFoto){
-        //$categoria = new categoria();//crear objeto del tipo producto
-        //$categoria->setNombreCategoria($nombreCategoria);//asignar valores a los atributos
-        //$categoria->setUrlImagen($foto);//asignar valores a los atributos
+        $categoria = new categoria();//crear objeto del tipo producto
+        $categoria->setNombreCategoria($nombreCategoria);//asignar valores a los atributos
+        $categoria->setUrlImagen($nombreFoto);//asignar valores a los atributos
 
         $crudcategoria = new crudcategoria();
-        $crudcategoria->registrarCategorias($nombreCategoria,$nombreFoto);
+        return $crudcategoria->registrarCategorias($categoria);
         //var_dump($categoria);
         header('Location: ../../View/ProduccionVista/categorias.php');
 
@@ -58,7 +58,7 @@ class controladorCategoria{
         $categoria->setId_Categoria($idCategoria);
         $categoria->setEstado($estadoActualizado);
 
-        //var_dump($estadoActualizado);
+        //var_dump($estado);
         $crudCategoria = new crudCategoria();
         $crudCategoria->actualizarEstadoCategoria($categoria);
         header ("Location: ../../View/ProduccionVista/categorias.php");
@@ -94,7 +94,19 @@ if(isset($_POST['registrarCategoria'])){
             //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
             move_uploaded_file($_FILES['foto']['tmp_name'],$carpetaDestino.$nombreFoto);
 
-             $controladorCategoria->registrarCategoria($nombreCategoria,$nombreFoto);
+            $mensaje = $controladorCategoria->registrarCategoria($nombreCategoria,$nombreFoto);
+
+            if($mensaje == "La categoria ya existe"){
+                echo "<script>
+            location.replace('../../View/ProduccionVista/categorias.php');
+            alert('Ya existe esa categoria.');
+            </script>";
+            }else{
+                echo "<script>
+            location.replace('../../View/ProduccionVista/categorias.php');
+            alert('Registro exitoso.');
+            </script>";
+            }
 
 
         }
