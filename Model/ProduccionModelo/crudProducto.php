@@ -116,6 +116,55 @@
 
         //ENTRADAS Y DETALLES DEL PRODUCTO
 
+        public function obtenerEntradasProductos($idProducto){
+            $Db = Db::Conectar();
+            $sql = $Db->query("SELECT * FROM detalle_productos WHERE IdProducto = $idProducto");
+            $sql->execute();
+            Db::CerrarConexion($Db);
+            return $sql->fetchAll();
+        }
+
+        public function registrarEntradasProducto($color,$talla,$cantidad,$idProducto){
+            
+            $Db = Db::Conectar();
+            foreach($color as $clave => $valor){
+            $sql = $Db->prepare('INSERT INTO detalle_productos(Color,Talla, Stock, IdProducto, Estado) VALUES
+            (:color, :talla, :cantidad, :idProducto, :estado)');
+            $sql->bindvalue('color',$valor);
+            $sql->bindvalue('talla',$talla[$clave]);
+            $sql->bindvalue('cantidad',$cantidad[$clave]);
+            $sql->bindvalue('idProducto',$idProducto);
+            $sql->bindvalue('estado',1);
+            $sql->execute();
+            }
+            
+            Db::CerrarConexion($Db);
+            
+        }
+
+        public function registrarFotosProducto($fotos){
+            $mensaje = "";
+            $Db = Db::Conectar();
+            $sql = $Db->prepare('INSERT INTO
+            imagenes_productos(UrlImagen1, UrlImagen2, UrlImagen3,IdProducto)
+            VALUES (:imagen1, :imagen2, :imagen3:, :idProducto )');
+            $sql->bindvalue('idProducto',$fotos->getIdProducto());//dentro del value cuenta como variables las que tienen los dos puntos :
+            $sql->bindvalue('imagen1',$fotos->getUrlImagen1());//recciben los datos que se mandaron por el set en controladorRegistrar
+            $sql->bindvalue('imagen2',$fotos->getUrlImagen2());
+            $sql->bindvalue('imagen3',$fotos->getUrlImagen3());
+            //$sql->execute();
+            $mensaje = "Registro exitoso";
+
+             try{
+                 $sql->execute();
+                 $mensaje = "Se ha modificado el estado del producto";
+             }catch(Exception $e){
+                 $mensaje = $e->getMessage();
+             }
+             Db::CerrarConexion($Db);
+             return $mensaje;
+        }
+
     }   
 
 ?>

@@ -1,6 +1,9 @@
 <?php
 require("../../Controller/ProduccionControlador/controladorProductos.php");
-$controladorProductos->buscarProducto($_GET['idProducto']);
+//Recibo el id que es mandado por medio de controlador, lo envio nuevamente al controlador y este lo manda 
+//Al modelo, que me retorna los valores encontrados según el Id del producto.
+$producto = $controladorProductos->buscarProducto($_GET['idProducto']);
+$listaEntradas = $controladorProductos->listarEntradasProducto($_GET['idProducto']);
 
 session_start();
 if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo redirecciona al login
@@ -86,50 +89,107 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4 text-center">Detalles del producto - Aqui va el nombre del producto</h1>
+                        <h1 class="mt-4 text-center">Entradas del producto - <?php echo $producto['NombreProducto']?></h1>
                         <br>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">¡Agrega las entradas de este producto</li>
                         </ol>
-                        <form action="../../Controller/UsuariosControlador/ControladorAdministrador.php" method="POST" accept-charset="utf-8">
+                        <!--FORMULARIO DE INGRESAR AS ENTRADAS-->
+                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8" novalidate>
                         <div class="container">
                             <div class="form-group">
+                                <br>
                                 <label for="idUsuario">Generar las entradas del producto</label>
-                                <button type="button" class="btn btn-info" id="generarEntrada">Generar entrada</button>
+                                <input type="text" name="idProducto" value="<?php echo $producto['IdProducto']?>">
+                                <button type="button" class="btn btn-info" id="generarEntrada" onclick="mostrarBoton();">Generar entrada</button>
+                                <button type="submit" class="btn btn-success" name="guardarEntrada" id="guardarEntrada" style="display: none;">Guardar</button>
                             </div>
-                            <br>
-                            <div class="container">
-                                <div class="accordion" id="accordionExample">
-                                    <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                        <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Da click aquí para ver las entradas existentes de este producto
-                                        </button>
-                                        </h2>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            En esta parte es donde  las entradas existentes 
+                        </form>
+                        <!--FIN DEL FORMULARIO DE ENTRADAS-->
+                        <br>
+                        <br>
+                        <div class="card mb-4">
+                      <div class="card-header">
+                        <i class="fas fa-table mr-1"></i>
+                        Entradas existentes del producto
+                     </div>
+                      <div class="card-body">
+                         <div class="table-responsive">
+                          <table class="table table-hover table-bordered" id="tablaEntradaProductos">      
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Color</th>
+                                        <th>Talla</th>
+                                        <th>Cantidad</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                  <tbody>
+                                     <?php
+                                     foreach ($listaEntradas as $entrada) {
+                                     ?>
+                                          <tr>
+                                          <td><?php echo $entrada['IdDetalleProducto'];?></td>
+                                          <td><?php echo $entrada['Color'];?></td>
+                                          <td><?php echo $entrada['Talla'];?></td>
+                                          <td><?php echo $entrada['Stock'];?></td>
+                                          <td>
+                                        <?php 
+                                           if($entrada['Estado'] != 1){
+                                            echo '<span class="badge bg-danger text-light">Inactivo</span>';
+                                            }else{
+                                            echo '<span class="badge bg-success text-light">Activo</span>';
+                                             }
+                                        ?>
+                                        </td>
+                                          
+                                        <td>
+                                          <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8">
+                                            <input type="hidden" name="" value="<?php echo $entrada['IdProducto'];?>">
+                                            <input type="hidden" name="" value="<?php echo $entrada['Estado'];?>">
+                                            <button type="submit" name="" id="" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
+                                            <button type="submit" name="" id="" class="btn btn-info"><i class="fas fa-edit"></i></button>
+                                            <button type="submit" name="" id="" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
+                                            <button type="button" name="" id="" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i></button>
+                                          </form>
+                                        </td>
+                                    </tr>
+                                    <?php   
+                                     }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                         </div>
+                    </div>
+                    <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Agregar más cantidad</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container">
+                                    <div class="form-group row">
+                                            <label for="precioProducto">Más cantidad:</label>
+                                            <input type="text" selected class="form-control" name="" id="" required>
                                         </div>
                                     </div>
-                                    </div>
                                 </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary">Agregar</button>
                             </div>
-                            <br>
-                            <div class="form-group">
-                                <label for="correo">Fotos del producto</label>
-                                <input type="file" class="form-control" id="" name="" autocomplete="of">
-                                <input type="file" class="form-control" id="" name="" autocomplete="of">
-                                <input type="file" class="form-control" id="" name="" autocomplete="of">
                             </div>
-                            <button type="submit" class="btn btn-success">Guardar</button>
-                            <a href="productos.php" class="btn btn-danger">Cancelar</a>
                         </div>
-                        </form>
-                        <br>
-                        <br>
-                    </div>
+                        </div>
+                    <!--Fin modal-->
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
@@ -166,5 +226,43 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         $(this).parent().remove();
     });
 });
+    </script>
+
+<script>
+    $(document).ready(function() {
+    $('#tablaEntradaProductos').DataTable();
+    } );
+
+    let table = $('#tablaEntradaProductos').DataTable({
+    language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    },
+    
+});
+
+    </script>
+
+    <script>
+        function mostrarBoton(){
+            let boton = document.getElementById('guardarEntrada');
+            boton.style.display='inline';
+        }
     </script>
 </html>

@@ -2,6 +2,8 @@
 require("../../Model/conexion.php");
 require("../../Model/ProduccionModelo/producto.php");
 require("../../Model/ProduccionModelo/crudProducto.php");
+require("../../Model/ProduccionModelo/detalleProducto.php");
+require("../../Model/ProduccionModelo/productoImagen.php");
 
     class ControladorProductos{
 
@@ -93,6 +95,35 @@ require("../../Model/ProduccionModelo/crudProducto.php");
 
         //ENTRADAS Y DETALLES DEL PRODUCTO!!!
 
+        public function listarEntradasProducto($idProducto){
+            $crudProducto = new CrudProducto();
+           return $crudProducto->obtenerEntradasProductos($idProducto);
+        }
+
+        public function guardarEntradasProducto($color,$talla,$cantidad,$idProducto){
+
+            $crudProducto = new CrudProducto();
+            $crudProducto->registrarEntradasProducto($color,$talla,$cantidad,$idProducto);
+            header("Location: ../../View/ProduccionVista/productos.php");
+        }
+
+        //FOTOS
+
+        public function registrarFotos($nombreFoto1,$nombreFoto2,$nombreFoto3,$idProducto){
+            $fotos = new Imagen();
+
+            $fotos->setUrlImagen1($nombreFoto1);
+            $fotos->setUrlImagen2($nombreFoto2);
+            $fotos->setUrlImagen3($nombreFoto3);
+            $fotos->setIdProducto($idProducto);
+            
+    
+            $crudProducto = new CrudProducto();
+            $crudProducto->registrarFotosProducto($fotos);
+            //var_dump($fotos);
+            header('Location: ../../View/ProduccionVista/productos.php');
+    
+        }
     }
 
     $controladorProductos = new ControladorProductos();
@@ -142,5 +173,70 @@ require("../../Model/ProduccionModelo/crudProducto.php");
     }
 
     //ENTRADAS Y DETALLES DEL PRODUCTO!!!
+
+
+    if(isset($_POST['guardarEntrada'])){
+      
+        //var_dump($_POST['color'],$_POST['talla'],$_POST['cantidad'],$_POST['idProducto']);
+      $controladorProductos->guardarEntradasProducto($_POST['color'],$_POST['talla'],$_POST['cantidad'],$_POST['idProducto']);
+
+    }
+
+
+
+    //FOTOS DEL PRODUCTO
+
+    if(isset($_POST['fotosProducto'])){
+        header("Location: ../../View/ProduccionVista/imagenesProducto.php?idProducto=" . $_POST["IdProducto"]);
+    }
+
+    if(isset($_POST['registrarFotos'])){
+
+        $nombreFoto1 = $_FILES['foto1']['name'];
+        $tipoArchivo1 = $_FILES['foto1']['type'];
+        $tamanoImagen1 = $_FILES['foto1']['size'];
+        $idProducto = $_POST['idProducto'];
+
+        $nombreFoto2 = $_FILES['foto2']['name'];
+        $tipoArchivo2 = $_FILES['foto2']['type'];
+        $tamanoImagen2 = $_FILES['foto2']['size'];
+        $idProducto = $_POST['idProducto'];
+
+        $nombreFoto3 = $_FILES['foto3']['name'];
+        $tipoArchivo3 = $_FILES['foto3']['type'];
+        $tamanoImagen3 = $_FILES['foto3']['size'];
+        $idProducto = $_POST['idProducto'];
+
+        var_dump($nombreFoto1,$nombreFoto2,$nombreFoto3);
+
+        if($tamanoImagen1 || $tamanoImagen2 || $tamanoImagen3 <= 5097152){
+
+                if($tipoArchivo1 || $tipoArchivo2 || $tipoArchivo3 == "image/jpeg" || $tipoArchivo1 || $tipoArchivo2 || $tipoArchivo3 == "image/jpg" || $tipoArchivo1 || $tipoArchivo2 || $tipoArchivo3 == "image/png"){
+                    //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
+                    $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/productos/';
+
+                    //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+                    move_uploaded_file($_FILES['foto1']['tmp_name'],$carpetaDestino.$nombreFoto1);
+                    move_uploaded_file($_FILES['foto2']['tmp_name'],$carpetaDestino.$nombreFoto2);
+                    move_uploaded_file($_FILES['foto3']['tmp_name'],$carpetaDestino.$nombreFoto3);
+
+                    $controladorProductos->registrarFotos($nombreFoto1,$nombreFoto2,$nombreFoto3,$idProducto);
+                }
+
+                else{
+                    echo "<script>
+                    location.replace('../../View/ProduccionVista/categorias.php');
+                    alert('El formato seleccionado no corresponde a una imagen.');
+                    </script>";
+                }
+            }
+
+                else{
+                    echo "<script>
+                    location.replace('../../View/ProduccionVista/categorias.php');
+                    alert('La imagn super el tamaño esperado. Debe ser menor o igual a 5Mb');
+                </script>";
+                    }
+    }
 
 ?>
