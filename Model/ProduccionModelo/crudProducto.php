@@ -126,43 +126,104 @@
 
         public function registrarEntradasProducto($color,$talla,$cantidad,$idProducto){
             
+            $mensaje = "";
+            $mensajeValidar = "";
             $Db = Db::Conectar();
+            //Validar que un usuario no registre el mimso correo.
             foreach($color as $clave => $valor){
-            $sql = $Db->prepare('INSERT INTO detalle_productos(Color,Talla, Stock, IdProducto, Estado) VALUES
-            (:color, :talla, :cantidad, :idProducto, :estado)');
-            $sql->bindvalue('color',$valor);
-            $sql->bindvalue('talla',$talla[$clave]);
-            $sql->bindvalue('cantidad',$cantidad[$clave]);
-            $sql->bindvalue('idProducto',$idProducto);
-            $sql->bindvalue('estado',1);
-            $sql->execute();
+            $validarExiste = $Db->prepare("SELECT Color, Talla FROM detalle_productos
+            WHERE Color = :color AND Talla = :talla AND IdProducto = :idProducto");
+            $validarExiste->bindvalue('color',$color[$clave]);
+            $validarExiste->bindvalue('talla',$talla[$clave]);
+            $validarExiste->bindvalue('idProducto',$idProducto);
             }
+            try{
+                $validarExiste->execute();
+                if($validarExiste->rowCount() > 0){
+                    $mensajeValidar = "La entrada de este producto ya existe";
+                    return $mensajeValidar;
+                }//Si el producto no existe, se ejecuta lo del elese y realiza la inserción
+                else{
+                    foreach($color as $clave => $valor){
+                         $sql = $Db->prepare('INSERT INTO detalle_productos(Color,Talla, Stock, IdProducto, Estado) VALUES
+                        (:color, :talla, :cantidad, :idProducto, :estado)');
+                        $sql->bindvalue('color',$valor);
+                        $sql->bindvalue('talla',$talla[$clave]);
+                        $sql->bindvalue('cantidad',$cantidad[$clave]);
+                        $sql->bindvalue('idProducto',$idProducto);
+                        $sql->bindvalue('estado',1);
+                        $sql->execute();
+                        }            
+                        $mensaje = "Registro exitoso";
+                }
+            }
+            catch(Exception $e){
+                $mensaje = $e->getMessage();
+             }
+             Db::CerrarConexion($Db);
+             return $mensaje;
             
+        }
+
+        public function actualizarEstadoEntradaProducto($estadoDetalleProducto){
+
+            $mesanje = "";
+            $Db = Db::Conectar();
+            $sql = $Db->prepare('UPDATE detalle_productos SET Estado = :estado
+             WHERE IdDetalleProducto = :idDetalleProducto');
+            $sql->bindvalue('idDetalleProducto',$estadoDetalleProducto->getIdDetalleProducto());
+            $sql->bindvalue('estado',$estadoDetalleProducto->getEstado());
+            try{
+                $sql->execute();
+                $mensaje = "Cambio de estado exitoso";
+            }catch(Exception $e){
+                $mensaje = $e->getMessage();
+            }
             Db::CerrarConexion($Db);
-            
+            return $mensaje;
+        }
+
+        public function eliminarEntradaProducto($idDetalleProducto){
+            $mensaje = "";
+            $Db = Db::Conectar();
+            $sql = $Db->prepare('DELETE FROM detalle_productos WHERE IdDetalleProducto = :idDetalleProducto');
+            $sql->bindvalue('idDetalleProducto',$idDetalleProducto);
+            try{
+                $sql->execute();
+                $mensaje = "Registro eliminado";
+            }catch (Exception $e) {
+                $mensaje = $e->getMessage();
+            }
+            Db::CerrarConexion($Db);
+            return $mensaje;
         }
 
         public function registrarFotosProducto($fotos){
             $mensaje = "";
             $Db = Db::Conectar();
             $sql = $Db->prepare('INSERT INTO
-            imagenes_productos(UrlImagen1, UrlImagen2, UrlImagen3,IdProducto)
-            VALUES (:imagen1, :imagen2, :imagen3:, :idProducto )');
-            $sql->bindvalue('idProducto',$fotos->getIdProducto());//dentro del value cuenta como variables las que tienen los dos puntos :
-            $sql->bindvalue('imagen1',$fotos->getUrlImagen1());//recciben los datos que se mandaron por el set en controladorRegistrar
+            imagenes_productos(IdProducto,UrlImagen1, UrlImagen2, UrlImagen3)
+            VALUES (:idProducto,:imagen1, :imagen2,:imagen3)');
+            $sql->bindvalue('idProducto',$fotos->getIdProducto());
+            $sql->bindvalue('imagen1',$fotos->getUrlImagen1());
             $sql->bindvalue('imagen2',$fotos->getUrlImagen2());
             $sql->bindvalue('imagen3',$fotos->getUrlImagen3());
-            //$sql->execute();
-            $mensaje = "Registro exitoso";
-
              try{
                  $sql->execute();
-                 $mensaje = "Se ha modificado el estado del producto";
+                 $mensaje = "Se ha registrado las fotografias del producto";
              }catch(Exception $e){
                  $mensaje = $e->getMessage();
              }
              Db::CerrarConexion($Db);
              return $mensaje;
+        }
+
+        public function buscarFotosProducto($idProducto){
+            $Db = Db::Conectar();
+            $sql = $Db->query("SELECT * FROM imagenes_productos WHERE IdProducto = $idProducto");
+            $sql->execute();
+            $Db = Db::CerrarConexion($Db);
+            return $sql->fetch();
         }
 
     }   

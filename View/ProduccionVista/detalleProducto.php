@@ -95,12 +95,12 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             <li class="breadcrumb-item active">¡Agrega las entradas de este producto</li>
                         </ol>
                         <!--FORMULARIO DE INGRESAR AS ENTRADAS-->
-                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8" novalidate>
+                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8" novalidate autocomplete="off">
                         <div class="container">
                             <div class="form-group">
                                 <br>
                                 <label for="idUsuario">Generar las entradas del producto</label>
-                                <input type="text" name="idProducto" value="<?php echo $producto['IdProducto']?>">
+                                <input type="hidden" name="idProducto" value="<?php echo $producto['IdProducto']?>">
                                 <button type="button" class="btn btn-info" id="generarEntrada" onclick="mostrarBoton();">Generar entrada</button>
                                 <button type="submit" class="btn btn-success" name="guardarEntrada" id="guardarEntrada" style="display: none;">Guardar</button>
                             </div>
@@ -147,11 +147,12 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                           
                                         <td>
                                           <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8">
-                                            <input type="hidden" name="" value="<?php echo $entrada['IdProducto'];?>">
-                                            <input type="hidden" name="" value="<?php echo $entrada['Estado'];?>">
-                                            <button type="submit" name="" id="" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
-                                            <button type="submit" name="" id="" class="btn btn-info"><i class="fas fa-edit"></i></button>
-                                            <button type="submit" name="" id="" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
+                                            <input type="hidden" name="IdDetalleProducto" value="<?php echo $entrada['IdDetalleProducto'];?>">
+                                            <input type="hidden" name="estadoDetalle" value="<?php echo $entrada['Estado'];?>">
+                                            <input type="hidden" name="idProducto" value="<?php echo $producto['IdProducto']?>">
+                                            <button type="submit" name="cambiarEstadoEntrada" id="cambiarEstadoEntrada" class="btn btn-primary"  onclick="return confirm('¿Está seguro de cambiar el estado?');"><i class="fas fa-exchange-alt"></i></button>
+                                            <!--<button type="submit" name="" id="" class="btn btn-info"><i class="fas fa-edit"></i></button>-->
+                                            <button type="submit" name="eliminarEntrada" id="eliminarEntrada" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
                                             <button type="button" name="" id="" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i></button>
                                           </form>
                                         </td>

@@ -3,7 +3,7 @@ require("../../Controller/ProduccionControlador/controladorProductos.php");
 //Recibo el id que es mandado por medio de controlador, lo envio nuevamente al controlador y este lo manda 
 //Al modelo, que me retorna los valores encontrados según el Id del producto.
 $producto = $controladorProductos->buscarProducto($_GET['idProducto']);
-$listaEntradas = $controladorProductos->listarEntradasProducto($_GET['idProducto']);
+$fotosProducto = $controladorProductos->buscarFotosProducto($_GET['idProducto']);
 
 session_start();
 if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo redirecciona al login
@@ -138,27 +138,26 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 </thead>
                                   <tbody>
                                      <?php
-                                     foreach ($listaEntradas as $entrada) {
+                                     foreach ($fotosProducto as $foto) {
                                      ?>
                                           <tr>
-                                          <td><?php echo $entrada['IdDetalleProducto'];?></td>
-                                          <td><?php echo $entrada['Color'];?></td>
-                                          <td><?php echo $entrada['Talla'];?></td>
-                                          <td><?php echo $entrada['Stock'];?></td>
+                                          <td><?php echo $foto['UrlImagen1'];?></td>
+                                          <td><?php echo $foto['UrlImagen2'];?></td>
+                                          <td><?php echo $foto['UrlImagen3'];?></td>
                                           <td>
                                         <?php 
-                                           if($entrada['Estado'] != 1){
-                                            echo '<span class="badge bg-danger text-light">Inactivo</span>';
-                                            }else{
-                                            echo '<span class="badge bg-success text-light">Activo</span>';
-                                             }
+                                           //if($entrada['Estado'] != 1){
+                                            //echo '<span class="badge bg-danger text-light">Inactivo</span>';
+                                            //}else{
+                                            //echo '<span class="badge bg-success text-light">Activo</span>';
+                                             //}
                                         ?>
                                         </td>
                                           
                                         <td>
                                           <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8">
-                                            <input type="hidden" name="" value="<?php echo $entrada['IdProducto'];?>">
-                                            <input type="hidden" name="" value="<?php echo $entrada['Estado'];?>">
+                                            <input type="hidden" name="" value="<?php //echo $entrada['IdProducto'];?>">
+                                            <input type="hidden" name="" value="<?php //echo $entrada['Estado'];?>">
                                             <button type="submit" name="" id="" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
                                             <button type="submit" name="" id="" class="btn btn-info"><i class="fas fa-edit"></i></button>
                                             <button type="submit" name="" id="" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>

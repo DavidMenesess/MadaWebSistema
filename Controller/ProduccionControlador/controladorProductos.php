@@ -93,6 +93,8 @@ require("../../Model/ProduccionModelo/productoImagen.php");
             header("Location: ../../View/ProduccionVista/productos.php");
         }
 
+        //AQUÍ FINALIZA DE MOMENTO LAS TRANSACCIONES DE LA TABLA PRODUCTOS E INICIA LAS DE DETALLE DEL PRODUCTO
+
         //ENTRADAS Y DETALLES DEL PRODUCTO!!!
 
         public function listarEntradasProducto($idProducto){
@@ -103,9 +105,37 @@ require("../../Model/ProduccionModelo/productoImagen.php");
         public function guardarEntradasProducto($color,$talla,$cantidad,$idProducto){
 
             $crudProducto = new CrudProducto();
-            $crudProducto->registrarEntradasProducto($color,$talla,$cantidad,$idProducto);
-            header("Location: ../../View/ProduccionVista/productos.php");
+            return $crudProducto->registrarEntradasProducto($color,$talla,$cantidad,$idProducto);
+            header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=" . $idProducto);
         }
+
+        public function cambiarEstadoEntradaProducto($estado, $idDetalleProducto,$idProducto){
+
+            $estadoActualizado = null;
+
+            if($estado == 1){
+                $estadoActualizado = 0;
+            }elseif($estado == 0){
+                $estadoActualizado = 1;
+            }
+
+            $estadoDetalleProducto = new DetalleProducto();
+            $estadoDetalleProducto->setIdDetalleProducto($idDetalleProducto);
+            $estadoDetalleProducto->setEstado($estadoActualizado);
+
+            $crudProducto = new CrudProducto();
+            //var_dump($estadoDetalleProducto);
+            $crudProducto->actualizarEstadoEntradaProducto($estadoDetalleProducto);
+            header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=" . $idProducto);
+        }
+
+        public function eliminarEntradaProducto($idDetalleProducto,$idProducto){
+            $crudProducto = new CrudProducto();
+            $crudProducto->eliminarEntradaProducto($idDetalleProducto);
+            header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=" . $idProducto); 
+        }
+
+        //AQUÍ FINALIZA LAS TRANSACCIONES DE DETALLE DEL PRODUCTO E INICIA LAS FOTOS DEL PRODUCTO
 
         //FOTOS
 
@@ -116,13 +146,17 @@ require("../../Model/ProduccionModelo/productoImagen.php");
             $fotos->setUrlImagen2($nombreFoto2);
             $fotos->setUrlImagen3($nombreFoto3);
             $fotos->setIdProducto($idProducto);
-            
+             
     
             $crudProducto = new CrudProducto();
             $crudProducto->registrarFotosProducto($fotos);
-            //var_dump($fotos);
+            var_dump($fotos);
             header('Location: ../../View/ProduccionVista/productos.php');
-    
+        }
+
+        public function buscarFotosProducto($idProducto){
+            $crudProducto = new CrudProducto();
+           return $crudProducto->buscarFotosProducto($idProducto);
         }
     }
 
@@ -172,17 +206,37 @@ require("../../Model/ProduccionModelo/productoImagen.php");
         $controladorProductos->eliminarProducto($_POST['IdProducto']);
     }
 
+    //AQUÍ FINALIZA DE MOMENTO LAS TRANSACCIONES DE LA TABLA PRODUCTOS E INICIA LAS DE DETALLE DEL PRODUCTO
+
     //ENTRADAS Y DETALLES DEL PRODUCTO!!!
 
 
     if(isset($_POST['guardarEntrada'])){
-      
-        //var_dump($_POST['color'],$_POST['talla'],$_POST['cantidad'],$_POST['idProducto']);
-      $controladorProductos->guardarEntradasProducto($_POST['color'],$_POST['talla'],$_POST['cantidad'],$_POST['idProducto']);
+     $mensaje = $controladorProductos->guardarEntradasProducto($_POST['color'],$_POST['talla'],$_POST['cantidad'],$_POST['idProducto']);
 
+        if($mensaje ==  "La entrada de este producto ya existe"){
+            echo "<script>
+            location.replace('../../View/ProduccionVista/productos.php');
+            alert('Ingreso una entrada existente para el producto, verifique las entradas he intente nuevamente.');
+          </script>";
+        }else{
+            echo "<script>
+            location.replace('../../View/ProduccionVista/productos.php');
+            alert('Registro de entradas exitoso');
+          </script>";
+        }
+    }
+
+    if(isset($_POST['cambiarEstadoEntrada'])){
+        $controladorProductos->cambiarEstadoEntradaProducto($_POST['estadoDetalle'],$_POST['IdDetalleProducto'],$_POST['idProducto']);
+    }
+
+    if(isset($_POST['eliminarEntrada'])){
+        $controladorProductos->eliminarEntradaProducto($_POST['IdDetalleProducto'],$_POST['idProducto']);
     }
 
 
+    //AQUÍ FINALIZA LAS TRANSACCIONES DE DETALLE DEL PRODUCTO E INICIA LAS FOTOS DEL PRODUCTO
 
     //FOTOS DEL PRODUCTO
 
@@ -235,7 +289,7 @@ require("../../Model/ProduccionModelo/productoImagen.php");
                     echo "<script>
                     location.replace('../../View/ProduccionVista/categorias.php');
                     alert('La imagn super el tamaño esperado. Debe ser menor o igual a 5Mb');
-                </script>";
+                    </script>";
                     }
     }
 
