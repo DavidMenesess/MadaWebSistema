@@ -145,6 +145,18 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                     </select>
                                     
                                   </div>
+                                  <div class="form-group">
+					      			<label for="foto1">Imagen1:</label>
+									<input type="file" class="form-control-file" name="foto1" id="foto1" required>
+					      		</div>
+                                  <div class="form-group">
+					      			<label for="foto2">Imagen2:</label>
+									<input type="file" class="form-control-file" name="foto2" id="foto2" required>
+					      		</div>
+                                  <div class="form-group">
+					      			<label for="foto3">Imagen3:</label>
+									<input type="file" class="form-control-file" name="foto3" id="foto3" required>
+					      		</div>
 				      		</div>
 
                             <div class="modal-footer">
@@ -174,6 +186,9 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                         <th>Precio</th>
                                         <th>Categoría</th>
                                         <th>Cantidad</th>
+                                        <th>Imagen</th>
+                                        <th>Imagen</th>
+                                        <th>Imagen</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -189,6 +204,10 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                           <td><?php echo $producto['Precio'];?></td>
                                           <td><?php echo $producto['NombreCategoria'];?></td>
                                           <td>Cantidad</td>
+                                          <td><img class="img-thumbnail" width="100px" src="../../images/productos/<?php echo $producto['Imagen1'];?>" alt="<?php echo $producto['Imagen1']?>"/></td>
+                                          <td><img class="img-thumbnail" width="100px" src="../../images/productos/<?php echo $producto['Imagen2'];?>" alt="<?php echo $producto['Imagen2']?>"/></td>
+                                          <td><img class="img-thumbnail" width="100px" src="../../images/productos/<?php echo $producto['Imagen3'];?>" alt="<?php echo $producto['Imagen3']?>"/></td>
+                                          
                                           <td>
                                         <?php 
                                            if($producto['Estado'] != 1){
@@ -204,12 +223,13 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                           <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8">
                                             <input type="hidden" name="IdProducto" value="<?php echo $producto['IdProducto'];?>">
                                             <input type="hidden" name="estadoProducto" value="<?php echo $producto['Estado'];?>">
-                                                        <!--<input type="hidden" name="imagen" value="<?php //echo $producto['UrlImagen']; ?>"-->
+                                            <input type="hidden" name="imagen1" value="<?php echo $producto['Imagen1']; ?>">
+                                            <input type="hidden" name="imagen2" value="<?php echo $producto['Imagen2']; ?>">
+                                            <input type="hidden" name="imagen3" value="<?php echo $producto['Imagen3']; ?>">
                                             <button type="submit" name="cambiarEstado" id="cambiarEstado" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
                                             <button type="submit" name="editarProducto" id="editarProducto" class="btn btn-info"><i class="fas fa-edit"></i></button>
                                             <button type="submit" name="eliminarProducto" id="eliminarProducto" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
                                             <button type="submit" name="agregarDetalle" id="agregarDetalle" class="btn btn-success"><i class="fas fa-plus"></i></button>
-                                            <button type="submit" name="fotosProducto" id="fotosProducto" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-images"></i></button>
                                             <button type="submit" name="verDetalle" id="verDetalle" class="btn btn-warning"><i class="fas fa-eye"></i></button>
                                           </form>
                                         </td>

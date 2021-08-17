@@ -8,6 +8,9 @@
         private $estado;
         private $precio;
         private $idCategoria;
+        private $imagen1;
+        private $imagen2;
+        private $imagen3;
 
         public function __construct(){
 
@@ -38,6 +41,18 @@
             $this->idCategoria = $idCategoria;
         }
 
+        public function setImagen1($imagen1){
+            $this->imagen1 = $imagen1;
+        }
+
+        public function setImagen2($imagen2){
+            $this->imagen2 = $imagen2;
+        }
+
+        public function setImagen3($imagen3){
+            $this->imagen3 = $imagen3;
+        }
+
         //GETTERS
 
         public function getId(){
@@ -63,6 +78,20 @@
         public function getCategoria(){
             return $this->idCategoria;
         }
+
+        public function getImagen1(){
+            return $this->imagen1;
+        }
+
+        public function getImagen2(){
+            return $this->imagen2;
+        }
+
+        public function getImagen3(){
+            return $this->imagen3;
+        }
+
+
     }
 
     /*$vestido = new Producto;

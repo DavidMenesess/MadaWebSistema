@@ -9,7 +9,7 @@
         public function listarProductos(){
             $Db = Db::Conectar();
             $sql= $Db->query("SELECT p.IdProducto, p.NombreProducto, p.Descripcion,
-            p.Estado, p.Precio, c.NombreCategoria FROM productos p JOIN categorias c
+            p.Estado, p.Precio, p.Imagen1, p.Imagen2, p.Imagen3, c.NombreCategoria FROM productos p JOIN categorias c
             ON p.Idcategoria = c.IdCategoria");
             $sql->execute();
             Db::CerrarConexion($Db);
@@ -42,12 +42,15 @@
                 }//Si el producto no existe, se ejecuta lo del elese y realiza la inserción
                 else{
                     $sql = $Db->prepare('INSERT INTO
-                    productos(NombreProducto, Descripcion, Precio, IdCategoria, Estado )
-                    VALUES (:nombre, :descripcion, :precio, :categoria, 1)');
+                    productos(NombreProducto, Descripcion, Precio, IdCategoria, Estado, Imagen1, Imagen2, Imagen3 )
+                    VALUES (:nombre, :descripcion, :precio, :categoria, 1, :imagen1, :imagen2, :imagen3)');
                     $sql->bindvalue('nombre',$producto->getNombre());//dentro del value cuenta como variables las que tienen los dos puntos :
                     $sql->bindvalue('descripcion',$producto->getDescripcion());//recciben los datos que se mandaron por el set en controladorRegistrar
                     $sql->bindvalue('precio',$producto->getPrecio());
                     $sql->bindvalue('categoria',$producto->getCategoria());
+                    $sql->bindvalue('imagen1',$producto->getImagen1());
+                    $sql->bindvalue('imagen2',$producto->getImagen2());
+                    $sql->bindvalue('imagen3',$producto->getImagen3());
                     $sql->execute();
                     $mensaje = "Registro exitoso";
                 }
@@ -198,7 +201,7 @@
             return $mensaje;
         }
 
-        public function registrarFotosProducto($fotos){
+       /* public function registrarFotosProducto($fotos){
             $mensaje = "";
             $Db = Db::Conectar();
             $sql = $Db->prepare('INSERT INTO
@@ -224,7 +227,7 @@
             $sql->execute();
             $Db = Db::CerrarConexion($Db);
             return $sql->fetch();
-        }
+        }*/
 
     }   
 

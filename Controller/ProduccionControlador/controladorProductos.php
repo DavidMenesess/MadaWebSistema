@@ -3,7 +3,6 @@ require("../../Model/conexion.php");
 require("../../Model/ProduccionModelo/producto.php");
 require("../../Model/ProduccionModelo/crudProducto.php");
 require("../../Model/ProduccionModelo/detalleProducto.php");
-require("../../Model/ProduccionModelo/productoImagen.php");
 
     class ControladorProductos{
 
@@ -26,7 +25,7 @@ require("../../Model/ProduccionModelo/productoImagen.php");
             return $crudProducto->buscarProducto($idProducto);
         }
 
-        public function registrarProducto($nombre,$descripcion,$precio,$idCategoria){
+        public function registrarProducto($nombre,$descripcion,$precio,$idCategoria,$imagen1,$imagen2,$imagen3){
 
             $iva = (19 * $precio)/100;
             $precioConIva = $iva + $precio;
@@ -36,6 +35,9 @@ require("../../Model/ProduccionModelo/productoImagen.php");
             $producto->setDescripcion($descripcion);
             $producto->setPrecio($precioConIva);
             $producto->setCategoria($idCategoria);
+            $producto->setImagen1($imagen1);
+            $producto->setImagen2($imagen2);
+            $producto->setImagen3($imagen3);
 
             $crudProducto = new CrudProducto();
 
@@ -135,36 +137,60 @@ require("../../Model/ProduccionModelo/productoImagen.php");
             header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=" . $idProducto); 
         }
 
-        //AQUÍ FINALIZA LAS TRANSACCIONES DE DETALLE DEL PRODUCTO E INICIA LAS FOTOS DEL PRODUCTO
-
-        //FOTOS
-
-        public function registrarFotos($nombreFoto1,$nombreFoto2,$nombreFoto3,$idProducto){
-            $fotos = new Imagen();
-
-            $fotos->setUrlImagen1($nombreFoto1);
-            $fotos->setUrlImagen2($nombreFoto2);
-            $fotos->setUrlImagen3($nombreFoto3);
-            $fotos->setIdProducto($idProducto);
-             
-    
-            $crudProducto = new CrudProducto();
-            $crudProducto->registrarFotosProducto($fotos);
-            var_dump($fotos);
-            header('Location: ../../View/ProduccionVista/productos.php');
-        }
-
-        public function buscarFotosProducto($idProducto){
-            $crudProducto = new CrudProducto();
-           return $crudProducto->buscarFotosProducto($idProducto);
-        }
     }
 
     $controladorProductos = new ControladorProductos();
 
     //Registrar Producto
     if(isset($_POST['registrarProducto'])){
-        $mensaje = $controladorProductos->registrarProducto($_POST['nombreProducto'],$_POST['descripcionProducto'],$_POST['precioProducto'],$_POST['categoria']);
+
+        $nombreFoto1 = $_FILES['foto1']['name'];
+        $tipoArchivo1 = $_FILES['foto1']['type'];
+        $tamanoImagen1 = $_FILES['foto1']['size'];
+       
+
+        $nombreFoto2 = $_FILES['foto2']['name'];
+        $tipoArchivo2 = $_FILES['foto2']['type'];
+        $tamanoImagen2 = $_FILES['foto2']['size'];
+       
+
+        $nombreFoto3 = $_FILES['foto3']['name'];
+        $tipoArchivo3 = $_FILES['foto3']['type'];
+        $tamanoImagen3 = $_FILES['foto3']['size'];
+
+        //var_dump($nombreFoto1,$nombreFoto2,$nombreFoto3);
+
+        if($tamanoImagen1 || $tamanoImagen2 || $tamanoImagen3 <= 5097152){
+
+                if($tipoArchivo1 || $tipoArchivo2 || $tipoArchivo3 == "image/jpeg" || $tipoArchivo1 || $tipoArchivo2 || $tipoArchivo3 == "image/jpg" || $tipoArchivo1 || $tipoArchivo2 || $tipoArchivo3 == "image/png"){
+                    //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
+                    $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/productos/';
+
+                    //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+                    move_uploaded_file($_FILES['foto1']['tmp_name'],$carpetaDestino.$nombreFoto1);
+                    move_uploaded_file($_FILES['foto2']['tmp_name'],$carpetaDestino.$nombreFoto2);
+                    move_uploaded_file($_FILES['foto3']['tmp_name'],$carpetaDestino.$nombreFoto3);
+
+                    $mensaje = $controladorProductos->registrarProducto($_POST['nombreProducto'],$_POST['descripcionProducto'],$_POST['precioProducto'],$_POST['categoria'], $nombreFoto1,$nombreFoto2,$nombreFoto3);
+
+                   
+                }
+
+                else{
+                    echo "<script>
+                    location.replace('../../View/ProduccionVista/categorias.php');
+                    alert('El formato seleccionado no corresponde a una imagen.');
+                    </script>";
+                }
+            }
+
+                else{
+                    echo "<script>
+                    location.replace('../../View/ProduccionVista/categorias.php');
+                    alert('La imagn super el tamaño esperado. Debe ser menor o igual a 5Mb');
+                    </script>";
+                    }
+
 
         if($mensaje == "El producto ya existe"){
 
@@ -203,6 +229,20 @@ require("../../Model/ProduccionModelo/productoImagen.php");
     }
 
     if(isset($_POST['eliminarProducto'])){
+        $imagen1 = $_POST['imagen1'];
+        $imagen2 = $_POST['imagen2'];
+        $imagen3 = $_POST['imagen3'];
+        //LA AVRIABLE GLOBAL SERVER CON 'DOCUMENT_ROOT' 
+        //El directorio raíz de documentos del servidor en el cual se está ejecutando
+        //el script actual, según está definida en el archivo de configuración del servidor.
+        //ES DECIR, EN ESTE CASO, SE UBICA EN HTDOCS
+        $carpetaDestinoEliminarFoto1 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagen1";
+        $carpetaDestinoEliminarFoto2 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagen2";
+        $carpetaDestinoEliminarFoto3 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagen3";
+        //UNLINK ELIMINA UN FICHERO DE UNA RUTA ESPECIFICA, RECIBE COMO PARAMETRO ESA RUTA CON EL NOMBRE DEL FICHERO
+        unlink($carpetaDestinoEliminarFoto1); 
+        unlink($carpetaDestinoEliminarFoto2); 
+        unlink($carpetaDestinoEliminarFoto3); 
         $controladorProductos->eliminarProducto($_POST['IdProducto']);
     }
 
@@ -233,64 +273,6 @@ require("../../Model/ProduccionModelo/productoImagen.php");
 
     if(isset($_POST['eliminarEntrada'])){
         $controladorProductos->eliminarEntradaProducto($_POST['IdDetalleProducto'],$_POST['idProducto']);
-    }
-
-
-    //AQUÍ FINALIZA LAS TRANSACCIONES DE DETALLE DEL PRODUCTO E INICIA LAS FOTOS DEL PRODUCTO
-
-    //FOTOS DEL PRODUCTO
-
-    if(isset($_POST['fotosProducto'])){
-        header("Location: ../../View/ProduccionVista/imagenesProducto.php?idProducto=" . $_POST["IdProducto"]);
-    }
-
-    if(isset($_POST['registrarFotos'])){
-
-        $nombreFoto1 = $_FILES['foto1']['name'];
-        $tipoArchivo1 = $_FILES['foto1']['type'];
-        $tamanoImagen1 = $_FILES['foto1']['size'];
-        $idProducto = $_POST['idProducto'];
-
-        $nombreFoto2 = $_FILES['foto2']['name'];
-        $tipoArchivo2 = $_FILES['foto2']['type'];
-        $tamanoImagen2 = $_FILES['foto2']['size'];
-        $idProducto = $_POST['idProducto'];
-
-        $nombreFoto3 = $_FILES['foto3']['name'];
-        $tipoArchivo3 = $_FILES['foto3']['type'];
-        $tamanoImagen3 = $_FILES['foto3']['size'];
-        $idProducto = $_POST['idProducto'];
-
-        var_dump($nombreFoto1,$nombreFoto2,$nombreFoto3);
-
-        if($tamanoImagen1 || $tamanoImagen2 || $tamanoImagen3 <= 5097152){
-
-                if($tipoArchivo1 || $tipoArchivo2 || $tipoArchivo3 == "image/jpeg" || $tipoArchivo1 || $tipoArchivo2 || $tipoArchivo3 == "image/jpg" || $tipoArchivo1 || $tipoArchivo2 || $tipoArchivo3 == "image/png"){
-                    //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
-                    $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/productos/';
-
-                    //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
-                    move_uploaded_file($_FILES['foto1']['tmp_name'],$carpetaDestino.$nombreFoto1);
-                    move_uploaded_file($_FILES['foto2']['tmp_name'],$carpetaDestino.$nombreFoto2);
-                    move_uploaded_file($_FILES['foto3']['tmp_name'],$carpetaDestino.$nombreFoto3);
-
-                    $controladorProductos->registrarFotos($nombreFoto1,$nombreFoto2,$nombreFoto3,$idProducto);
-                }
-
-                else{
-                    echo "<script>
-                    location.replace('../../View/ProduccionVista/categorias.php');
-                    alert('El formato seleccionado no corresponde a una imagen.');
-                    </script>";
-                }
-            }
-
-                else{
-                    echo "<script>
-                    location.replace('../../View/ProduccionVista/categorias.php');
-                    alert('La imagn super el tamaño esperado. Debe ser menor o igual a 5Mb');
-                    </script>";
-                    }
     }
 
 ?>
