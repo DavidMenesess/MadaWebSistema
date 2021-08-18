@@ -50,8 +50,8 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="administradores.php">Administradores</a>
-                                    <a class="nav-link" href="clientes.php">Clientes</a>
+                                    <a class="nav-link" href="../../View/UsuariosVista/administradores.php">Administradores</a>
+                                    <a class="nav-link" href="../../View/UsuariosVista/clientes.php">Clientes</a>
                                 </nav>
                             </div>
                              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -61,8 +61,8 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                              </a>
                              <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                  <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                 <a class="nav-link" href="#">Categorías</a>
-                                    <a class="nav-link" href="#">Productos</a>
+                                 <a class="nav-link" href="categorias.php">Categorías</a>
+                                    <a class="nav-link" href="productos.php">Productos</a>
                                  </nav>
                              </div>
                              <div class="sb-sidenav-menu-heading">Principal</div>
@@ -138,39 +138,98 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <br>
                         <br>
                             <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item active">Edita aquí las imagenes del producto</li>
+                                <li class="breadcrumb-item active">Actualiza aquí las imágenes del producto</li>
                             </ol>
                         <br>
                         <br>
-                        <!--Card inicio-->
-                        <div class="container">
-                            <div class="card-group text-center">
-                                <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                    <div class="card-header">Header</div>
-                                        <div class="card-body text-dark">
-                                            <h5 class="card-title">Dark card title</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    </div>
+                        <!--Accordion inicio-->
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Actualiza solo una imagen
+                                    </button>
+                                </h2>
                                 </div>
-                                <br>
-                                <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                    <div class="card-header">Header</div>
-                                        <div class="card-body text-dark">
-                                            <h5 class="card-title">Dark card title</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <form action="">
+                                        <label>Actualizar imagen #1</label>
+                                            <div class="input-group">
+									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+                                                <div class="input-group-append">
+                                                    <button id="show_password" class="btn btn-success" type="button" onclick="mostrarPassword()">
+                                                        Guardar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="card border-dark mb-3" style="max-width: 18rem;">
-                                    <div class="card-header">Header</div>
-                                        <div class="card-body text-dark">
-                                            <h5 class="card-title">Dark card title</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                                    <div class="card-body">
+                                    <form action="">
+                                        <label>Actualizar imagen #2</label>
+                                            <div class="input-group">
+									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+                                                <div class="input-group-append">
+                                                    <button id="show_password" class="btn btn-success" type="button" onclick="mostrarPassword()">
+                                                        Guardar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="card-body">
+                                    <form action="">
+                                        <label>Actualizar imagen #3</label>
+                                            <div class="input-group">
+									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+                                                <div class="input-group-append">
+                                                    <button id="show_password" class="btn btn-success" type="button" onclick="mostrarPassword()">
+                                                        Guardar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!--Card final-->
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Actualiza las tres imágenes al mismo tiempo
+                                    </button>
+                                </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <form action="">
+                                            <label>Imagen #1</label>
+                                            <div class="input-group">
+									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+                                            </div>
+                                            <label>Imagen #2</label>
+                                            <div class="input-group">
+									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+                                            </div>
+                                            <label>Imagen #3</label>
+                                            <div class="input-group">
+									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+                                            </div>
+                                            <br>
+                                            <div class="container text-center">
+				      	                    <button type="submit"  class="btn btn-success" id="registrarProducto" name="">Guardar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>             
+                        <!--Accordion final-->
                     </div>
                 </main>
                 <br>
