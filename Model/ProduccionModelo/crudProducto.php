@@ -117,6 +117,77 @@
             $Db = Db::CerrarConexion($Db);
         }
 
+        //IMAGENES DEL PRODUCTO CRUD
+
+        public function actualizarImagen1Producto($nuevaImagen1, $idProducto){
+            $mensaje = "";
+            $Db = Db::Conectar();
+            $sql = $Db->prepare("UPDATE productos SET Imagen1 = :nuevaImagen1 WHERE IdProducto = :idProducto");
+            $sql->bindvalue('nuevaImagen1',$nuevaImagen1);
+            $sql->bindvalue('idProducto',$idProducto);
+            try{
+                $sql->execute();
+                $mensaje = "Se actualizo correctamente la imagen";
+            }catch(Exception $e){
+                $mensaje = $e->getMessage();
+            }
+            Db::CerrarConexion($Db);
+            return $mensaje;
+        }
+
+        public function actualizarImagen2Producto($nuevaImagen2, $idProducto){
+            $mensaje = "";
+            $Db = Db::Conectar();
+            $sql = $Db->prepare("UPDATE productos SET Imagen2 = :imagen2 WHERE IdProducto = :idProducto");
+            $sql->bindvalue('imagen2',$nuevaImagen2);
+            $sql->bindValue('idProducto',$idProducto);
+            try{
+                $sql->execute();
+                $mensaje = "Se actualizo correctamente la imagen";
+            }catch (Exception $e) {
+                $mensaje = $e->getMessage();
+            }
+            Db::CerrarConexion($Db);
+            return $mensaje;
+        }
+
+        public function actualizarImagen3Producto($nuevaImagen3,$idProducto){
+            $mensaje = "";
+            $Db = Db::Conectar();
+            $sql = $Db->prepare("UPDATE productos SET Imagen3 = :imagen3 WHERE IdProducto = :idProducto");
+            $sql->bindvalue('imagen3',$nuevaImagen3);
+            $sql->bindValue('idProducto',$idProducto);
+            try{
+                $sql->execute();
+                $mensaje = "Se actualizo correctamente la imagen";
+            }catch (Exception $e) {
+                $mensaje = $e->getMessage();
+            }
+            Db::CerrarConexion($Db);
+            return $mensaje;
+        }
+
+        public function actualizarTodasLasImagenes($nuevaImagen1,$nuevaImagen2,$nuevaImagen3,$idProducto){
+            $mensaje = "";
+            $Db = Db::Conectar();
+            $sql = $Db->prepare("UPDATE productos SET Imagen1 = :imagen1, Imagen2 = :imagen2, Imagen3 = :imagen3 
+            WHERE IdProducto = :idProducto");
+            $sql->bindvalue('imagen1',$nuevaImagen1);
+            $sql->bindvalue('imagen2',$nuevaImagen2);
+            $sql->bindvalue('imagen3',$nuevaImagen3);
+            $sql->bindValue('idProducto',$idProducto);
+            try{
+                $sql->execute();
+                $mensaje = "Se actualizo correctamente la imagen";
+            }catch (Exception $e) {
+                $mensaje = $e->getMessage();
+            }
+            Db::CerrarConexion($Db);
+            return $mensaje;
+        }
+
+        // FINALIZA CRUD DE IMAGENES DEL PRODUCTO
+
         //ENTRADAS Y DETALLES DEL PRODUCTO
 
         public function obtenerEntradasProductos($idProducto){

@@ -95,7 +95,30 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
             header("Location: ../../View/ProduccionVista/productos.php");
         }
 
-        //AQUÍ FINALIZA DE MOMENTO LAS TRANSACCIONES DE LA TABLA PRODUCTOS E INICIA LAS DE DETALLE DEL PRODUCTO
+        //AQUÍ FINALIZA DE MOMENTO LAS TRANSACCIONES DE LA TABLA PRODUCTOS E INICIA LAS DE IMAGENES DEL PRODUCTOS
+        public function actualizarImagen1Producto($nuevaImagen1, $idProducto){
+            $crudProducto = new CrudProducto();
+            $crudProducto->actualizarImagen1Producto($nuevaImagen1,$idProducto);
+            header("Location: ../../View/ProduccionVista/productos.php");
+        }
+
+        public function actualizarImagen2Producto($nuevaImagen2,$idProducto){
+            $crudProducto = new CrudProducto();
+            $crudProducto->actualizarImagen2Producto($nuevaImagen2,$idProducto);
+            header("Location: ../../View/ProduccionVista/productos.php");
+        }
+
+        public function actualizarImagen3Producto($nuevaImagen3,$idProducto){
+            $crudProducto = new CrudProducto();
+            $crudProducto->actualizarImagen3Producto($nuevaImagen3,$idProducto);
+            header("Location: ../../View/ProduccionVista/productos.php");
+        }
+
+        public function actualizarTodasLasImagenes($nuevaImagen1,$nuevaImagen2,$nuevaImagen3,$idProducto){
+            $crudProducto = new CrudProducto();
+            $crudProducto->actualizarTodasLasImagenes($nuevaImagen1,$nuevaImagen2,$nuevaImagen3,$idProducto);
+            header("Location: ../../View/ProduccionVista/productos.php");
+        }
 
         //ENTRADAS Y DETALLES DEL PRODUCTO!!!
 
@@ -223,10 +246,181 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
         $controladorProductos->editarInformacionProducto($_POST['idProducto'],$_POST['nombre'],$_POST['descripcion'],$_POST['precioNuevo'],$_POST['categoria'],$_POST['precioActual']);
     }
 
-    //Buscar producto para agregar el detalle.
-    if(isset($_POST["agregarDetalle"])){
-        header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=" . $_POST["IdProducto"]);
+    //ACTUALIZAR IMAGENES DE LOS PRODUCTOS
+    if(isset($_POST['editarImagen1'])){
+        
+        $idProducto =  $_POST['idProducto']; 
+        $nuevaImagen1 = $_FILES['imagen1Nueva']['name'];
+        $tipoArchivo = $_FILES['imagen1Nueva']['type'];
+        $tamanoImagen = $_FILES['imagen1Nueva']['size'];
+        $imagenAntigua = $_POST['imagen1Antigua'];
+
+        //var_dump($idProducto,$imagenAntigua);
+
+        if($tamanoImagen <= 5097152){
+
+            if($tipoArchivo == "image/jpeg" || $tipoArchivo == "image/jpg" || $tipoArchivo == "image/png"){
+                //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
+                $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/productos/';
+                //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+                move_uploaded_file($_FILES['imagen1Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen1);
+                $controladorProductos->actualizarImagen1Producto($nuevaImagen1,$idProducto);
+            }
+    
+            else{
+                echo "<script>
+                location.replace('../../View/ProduccionVista/productos.php');
+                alert('El formato seleccionado no corresponde a una imagen.');
+                </script>";
+            }
+        }
+    
+        else{
+            echo "<script>
+            location.replace('../../View/ProduccionVista/productos.php');
+            alert('La imagen supera el tamaño esperado. Debe ser menor o igual a 5Mb');
+        </script>";
+        }
+        
+        $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua";
+        unlink($carpetaDestinoEliminarFoto);
     }
+
+    if(isset($_POST['editarImagen2'])){
+
+        $idProducto =  $_POST['idProducto']; 
+        $nuevaImagen2 = $_FILES['imagen2Nueva']['name'];
+        $tipoArchivo = $_FILES['imagen2Nueva']['type'];
+        $tamanoImagen = $_FILES['imagen2Nueva']['size'];
+        $imagenAntigua = $_POST['imagen2Antigua'];
+
+        //var_dump($idProducto,$imagenAntigua);
+
+        if($tamanoImagen <= 5097152){
+
+            if($tipoArchivo == "image/jpeg" || $tipoArchivo == "image/jpg" || $tipoArchivo == "image/png"){
+                //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
+                $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/productos/';
+                //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+                move_uploaded_file($_FILES['imagen2Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen2);
+                $controladorProductos->actualizarImagen2Producto($nuevaImagen2,$idProducto);
+            }
+    
+            else{
+                echo "<script>
+                location.replace('../../View/ProduccionVista/productos.php');
+                alert('El formato seleccionado no corresponde a una imagen.');
+                </script>";
+            }
+        }
+    
+        else{
+            echo "<script>
+            location.replace('../../View/ProduccionVista/productos.php');
+            alert('La imagen supera el tamaño esperado. Debe ser menor o igual a 5Mb');
+        </script>";
+        }
+        
+        $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua";
+        unlink($carpetaDestinoEliminarFoto);
+    }
+
+    if(isset($_POST['editarImagen3'])){
+
+        $idProducto =  $_POST['idProducto']; 
+        $nuevaImagen3 = $_FILES['imagen3Nueva']['name'];
+        $tipoArchivo = $_FILES['imagen3Nueva']['type'];
+        $tamanoImagen = $_FILES['imagen3Nueva']['size'];
+        $imagenAntigua = $_POST['imagen3Antigua'];
+
+        //var_dump($idProducto,$imagenAntigua);
+
+        if($tamanoImagen <= 5097152){
+
+            if($tipoArchivo == "image/jpeg" || $tipoArchivo == "image/jpg" || $tipoArchivo == "image/png"){
+                //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
+                $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/productos/';
+                //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+                move_uploaded_file($_FILES['imagen3Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen3);
+                $controladorProductos->actualizarImagen3Producto($nuevaImagen3,$idProducto);
+            }
+    
+            else{
+                echo "<script>
+                location.replace('../../View/ProduccionVista/productos.php');
+                alert('El formato seleccionado no corresponde a una imagen.');
+                </script>";
+            }
+        }
+    
+        else{
+            echo "<script>
+            location.replace('../../View/ProduccionVista/productos.php');
+            alert('La imagen supera el tamaño esperado. Debe ser menor o igual a 5Mb');
+        </script>";
+        }
+        
+        $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua";
+        unlink($carpetaDestinoEliminarFoto);
+    }
+
+    if(isset($_POST['editarTodasImagenes'])){
+
+        $idProducto =  $_POST['idProducto']; 
+
+        $nuevaImagen1 = $_FILES['imagen1Nueva']['name'];
+        $tipoArchivo1 = $_FILES['imagen1Nueva']['type'];
+        $tamanoImagen1 = $_FILES['imagen1Nueva']['size'];
+        $imagenAntigua1 = $_POST['imagen1Antigua'];
+
+        $nuevaImagen2 = $_FILES['imagen2Nueva']['name'];
+        $tipoArchivo2 = $_FILES['imagen2Nueva']['type'];
+        $tamanoImagen2 = $_FILES['imagen2Nueva']['size'];
+        $imagenAntigua2 = $_POST['imagen2Antigua'];
+
+        $nuevaImagen3 = $_FILES['imagen3Nueva']['name'];
+        $tipoArchivo3 = $_FILES['imagen3Nueva']['type'];
+        $tamanoImagen3 = $_FILES['imagen3Nueva']['size'];
+        $imagenAntigua3 = $_POST['imagen3Antigua'];
+
+        //var_dump($idProducto,$imagenAntigua);
+
+        if($tamanoImagen1 <= 5097152 && $tamanoImagen2 <= 5097152 && $tamanoImagen3 <= 5097152){
+
+            if($tipoArchivo1 == "image/jpeg" || $tipoArchivo1 == "image/jpg" || $tipoArchivo1 == "image/png" && $tipoArchivo2 == "image/jpeg" || $tipoArchivo2 == "image/jpg" || $tipoArchivo2 == "image/png" && $tipoArchivo3 == "image/jpeg" || $tipoArchivo3 == "image/jpg" || $tipoArchivo3 == "image/png"  ){
+                //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
+                $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/productos/';
+                //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+                move_uploaded_file($_FILES['imagen1Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen1);
+                move_uploaded_file($_FILES['imagen2Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen2);
+                move_uploaded_file($_FILES['imagen3Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen3);
+                $controladorProductos->actualizarTodasLasImagenes($nuevaImagen1,$nuevaImagen2,$nuevaImagen3,$idProducto);
+            }
+    
+            else{
+                echo "<script>
+                location.replace('../../View/ProduccionVista/productos.php');
+                alert('El formato seleccionado no corresponde a una imagen.');
+                </script>";
+            }
+        }
+    
+        else{
+            echo "<script>
+            location.replace('../../View/ProduccionVista/productos.php');
+            alert('La imagen supera el tamaño esperado. Debe ser menor o igual a 5Mb');
+        </script>";
+        }
+        
+        $carpetaDestinoEliminarFoto1 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua1";
+        $carpetaDestinoEliminarFoto2 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua2";
+        $carpetaDestinoEliminarFoto3 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua3";
+
+        unlink($carpetaDestinoEliminarFoto1);
+        unlink($carpetaDestinoEliminarFoto2);
+        unlink($carpetaDestinoEliminarFoto3);
+    }
+    // FINALIZA EDITAR IMAGENES DEL PRODUCTO
 
     if(isset($_POST['eliminarProducto'])){
         $imagen1 = $_POST['imagen1'];
@@ -250,6 +444,10 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
 
     //ENTRADAS Y DETALLES DEL PRODUCTO!!!
 
+    //Buscar producto para agregar el detalle.
+    if(isset($_POST["agregarDetalle"])){
+        header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=" . $_POST["IdProducto"]);
+    }
 
     if(isset($_POST['guardarEntrada'])){
      $mensaje = $controladorProductos->guardarEntradasProducto($_POST['color'],$_POST['talla'],$_POST['cantidad'],$_POST['idProducto']);

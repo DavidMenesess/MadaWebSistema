@@ -136,11 +136,15 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             <a href="productos.php" class="btn btn-danger">Cancelar</a>
                         </form>
                         <br>
-                        <br>
                             <ol class="breadcrumb mb-4">
                                 <li class="breadcrumb-item active">Actualiza aquí las imágenes del producto</li>
                             </ol>
                         <br>
+                        <div class="container text-center">
+                            <img class="img-thumbnail" width="100px" src="../../images/productos/<?php echo $listarProducto['Imagen1'];?>" alt="<?php echo $listarProducto['Imagen1']?>"/>
+                            <img class="img-thumbnail" width="100px" src="../../images/productos/<?php echo $listarProducto['Imagen2'];?>" alt="<?php echo $listarProducto['Imagen2']?>"/>
+                            <img class="img-thumbnail" width="100px" src="../../images/productos/<?php echo $listarProducto['Imagen3'];?>" alt="<?php echo $listarProducto['Imagen3']?>"/>
+                        </div>
                         <br>
                         <!--Accordion inicio-->
                         <div class="accordion" id="accordionExample">
@@ -155,12 +159,14 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 
                                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <form action="">
-                                        <label>Actualizar imagen #1</label>
+                                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" method="POST">
+                                        <label for="imagen1Nueva">Actualizar imagen #1</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+									            <input type="file" class="form-control" name="imagen1Nueva" id="imagen1Nueva" required>
+                                                <input type="hidden" class="form-control" id="idProducto" name="idProducto" autocomplete="off" readonly value="<?php echo $listarProducto['IdProducto']?>">
+                                                <input type="hidden" name="imagen1Antigua" value="<?php echo $listarProducto['Imagen1']; ?>">
                                                 <div class="input-group-append">
-                                                    <button id="show_password" class="btn btn-success" type="button" onclick="mostrarPassword()">
+                                                    <button type="submit" class="btn btn-success" name="editarImagen1" id="editarImagen1">
                                                         Guardar
                                                     </button>
                                                 </div>
@@ -169,12 +175,14 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                     </div>
 
                                     <div class="card-body">
-                                    <form action="">
-                                        <label>Actualizar imagen #2</label>
+                                    <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" method="POST">
+                                        <label for="imagen2">Actualizar imagen #2</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+									            <input type="file" class="form-control" name="imagen2Nueva" id="imagen2Nueva" required>
+                                                <input type="hidden" class="form-control" id="idProducto" name="idProducto" autocomplete="off" readonly value="<?php echo $listarProducto['IdProducto']?>">
+                                                <input type="hidden" name="imagen2Antigua" value="<?php echo $listarProducto['Imagen2']; ?>">
                                                 <div class="input-group-append">
-                                                    <button id="show_password" class="btn btn-success" type="button" onclick="mostrarPassword()">
+                                                    <button type="submit" class="btn btn-success" name="editarImagen2" id="editarImagen2">
                                                         Guardar
                                                     </button>
                                                 </div>
@@ -183,12 +191,14 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                     </div>
 
                                     <div class="card-body">
-                                    <form action="">
-                                        <label>Actualizar imagen #3</label>
+                                    <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" method="POST">
+                                        <label for="imagen3">Actualizar imagen #3</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+									            <input type="file" class="form-control" name="imagen3Nueva" id="imagen3" required>
+                                                <input type="hidden" class="form-control" id="idProducto" name="idProducto" autocomplete="off" readonly value="<?php echo $listarProducto['IdProducto']?>">
+                                                <input type="hidden" name="imagen3Antigua" value="<?php echo $listarProducto['Imagen3']; ?>">
                                                 <div class="input-group-append">
-                                                    <button id="show_password" class="btn btn-success" type="button" onclick="mostrarPassword()">
+                                                    <button type="submit" class="btn btn-success" name="editarImagen3" id="editarImagen3">
                                                         Guardar
                                                     </button>
                                                 </div>
@@ -207,22 +217,26 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 </div>
                                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <form action="">
-                                            <label>Imagen #1</label>
+                                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" method="POST">
+                                            <label for="imagen1">Imagen #1</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+									            <input type="file" class="form-control" name="imagen1Nueva" id="imagen1" required>
                                             </div>
-                                            <label>Imagen #2</label>
+                                            <label for="imagen2">Imagen #2</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+									            <input type="file" class="form-control" name="imagen2Nueva" id="imagen2" required>
                                             </div>
-                                            <label>Imagen #3</label>
+                                            <label for="imagen3">Imagen #3</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="foto1" id="foto1" required>
+									            <input type="file" class="form-control" name="imagen3Nueva" id="imagen3" required>
                                             </div>
+                                            <input type="hidden" class="form-control" id="idProducto" name="idProducto" autocomplete="off" readonly value="<?php echo $listarProducto['IdProducto']?>">
+                                            <input type="hidden" name="imagen1Antigua" value="<?php echo $listarProducto['Imagen1']; ?>">
+                                            <input type="hidden" name="imagen2Antigua" value="<?php echo $listarProducto['Imagen2']; ?>">
+                                            <input type="hidden" name="imagen3Antigua" value="<?php echo $listarProducto['Imagen3']; ?>">
                                             <br>
                                             <div class="container text-center">
-				      	                    <button type="submit"  class="btn btn-success" id="registrarProducto" name="">Guardar</button>
+				      	                    <button type="submit"  class="btn btn-success" id="editarTodasImagenes" name="editarTodasImagenes">Guardar</button>
                                             </div>
                                         </form>
                                     </div>

@@ -186,9 +186,9 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                         <th>Precio</th>
                                         <th>Categoría</th>
                                         <th>Cantidad</th>
-                                        <th>Imagen</th>
-                                        <th>Imagen</th>
-                                        <th>Imagen</th>
+                                        <th>Imagen #1</th>
+                                        <th>Imagen #2</th>
+                                        <th>Imagen #3</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -223,9 +223,9 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                           <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8">
                                             <input type="hidden" name="IdProducto" value="<?php echo $producto['IdProducto'];?>">
                                             <input type="hidden" name="estadoProducto" value="<?php echo $producto['Estado'];?>">
-                                            <input type="hidden" name="imagen1" value="<?php echo $producto['Imagen1']; ?>">
-                                            <input type="hidden" name="imagen2" value="<?php echo $producto['Imagen2']; ?>">
-                                            <input type="hidden" name="imagen3" value="<?php echo $producto['Imagen3']; ?>">
+                                            <!--<input type="hidden" name="imagen1" value="<?php //echo $producto['Imagen1']; ?>">
+                                            <input type="hidden" name="imagen2" value="<?php //echo $producto['Imagen2']; ?>">
+                                            <input type="hidden" name="imagen3" value="<?php //echo $producto['Imagen3']; ?>">-->
                                             <button type="submit" name="cambiarEstado" id="cambiarEstado" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
                                             <button type="submit" name="editarProducto" id="editarProducto" class="btn btn-info"><i class="fas fa-edit"></i></button>
                                             <button type="submit" name="eliminarProducto" id="eliminarProducto" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
