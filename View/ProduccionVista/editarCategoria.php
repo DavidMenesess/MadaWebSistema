@@ -85,33 +85,98 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Editar información</h1>
+                        <h1 class="mt-4 text-center">Editar información de la categoría <?php echo $listarCategoria['NombreCategoria'] ?></h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">¡Los cambios realizados se podrán editar nuevamente</li>
+                            <li class="breadcrumb-item active">¡Los cambios realizados se podrán editar nuevamente!</li>
                         </ol>
-                        <form action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST" accept-charset="utf-8" autocomplete="off" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="idUsuario">ID</label>
-                                <input type="number" class="form-control" id="idCategoria" name="idCategoria" autocomplete="of" readonly value="<?php echo $listarCategoria['IdCategoria']?>">
+                        <input type="text" class="form-control text-center"  value="Imagen actual" readonly>
+                        <br>
+                        <div class="form-group col-md-12 text-center">
+                            <img class="img-thumbnail" width="100px" name="fotoAntigua" src="../../images/categorias/<?php echo $listarCategoria['UrlImagen'];?>" alt="foto categoria"/>
+                        </div>
+                        <div class="container text-center">
+                            <a href="categorias.php" class="btn btn-secondary">Volver a categorías</a>
+                        </div>
+                        <br>
+                        <!--Acorddion inicio-->
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Actualiza solo el nombre
+                                    </button>
+                                </h2>
+                                </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                <form action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST">
+                                    <div class="input-group">
+									    <input type="text" class="form-control" name="nuevoNombreCategoria" id="" required autocomplete="off" placeholder="Nuevo nombre">
+                                        <input type="hidden" name="idCategoria" value="<?php echo $listarCategoria['IdCategoria'];?>">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-success" name="actualizarNombreCategoria" id="actualizarNombreCategoria">
+                                                Guardar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                <label for="nombreCategoria">Nombre</label>
-                                <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" value="<?php echo $listarCategoria['NombreCategoria']?>">
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Actualiza solo la imagen
+                                    </button>
+                                </h2>
                                 </div>
-                                <div class="form-group col-md-12">
-                                <label for="imagenActual">Imagen actual: </label>
-                                <input type="hidden" name="fotoAntigua" value="<?php echo $listarCategoria['UrlImagen']; ?>">
-                                <img class="img-thumbnail" width="100px" name="fotoAntigua" src="../../images/categorias/<?php echo $listarCategoria['UrlImagen'];?>" alt="foto categoria"/>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <form action="../../Controller/ProduccionControlador/controladorCategoria.php" enctype="multipart/form-data" method="POST">
+                                        <div class="input-group">
+                                            <input type="file" class="form-control" name="nuevaImagenCategoria" id="nuevaImagenCategoria" required>
+                                            <input type="hidden" name="imagenAntiguaCategoria" value="<?php echo $listarCategoria['UrlImagen']; ?>">
+                                            <input type="hidden" name="idCategoria" value="<?php echo $listarCategoria['IdCategoria'];?>">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-success" name="actualizarImagenCategoria" id="actualizarImagenCategoria">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="form-group col-md-6">
-                                <label for="fotoNueva">Nueva imagen</label>
-                                <input type="file" class="form-control-file" id="fotoNueva" name="fotoNueva">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success" name="actualizarCategoria" id="actualizarCategoria">Guardar cambios</button>
-                            <a href="categorias.php" class="btn btn-danger">Cancelar</a>
-                        </form>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        ¡Actualiza ambas!
+                                    </button>
+                                </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                <div class="card-body">
+                                <form action="../../Controller/ProduccionControlador/controladorCategoria.php" enctype="multipart/form-data" method="POST">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="nuevoNombreCategoria" id="nuevoNombreCategoria" required autocomplete="off" placeholder="Nuevo nombre">
+                                        <input type="file" class="form-control" name="nuevaImagenCategoria" id="nuevaImagenCategoria" required>
+                                        <input type="hidden" name="imagenAntiguaCategoria" value="<?php echo $listarCategoria['UrlImagen']; ?>">
+                                        <input type="hidden" name="idCategoria" value="<?php echo $listarCategoria['IdCategoria'];?>">
+                                    <div class="input-group-append">
+                                            <button type="submit" class="btn btn-success" name="actualizarTodoCategoria" id="actualizarTodoCategoria">
+                                                Guardar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        <!--Acordion final-->
                         <br>
                         <br>
                     </div>
