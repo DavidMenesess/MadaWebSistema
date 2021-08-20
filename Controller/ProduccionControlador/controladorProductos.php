@@ -127,11 +127,24 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
            return $crudProducto->obtenerEntradasProductos($idProducto);
         }
 
+        public function buscarEntradaProducto($idDetalleProducto){
+            $crudProducto = new CrudProducto();
+          return $crudProducto->buscarEntradaProducto($idDetalleProducto);
+        }
+
         public function guardarEntradasProducto($color,$talla,$cantidad,$idProducto){
 
             $crudProducto = new CrudProducto();
             return $crudProducto->registrarEntradasProducto($color,$talla,$cantidad,$idProducto);
             header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=" . $idProducto);
+        }
+
+        public function sumarNuevaCantidadDeEntrada($nuevaCantidad, $idDetalleProducto, $idProducto){
+            $crudProducto = new CrudProducto();
+            $crudProducto->sumarNuevaCantidadDeEntrada($nuevaCantidad, $idDetalleProducto);
+            header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=".$idProducto);
+
+            
         }
 
         public function cambiarEstadoEntradaProducto($estado, $idDetalleProducto,$idProducto){
@@ -447,6 +460,19 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
     //Buscar producto para agregar el detalle.
     if(isset($_POST["agregarDetalle"])){
         header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=" . $_POST["IdProducto"]);
+    }
+
+    if(isset($_POST['agregarCantidadEntrada'])){
+        header("Location: ../../View/ProduccionVista/agregarCantidadEntrada.php?idDetalleProducto=".$_POST["IdDetalleProducto"]);
+    }
+
+    if(isset($_POST['guardarNuevaCantidadEntrada'])){
+        $controladorProductos->sumarNuevaCantidadDeEntrada($_POST['nuevaCantidad'],$_POST['idDetalleProducto'],$_POST['idProducto']);
+    }
+
+    //Volver a la vista de las entradas del producto seleccionado
+    if(isset($_POST['volverAentradasDelProducto'])){
+        header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=".$_POST["idProducto"]);
     }
 
     if(isset($_POST['guardarEntrada'])){

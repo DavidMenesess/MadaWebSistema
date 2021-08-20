@@ -106,7 +106,10 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             </div>
                         </form>
                         <!--FIN DEL FORMULARIO DE ENTRADAS-->
-                        <br>
+                        <br> 
+                            <div class="">
+                            <a href="productos.php" class="btn btn-secondary">Volver a productos</a>
+                            </div>                    
                         <br>
                         <div class="card mb-4">
                       <div class="card-header">
@@ -153,7 +156,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                             <button type="submit" name="cambiarEstadoEntrada" id="cambiarEstadoEntrada" class="btn btn-primary"  onclick="return confirm('¿Está seguro de cambiar el estado?');"><i class="fas fa-exchange-alt"></i></button>
                                             <!--<button type="submit" name="" id="" class="btn btn-info"><i class="fas fa-edit"></i></button>-->
                                             <button type="submit" name="eliminarEntrada" id="eliminarEntrada" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
-                                            <button type="button" name="" id="" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i></button>
+                                            <button type="submit" name="agregarCantidadEntrada" id="agregarCantidadEntrada" class="btn btn-success"><i class="fas fa-plus"></i></button>
                                           </form>
                                         </td>
                                     </tr>
@@ -165,32 +168,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             </div>
                          </div>
                     </div>
-                    <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Agregar más cantidad</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container">
-                                    <div class="form-group row">
-                                            <label for="precioProducto">Más cantidad:</label>
-                                            <input type="text" selected class="form-control" name="" id="" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Agregar</button>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                    <!--Fin modal-->
+                    <br>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">

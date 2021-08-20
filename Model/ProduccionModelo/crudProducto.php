@@ -198,6 +198,14 @@
             return $sql->fetchAll();
         }
 
+        public function buscarEntradaProducto($idDetalleProducto){
+            $Db = Db::Conectar();
+            $sql = $Db->query("SELECT * FROM detalle_productos WHERE IdDetalleProducto = $idDetalleProducto");
+            $sql->execute();
+            $Db = Db::CerrarConexion($Db);
+            return $sql->fetch();
+        }
+
         public function registrarEntradasProducto($color,$talla,$cantidad,$idProducto){
             
             $mensaje = "";
@@ -237,6 +245,21 @@
              Db::CerrarConexion($Db);
              return $mensaje;
             
+        }
+
+        public function sumarNuevaCantidadDeEntrada($nuevaCantidad, $idDetalleProducto){
+            $mensaje = "";
+            $Db = Db::Conectar();
+            $sql = $Db->prepare("UPDATE detalle_productos SET Stock=Stock+$nuevaCantidad
+             WHERE IdDetalleProducto = $idDetalleProducto");
+             try{
+                 $sql->execute();
+                 $mensaje = "Se agrego la cantidad a la entrada";
+             }catch (Exception $e) {
+                 $mensaje = $e->getMessage();
+             }
+             Db::CerrarConexion($Db);
+             return $mensaje;
         }
 
         public function actualizarEstadoEntradaProducto($estadoDetalleProducto){
