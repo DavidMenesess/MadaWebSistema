@@ -91,7 +91,7 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
         public function eliminarProducto($idProducto){
 
             $crudProducto = new CrudProducto();
-            $crudProducto->eliminarProducto($idProducto);
+            return $crudProducto->eliminarProducto($idProducto);
             header("Location: ../../View/ProduccionVista/productos.php");
         }
 
@@ -436,21 +436,40 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
     // FINALIZA EDITAR IMAGENES DEL PRODUCTO
 
     if(isset($_POST['eliminarProducto'])){
+
         $imagen1 = $_POST['imagen1'];
         $imagen2 = $_POST['imagen2'];
         $imagen3 = $_POST['imagen3'];
+
+        $mensaje = $controladorProductos->eliminarProducto($_POST['IdProducto']);
+
+        if($mensaje != "Existen  entradas relacionadas al producto"){
+            $carpetaDestinoEliminarFoto1 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagen1";
+            $carpetaDestinoEliminarFoto2 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagen2";
+            $carpetaDestinoEliminarFoto3 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagen3";
+
+            unlink($carpetaDestinoEliminarFoto1); 
+            unlink($carpetaDestinoEliminarFoto2); 
+            unlink($carpetaDestinoEliminarFoto3); 
+        }
+ 
+        if($mensaje == "Existen  entradas relacionadas al producto"){
+            echo "<script>
+                location.replace('../../View/ProduccionVista/productos.php');
+                alert('No puedes eliminar el producto debido a que contiene entradas');
+              </script>";
+        }else{
+            echo "<script>
+                location.replace('../../View/ProduccionVista/productos.php');
+                alert('Producto eliminado de manera correcta');
+              </script>";
+        }
         //LA AVRIABLE GLOBAL SERVER CON 'DOCUMENT_ROOT' 
         //El directorio raíz de documentos del servidor en el cual se está ejecutando
         //el script actual, según está definida en el archivo de configuración del servidor.
         //ES DECIR, EN ESTE CASO, SE UBICA EN HTDOCS
-        $carpetaDestinoEliminarFoto1 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagen1";
-        $carpetaDestinoEliminarFoto2 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagen2";
-        $carpetaDestinoEliminarFoto3 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagen3";
+        
         //UNLINK ELIMINA UN FICHERO DE UNA RUTA ESPECIFICA, RECIBE COMO PARAMETRO ESA RUTA CON EL NOMBRE DEL FICHERO
-        unlink($carpetaDestinoEliminarFoto1); 
-        unlink($carpetaDestinoEliminarFoto2); 
-        unlink($carpetaDestinoEliminarFoto3); 
-        $controladorProductos->eliminarProducto($_POST['IdProducto']);
     }
 
     //AQUÍ FINALIZA DE MOMENTO LAS TRANSACCIONES DE LA TABLA PRODUCTOS E INICIA LAS DE DETALLE DEL PRODUCTO

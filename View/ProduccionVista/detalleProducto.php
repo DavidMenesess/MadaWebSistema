@@ -107,8 +107,10 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         </form>
                         <!--FIN DEL FORMULARIO DE ENTRADAS-->
                         <br> 
-                            <div class="">
-                            <a href="productos.php" class="btn btn-secondary">Volver a productos</a>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <a href="productos.php" class="btn btn-secondary ml-auto">Volver a productos</a>
+                                </div>
                             </div>                    
                         <br>
                         <div class="card mb-4">

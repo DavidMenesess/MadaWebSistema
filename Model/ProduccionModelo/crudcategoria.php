@@ -140,14 +140,59 @@ class crudcategoria
     }
 
     public function eliminarCategoria($IdCategoria){
+        $mensaje = "";
+        $mensajeValidar = "";
         $Db = Db::Conectar();//conexion a bd
-        //definir la sentencia sql
-        $sql = $Db->prepare("DELETE FROM categorias 
-        where IdCategoria = $IdCategoria");
-
-        $sql->execute();//ejecutar el sql
+        $buscarRelacion = $Db->prepare("SELECT NombreProducto FROM productos WHERE IdCategoria = $IdCategoria");
+        try{
+            $buscarRelacion->execute();
+            if($buscarRelacion->rowCount() > 0){
+                $mensajeValidar = "Existen productos con esta categoria";
+                return $mensajeValidar;
+            }else{
+                $sql = $Db->prepare("DELETE FROM categorias WHERE IdCategoria = $IdCategoria");
+                $sql->execute();
+                $mensaje = "Eliminación exitosa";
+            }
+        }catch(Exception $e){
+            $mensaje = $e->getMessage();
+        }
         Db::CerrarConexion($Db);
+        return $mensaje;
+
+       
     }
+
+    /* $mensaje = "";
+        $mensajeValidar = "";
+        $Db = Db::Conectar();
+        //Validar que un usuario no registre el mimso correo.
+        $validarExiste = $Db->prepare("SELECT NombreCategoria FROM categorias
+        WHERE NombreCategoria = :nombre");
+        $validarExiste->bindvalue('nombre',$categoria->getNombreCategoria());
+        try{
+            $validarExiste->execute();
+            if($validarExiste->rowCount() > 0){
+                $mensajeValidar = "La categoria ya existe";
+                return $mensajeValidar;
+            }//Si el producto no existe, se ejecuta lo del elese y realiza la inserción
+            else{
+                $sql = $Db->prepare('INSERT INTO
+                categorias(NombreCategoria, UrlImagen, Estado )
+                VALUES (:nombre, :urlImagen, 1)');
+                $sql->bindvalue('nombre',$categoria->getNombreCategoria());//dentro del value cuenta como variables las que tienen los dos puntos :
+                $sql->bindvalue('urlImagen',$categoria->getUrlImagen());//recciben los datos que se mandaron por el set en controladorRegistrar
+                $sql->execute();
+                $mensaje = "Registro exitoso";
+            }
+        }
+        catch(Exception $e){
+            $mensaje = $e->getMessage();
+         }
+         Db::CerrarConexion($Db);
+         return $mensaje;
+        }*/
+
 }
 
 ?>

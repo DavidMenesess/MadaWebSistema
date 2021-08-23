@@ -94,9 +94,11 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <div class="form-group col-md-12 text-center">
                             <img class="img-thumbnail" width="100px" name="fotoAntigua" src="../../images/categorias/<?php echo $listarCategoria['UrlImagen'];?>" alt="foto categoria"/>
                         </div>
-                        <div class="container text-center">
-                            <a href="categorias.php" class="btn btn-secondary">Volver a categorías</a>
-                        </div>
+                        <div class="container-fluid">
+                                <div class="row">
+                                    <a href="categorias.php" class="btn btn-secondary ml-auto">Volver a categorías</a>
+                                </div>
+                            </div> 
                         <br>
                         <!--Acorddion inicio-->
                         <div class="accordion" id="accordionExample">

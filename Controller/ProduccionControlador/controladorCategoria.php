@@ -90,7 +90,7 @@ class controladorCategoria{
 
     public function eliminarCategoria($IdCategoria){
         $crudcategoria = new crudcategoria();
-        $crudcategoria->eliminarCategoria($IdCategoria);
+        return $crudcategoria->eliminarCategoria($IdCategoria);
         header('Location: ../../View/ProduccionVista/categorias.php');
          
     }
@@ -251,12 +251,26 @@ class controladorCategoria{
     }
 
     if(isset($_POST['eliminarCategoria'])){
-    
-    $imagen = $_POST['imagen'];
-    $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/categorias/$imagen";
-    unlink($carpetaDestinoEliminarFoto); 
-    $controladorCategoria->eliminarCategoria($_POST['IdCategoria']);
+        
+        $imagen = $_POST['imagen'];
+        $mensaje = $controladorCategoria->eliminarCategoria($_POST['IdCategoria']);
 
+        if($mensaje != "Existen productos con esta categoria"){
+            $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/categorias/$imagen";
+            unlink($carpetaDestinoEliminarFoto); 
+        }
+
+        if($mensaje == "Existen productos con esta categoria"){
+            echo "<script>
+				location.replace('../../View/ProduccionVista/categorias.php');
+				alert('No puedes eliminar la categoría debido a que tiene productos asociados');
+			  </script>";
+        }else{
+            echo "<script>
+				location.replace('../../View/ProduccionVista/categorias.php');
+				alert('Categoría eliminada de manera correcta');
+			  </script>";
+        }
     /* unlink elimina un fichero de una ruta
         especifica o de la misma carpeta, recibe como 
         parametro la ruta o el nombre del archivo. En este

@@ -111,10 +111,25 @@
         }
 
         public function eliminarProducto($idProducto){
-            $Db = Db::Conectar();
-            $sql = $Db -> query("DELETE FROM productos WHERE IdProducto = $idProducto");
-            $sql->execute();
-            $Db = Db::CerrarConexion($Db);
+            $mensaje = "";
+            $mensajeValidar = "";
+            $Db = Db::Conectar();//conexion a bd
+            $buscarRelacion = $Db->prepare("SELECT * FROM detalle_productos WHERE IdProducto = $idProducto");
+            try{
+                $buscarRelacion->execute();
+                if($buscarRelacion->rowCount() > 0){
+                    $mensajeValidar = "Existen  entradas relacionadas al producto";
+                    return $mensajeValidar;
+                }else{
+                    $sql = $Db->prepare("DELETE FROM productos WHERE IdProducto = $idProducto");
+                    $sql->execute();
+                    $mensaje = "Eliminación exitosa";
+                }
+            }catch(Exception $e){
+                $mensaje = $e->getMessage();
+            }
+            Db::CerrarConexion($Db);
+            return $mensaje;
         }
 
         //IMAGENES DEL PRODUCTO CRUD
