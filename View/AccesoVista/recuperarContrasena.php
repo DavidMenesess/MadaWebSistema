@@ -10,7 +10,7 @@
         <link href="../../css/styles.css" rel="stylesheet" />
         <script src="../../libraries/fontawesome.js"></script>
     </head>
-    <body class="bg-dark">
+    <body class="bg-secondary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -18,7 +18,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Recuperar contraseña</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Restablecer contraseña</h3></div>
                                     <div class="card-body">
                                         <div class="small mb-3 text-muted">Ingrese su dirección de correo electrónico y le enviaremos un enlace para restablecer su contraseña.</div>
                                         <form action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST" autocomplete="off"/>

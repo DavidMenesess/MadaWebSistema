@@ -10,7 +10,7 @@
         <link href="../../css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-dark">
+    <body class="bg-secondary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -24,13 +24,11 @@
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="nombre">Nombre</label>
                                                         <input class="form-control py-4" id="nombre" name="nombre" type="text" placeholder="Nombre" autocomplete="off"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="apellido">Apellidos</label>
                                                         <input class="form-control py-4" id="apellido" name="apellido" type="text" placeholder="Apellidos" autocomplete="off"/>
                                                     </div>
                                                 </div>
@@ -38,14 +36,12 @@
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="correo">Correo electrónico</label>
-                                                        <input class="form-control py-4" id="correo" name="correo" type="email" placeholder="correo electrónico" autocomplete="off"/>
+                                                        <input class="form-control py-4" id="correo" name="correo" type="email" placeholder="Correo electrónico" autocomplete="off"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="contrasena">Contraseña</label>
-                                                        <input class="form-control py-4" id="contrasena" name="contrasena" type="password" placeholder="contraseña" autocomplete="off"/>
+                                                        <input class="form-control py-4" id="contrasena" name="contrasena" type="password" placeholder="Contraseña" autocomplete="off"/>
                                                     </div>
                                                 </div>
                                             </div>

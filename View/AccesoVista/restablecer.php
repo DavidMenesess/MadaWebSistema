@@ -13,7 +13,7 @@
         <link href="../../css/styles.css" rel="stylesheet" />
         <script src="../../libraries/fontawesome.js"></script>
     </head>
-    <body class="bg-dark">
+    <body class="bg-secondary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -28,11 +28,11 @@
                                             <input type="hidden" name="codigo" id="codigo" value="<?php echo $codigo ?>">
                                             <div class="form-group">
                                                 <!--<label class="small mb-1" for="nuevaContrasena">Nueva contraseña</label>-->
-                                                <input class="form-control py-4" id="nuevaContrasena" name="nuevaContrasena" placeholder="Nueva contraseña" type="text"/>
+                                                <input class="form-control py-4" id="nuevaContrasena" name="nuevaContrasena" placeholder="Nueva contraseña" type="text" required/>
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="login.php">Volver a iniciar sesión</a>
-                                                <button type="button" class="btn btn-primary" id="guardarNuevaContra" name="guardarNuevaContra" onclick="validaRestablecer()">Restablecer contraseña</button>
+                                                <button type="submit" class="btn btn-primary" id="guardarNuevaContra" name="guardarNuevaContra">Restablecer contraseña</button>
                                             </div>
                                         </form>
                                     </div>

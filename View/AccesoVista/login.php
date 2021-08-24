@@ -1,7 +1,3 @@
-<?php
-require_once('../../Model/conexion.php')
-?>
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -12,9 +8,9 @@ require_once('../../Model/conexion.php')
         <meta name="author" content="" />
         <title>Ingresar - Registrarse</title>
         <link href="../../css/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="../../libraries/fontawesome.js"></script>
     </head>
-    <body class="bg-dark">
+    <body class="bg-secondary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -38,6 +34,7 @@ require_once('../../Model/conexion.php')
                                                 <a class="small" href="recuperarContrasena.php">¿Olvidó su contraseña?</a>
                                                 <button type="button" class="btn btn-primary" id="validarAcceso" name="validarAcceso" onclick="validarIngreso();">Ingresar</button>
                                             </div>
+                                            <a class="small text-center" href="../../index.php"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Volver a la tienda</a>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
