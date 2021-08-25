@@ -35,8 +35,6 @@ class CrudAcceso{
 
         return $usuario;
 
-        hola
-
     }
 
     public function RegistrarUsuario($Usuario){
