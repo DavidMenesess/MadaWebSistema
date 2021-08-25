@@ -20,33 +20,33 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Crear mi cuenta</h3></div>
                                     <div class="card-body">
-                                        <form action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST">
+                                        <form action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST" onsubmit="return validarCamposRegistrar();">
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input class="form-control py-4" id="nombre" name="nombre" type="text" placeholder="Nombre" autocomplete="off"/>
+                                                        <input class="form-control py-4" id="nombre" name="nombre" type="text" placeholder="Nombre" autocomplete="off" required/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input class="form-control py-4" id="apellido" name="apellido" type="text" placeholder="Apellidos" autocomplete="off"/>
+                                                        <input class="form-control py-4" id="apellido" name="apellido" type="text" placeholder="Apellidos" autocomplete="off" required/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input class="form-control py-4" id="correo" name="correo" type="email" placeholder="Correo electrónico" autocomplete="off"/>
+                                                        <input class="form-control py-4" id="correo" name="correo" type="email" placeholder="Correo electrónico" autocomplete="off" required/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input class="form-control py-4" id="contrasena" name="contrasena" type="password" placeholder="Contraseña" autocomplete="off"/>
+                                                        <input class="form-control py-4" id="contrasena" name="contrasena" type="password" placeholder="Contraseña" autocomplete="off" minlength="8" maxlength=15 required/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group mt-4 mb-0">
-                                            <button type="button" class="btn btn-primary btn-block" id="registrarUsuario" name="registrarUsuario"  onclick="validarRegistro();">Crear cuenta</button>
+                                            <button type="submit" class="btn btn-primary btn-block" id="registrarUsuario" name="registrarUsuario">Crear cuenta</button>
                                             </div>
                                         </form>
                                     </div>
@@ -74,10 +74,10 @@
                 </footer>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
+        <script src="../../libraries/bootstrap.bundle.min.js"></script>
         <script src="../../js/scripts.js"></script>
-        <script src="../../js/validacionesLogin.js"></script>
+        <script src="../../js/validaciones/validacionesLogin.js"></script>
         <script src="../../libraries/sweetalert2@11.js"></script>
     </body>
 </html>
