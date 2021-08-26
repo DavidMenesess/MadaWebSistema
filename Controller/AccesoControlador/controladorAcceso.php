@@ -30,10 +30,12 @@ class controladorAcceso{
 
         public function RegistrarUsuario($nombre, $apellido, $correo, $contrasena){//Recibe como parametros los que se recibe en el isset de abajo
 
+          $nombreMayus = ucwords($nombre);
+          $apellidoMayus = ucwords($apellido);
           $contrasena = hash('sha512', $contrasena);//Se ecripta la contrasena.
           $Usuario = new usuario();//Se cea un nuevo objeto a partir de la clase usuario
-          $Usuario->setNombre($nombre);//se asignan los valores al nuevo objeto
-          $Usuario->setApellido($apellido);//se asignan los valores al nuevo objeto
+          $Usuario->setNombre($nombreMayus);//se asignan los valores al nuevo objeto
+          $Usuario->setApellido($apellidoMayus);//se asignan los valores al nuevo objeto
           $Usuario->setCorreo($correo);//se asignan los valores al nuevo objeto
           $Usuario->setContrasena($contrasena);//Recibe el valor de la contrasena pero encriptado
   

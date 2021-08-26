@@ -47,9 +47,9 @@ $pdf->SetFont('Arial','',11);
 
 foreach($listarCliente as $cliente){
     
-    $pdf->Cell(65, 8, $cliente['Nombre'], 1, 0, 'C', 0);
-    $pdf->Cell(65, 8, $cliente['Apellido'], 1, 0, 'C', 0);
-    $pdf->Cell(65, 8, $cliente['Correo'], 1, 1, 'C', 0);
+    $pdf->Cell(65, 8, utf8_decode($cliente['Nombre']), 1, 0, 'C', 0);
+    $pdf->Cell(65, 8, utf8_decode($cliente['Apellido']), 1, 0, 'C', 0);
+    $pdf->Cell(65, 8, utf8_decode($cliente['Correo']), 1, 1, 'C', 0);
 
 }
 

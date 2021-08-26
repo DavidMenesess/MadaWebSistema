@@ -48,9 +48,9 @@ $pdf->SetFont('Arial','',11);
 
 foreach($listarAdministrador as $administrador){
     
-    $pdf->Cell(65, 8, $administrador['Nombre'], 1, 0, 'C', 0);
-    $pdf->Cell(65, 8, $administrador['Apellido'], 1, 0, 'C', 0);
-    $pdf->Cell(65, 8, $administrador['Correo'], 1, 1, 'C', 0);
+    $pdf->Cell(65, 8, utf8_decode($administrador['Nombre']), 1, 0, 'C', 0);
+    $pdf->Cell(65, 8, utf8_decode($administrador['Apellido']), 1, 0, 'C', 0);
+    $pdf->Cell(65, 8, utf8_decode($administrador['Correo']), 1, 1, 'C', 0);
 
 }
 

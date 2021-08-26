@@ -481,19 +481,6 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
         header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=" . $_POST["IdProducto"]);
     }
 
-    if(isset($_POST['agregarCantidadEntrada'])){
-        header("Location: ../../View/ProduccionVista/agregarCantidadEntrada.php?idDetalleProducto=".$_POST["IdDetalleProducto"]);
-    }
-
-    if(isset($_POST['guardarNuevaCantidadEntrada'])){
-        $controladorProductos->sumarNuevaCantidadDeEntrada($_POST['nuevaCantidad'],$_POST['idDetalleProducto'],$_POST['idProducto']);
-    }
-
-    //Volver a la vista de las entradas del producto seleccionado
-    if(isset($_POST['volverAentradasDelProducto'])){
-        header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=".$_POST["idProducto"]);
-    }
-
     if(isset($_POST['guardarEntrada'])){
      $mensaje = $controladorProductos->guardarEntradasProducto($_POST['color'],$_POST['talla'],$_POST['cantidad'],$_POST['idProducto']);
 
@@ -508,6 +495,19 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
             alert('Registro de entradas exitoso');
           </script>";
         }
+    }
+
+    if(isset($_POST['agregarCantidadEntrada'])){
+        header("Location: ../../View/ProduccionVista/agregarCantidadEntrada.php?idDetalleProducto=".$_POST["IdDetalleProducto"]);
+    }
+
+    if(isset($_POST['guardarNuevaCantidadEntrada'])){
+        $controladorProductos->sumarNuevaCantidadDeEntrada($_POST['nuevaCantidad'],$_POST['idDetalleProducto'],$_POST['idProducto']);
+    }
+
+    //Volver a la vista de las entradas del producto seleccionado
+    if(isset($_POST['volverAentradasDelProducto'])){
+        header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=".$_POST["idProducto"]);
     }
 
     if(isset($_POST['cambiarEstadoEntrada'])){

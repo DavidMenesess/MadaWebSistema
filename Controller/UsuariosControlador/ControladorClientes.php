@@ -19,10 +19,12 @@ class ControladorCliente{
 
 	public function registrarCliente($Nombre,$Apellido,$Correo,$contrasena){
 
+		$nombreMayus = ucwords($Nombre);
+		$apellidoMayus = ucwords($Apellido);
 		$contrasena = hash('sha512',$contrasena);
 		$usuario = new usuario();
-		$usuario->setNombre($Nombre);
-		$usuario->setApellido($Apellido);
+		$usuario->setNombre($nombreMayus);
+		$usuario->setApellido($apellidoMayus);
 		$usuario->setCorreo($Correo);
 		$usuario->setContrasena($contrasena);
 

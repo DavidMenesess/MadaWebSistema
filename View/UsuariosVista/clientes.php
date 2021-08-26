@@ -113,7 +113,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 				      </div>
 				      <div class="modal-body">
 
-				      	<form class="form" action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8" autocomplete="off">
+				      	<form class="form" action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8" autocomplete="off" onsubmit="return validarRegistroCliente();">
 				      		<div class="form-row">
 				      			<div class="form-group col-md-6">
 				      				<label for="Nombre">Nombre: </label>
@@ -129,7 +129,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 					      		</div>
 					      		<div class="form-group col-md-6">
 					      			<label for="Contrasena">Contraseña: </label>
-									<input type="password" class="form-control" name="Contrasena" id="Contrasena" required>
+									<input type="password" class="form-control" name="Contrasena" id="Contrasena" minlength="8" maxlength="15"required>
 					      		</div>
 				      		</div>
                             <div class="modal-footer">
@@ -222,6 +222,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <script src="../../js/scripts.js"></script>
         <script src="../../libraries/jquery.dataTables.min.js"></script>
         <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
+        <script src="../../js/validaciones/validacionesUsuarios.js"></script>
     </body>
     <script>
     $(document).ready(function() {
