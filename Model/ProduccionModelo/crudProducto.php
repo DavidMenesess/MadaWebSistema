@@ -310,34 +310,6 @@
             return $mensaje;
         }
 
-       /* public function registrarFotosProducto($fotos){
-            $mensaje = "";
-            $Db = Db::Conectar();
-            $sql = $Db->prepare('INSERT INTO
-            imagenes_productos(IdProducto,UrlImagen1, UrlImagen2, UrlImagen3)
-            VALUES (:idProducto,:imagen1, :imagen2,:imagen3)');
-            $sql->bindvalue('idProducto',$fotos->getIdProducto());
-            $sql->bindvalue('imagen1',$fotos->getUrlImagen1());
-            $sql->bindvalue('imagen2',$fotos->getUrlImagen2());
-            $sql->bindvalue('imagen3',$fotos->getUrlImagen3());
-             try{
-                 $sql->execute();
-                 $mensaje = "Se ha registrado las fotografias del producto";
-             }catch(Exception $e){
-                 $mensaje = $e->getMessage();
-             }
-             Db::CerrarConexion($Db);
-             return $mensaje;
-        }
-
-        public function buscarFotosProducto($idProducto){
-            $Db = Db::Conectar();
-            $sql = $Db->query("SELECT * FROM imagenes_productos WHERE IdProducto = $idProducto");
-            $sql->execute();
-            $Db = Db::CerrarConexion($Db);
-            return $sql->fetch();
-        }*/
-
     }   
 
 ?>
