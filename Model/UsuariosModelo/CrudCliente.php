@@ -84,12 +84,11 @@ class CrudCliente{
 		$mensaje = "";
 		$Db = Db::Conectar();
 
-		$sql = $Db->prepare('UPDATE usuarios SET Nombre = :nombre, Apellido = :apellido,
-							Contrasena = :contrasena WHERE IdUsuario = :idCliente;');
+		$sql = $Db->prepare('UPDATE usuarios SET Nombre = :nombre, Apellido = :apellido
+		 					WHERE IdUsuario = :idCliente;');
 		
 		$sql->bindvalue('nombre',$cliente->getNombre());
 		$sql->bindvalue('apellido',$cliente->getApellido());
-		$sql->bindvalue('contrasena',$cliente->getContrasena());
 		$sql->bindvalue('idCliente',$cliente->getIdUsuario());
 
 		try{

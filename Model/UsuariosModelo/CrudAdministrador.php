@@ -88,13 +88,11 @@ class CrudAdministrador{
 		$Db = Db::Conectar();
 		$sql = $Db->prepare('UPDATE usuarios SET 
 		Nombre=:nombre,
-		Apellido=:apellido,
-		Contrasena=:contrasena
+		Apellido=:apellido
 		WHERE IdUsuario=:idUsuario');
 
 		$sql->bindvalue('nombre',$usuario->getNombre());
 		$sql->bindvalue('apellido',$usuario->getApellido());
-		$sql->bindvalue('contrasena',$usuario->getContrasena());
 		$sql->bindvalue('idUsuario',$usuario->getIdUsuario());
 
 		try{

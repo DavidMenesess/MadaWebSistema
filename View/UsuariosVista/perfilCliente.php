@@ -328,15 +328,9 @@ if(!isset($_SESSION['correo'])){
 				<label for="correo" class="text-dark">Correo</label>
 				<input type="email" class="form-control" id="correo" name="correo" autocomplete="of" readonly value="<?php echo $cliente['Correo']; ?>">
 			</div>
-			<div class="form-group">
-				<label for="contrasena" class="text-dark">Contraseña</label>
-				<input type="password" class="form-control" id="contrasena" name="contrasena" autocomplete="of" readonly value="<?php echo $cliente['Contrasena'] ?>">
-				<label for="mostrarContra" class="text-dark">Mostrar contraseña</label>
-				<input type="checkbox" id="mostrarContra" onclick="mostrarContrasena();">
-			</div>
 			<button type="submit" class="btn btn-success" name="btnActualizarDatos" id="btnGuardar" style="display: none;">Guardar cambios</button>
 			<button type="button" class="btn btn-info" id="btnEditar" onclick="activarInputs();">Editar información</button>
-			<button type="button" class="btn btn-danger" id="btnCancelar" style="display: none;" onclick="mostrarBotones();">Cancelar</button>
+			<button type="button" class="btn btn-danger" id="btnCancelar" style="display: none;" onclick="ocultarBotones();">Cancelar</button>
 		</form>
 	</div>
 	<div class="container">
@@ -531,24 +525,11 @@ if(!isset($_SESSION['correo'])){
 	<script src="../../js/main.js"></script>
 
 	<script>
-        function mostrarContrasena(){
-           var mostrar = document.getElementById("contrasena");
-           if(mostrar.type=="password"){
-               mostrar.type="text";
-           } 
-           else{
-               mostrar.type="password";
-           }
-        }
-    </script>
-
-	<script>
 
 		function activarInputs(){
 			
 			document.getElementById('nombre').readOnly = false;
 			document.getElementById('apellido').readOnly = false;
-			document.getElementById('contrasena').readOnly = false;
 
 			var btnEditar = document.getElementById('btnEditar');
 			var btnCancelar = document.getElementById('btnCancelar');
@@ -565,11 +546,10 @@ if(!isset($_SESSION['correo'])){
 
 	<script>
 
-		function mostrarBotones(){
+		function ocultarBotones(){
 
 			document.getElementById('nombre').readOnly = true;
 			document.getElementById('apellido').readOnly = true;
-			document.getElementById('contrasena').readOnly = true;
 
 			var btnEditar = document.getElementById('btnEditar');
 			var btnCancelar = document.getElementById('btnCancelar');

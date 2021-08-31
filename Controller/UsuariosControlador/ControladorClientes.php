@@ -58,17 +58,14 @@ class ControladorCliente{
 		
     }
 
-	public function actualizarDatosCliente($idCliente,$nombre,$apellido,$contrasena){
-
-		$contrasena = hash('sha512', $contrasena);
+	public function actualizarDatosCliente($idCliente,$nombre,$apellido){
 		$cliente = new usuario();
 		$cliente->setIdUsuario($idCliente);
 		$cliente->setNombre($nombre);
 		$cliente->setApellido($apellido);
-		$cliente->setContrasena($contrasena);
 		$crudCliente = new CrudCliente();
 		$crudCliente->actualizarDatosCliente($cliente);
-		header('Location: ../../index.php');
+		header("Location: ../../View/UsuariosVista/perfilCliente.php?idCliente=" . $idCliente);
 	}
 
 
@@ -98,7 +95,7 @@ if(isset($_POST['actualizarCliente'])){
 }
 
 if(isset($_POST['btnActualizarDatos'])){
-	$ControladorCliente->actualizarDatosCliente($_POST['idCliente'],$_POST['nombre'],$_POST['apellido'],$_POST['contrasena']);
+	$ControladorCliente->actualizarDatosCliente($_POST['idCliente'],$_POST['nombre'],$_POST['apellido']);
 }
 
 ?>

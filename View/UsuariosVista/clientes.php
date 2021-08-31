@@ -185,7 +185,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                                     <form action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8">
                                                         <input type="hidden" name="IdUsuario" value="<?php echo $cliente['IdUsuario'];?>">
                                                         <input type="hidden" name="Estado" value="<?php echo $cliente['Estado'];?>">
-                                                        <button type="" id="actualizarUsuario" name="actualizarCliente" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
+                                                        <button type="" id="actualizarUsuario" name="actualizarCliente" class="btn btn-primary" onclick="return confirm('¿Está seguro de cambiar el estado del usuario?');"><i class="fas fa-exchange-alt"></i></button>
                                                     </form>
                                                 </td> 
                                                 </tr>

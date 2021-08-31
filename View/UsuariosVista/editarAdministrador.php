@@ -108,22 +108,6 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 <label for="correo">Correo</label>
                                 <input type="email" class="form-control" id="correo" name="correo" autocomplete="of" readonly value="<?php echo $listarAdministrador['Correo']?>">
                             </div>
-                            <div class="form-group">
-                                <label for="contrasena">Contraseña</label>
-                                <input type="password" class="form-control" id="contrasena" name="contrasena" autocomplete="of" value="<?php echo $listarAdministrador['Contrasena'] ?>">
-                                <label for="">Mostrar contraseña</label>
-                                <input type="checkbox" id="mostrarContra" onclick="mostrarContrasena();">
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                <label for="rol">Rol</label>
-                                <input type="text" class="form-control" id="rol" name="rol" readonly value="<?php echo $listarAdministrador['IdRol'] ?>">
-                                </div>
-                                <div class="form-group col-md-6">
-                                <label for="estado">Estado</label>
-                                <input type="text" class="form-control" id="estado" name="estado" readonly value="<?php echo $listarAdministrador['Estado']?>">
-                                </div>
-                            </div>
                             <button type="submit" class="btn btn-success" name="actualizarDatosAdmin" id="actualizarDatosAdmin">Guardar cambios</button>
                             <a href="administradores.php" class="btn btn-danger">Cancelar</a>
                         </form>
@@ -151,15 +135,4 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <script src="../../libraries/jquery.dataTables.min.js"></script>
         <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
     </body>
-    <script>
-        function mostrarContrasena(){
-           var mostrar = document.getElementById("contrasena");
-           if(mostrar.type=="password"){
-               mostrar.type="text";
-           } 
-           else{
-               mostrar.type="password";
-           }
-        }
-    </script>
 </html>

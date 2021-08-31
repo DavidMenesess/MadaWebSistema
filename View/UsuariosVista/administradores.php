@@ -158,7 +158,6 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Correo</th>
-                                        <th>Rol</th>
                                         <th>Estado</th>
                                         <th>Accionesㅤㅤㅤ</th>
                                     </tr>
@@ -172,7 +171,6 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                           <td><?php echo $administrador['Nombre'];?></td>
                                           <td><?php echo $administrador['Apellido'];?></td>
                                           <td><?php echo $administrador['Correo'];?></td>
-                                          <td><?php echo $administrador['IdRol'];?></td>
                                           <td>
                                              <?php if($administrador['Estado']!=1){
                                                 echo '<span class="badge bg-danger">Inactivo</span>';
@@ -190,7 +188,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                                         if($_SESSION['Rol'] == 1 && $administrador['IdUsuario'] != 1)
                                                         {
                                                         ?>
-                                                        <button type="" id="actualizarUsuario" name="actualizarEstadoAdministrador" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
+                                                        <button type="" id="actualizarUsuario" name="actualizarEstadoAdministrador" class="btn btn-primary" onclick="return confirm('¿Está seguro de cambiar el estado del usuario?');"><i class="fas fa-exchange-alt"></i></button>
                                                         <?php
                                                         }
                                                         ?>

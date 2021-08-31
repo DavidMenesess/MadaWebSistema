@@ -57,14 +57,14 @@ class ControladorAdministrador{
 		
     }
 
-	public function actualizarDatosAdmin($idUsuario,$nombre,$apellido,$contrasena){
+	public function actualizarDatosAdmin($idUsuario,$nombre,$apellido){
 
-		$contrasena = hash('sha512', $contrasena);
+		
 		$usuario = new usuario();
 		$usuario->setIdUsuario($idUsuario);
 		$usuario->setNombre($nombre);
 		$usuario->setApellido($apellido);
-		$usuario->setContrasena($contrasena);
+	
 
 		$crudAdministrador = new CrudAdministrador();
 		$crudAdministrador->actualizarDatosAdmin($usuario);
@@ -108,7 +108,7 @@ if(isset($_POST['editarAdministrador'])){
 }
 
 if(isset($_POST['actualizarDatosAdmin'])){
-	$ControladorAdministrador->actualizarDatosAdmin($_POST['idUsuario'],$_POST['nombre'],$_POST['apellido'],$_POST['contrasena']);
+	$ControladorAdministrador->actualizarDatosAdmin($_POST['idUsuario'],$_POST['nombre'],$_POST['apellido']);
 }
 
 if(isset($_POST['eliminarAdministrador'])){
