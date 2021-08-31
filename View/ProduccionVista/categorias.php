@@ -174,7 +174,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                                         <input type="hidden" name="IdCategoria" value="<?php echo $categoria['IdCategoria'];?>">
                                                         <input type="hidden" name="imagen" value="<?php echo $categoria['UrlImagen']; ?>">
                                                         <input type="hidden" name="estadoCategoria" value="<?php echo $categoria['Estado']; ?>">
-                                                        <button type="submit" name="cambiarEstadoCategoria" id="cambiarEstadoCategoria" class="btn btn-primary"><i class="fas fa-exchange-alt"></i></button>
+                                                        <button type="submit" name="cambiarEstadoCategoria" id="cambiarEstadoCategoria" class="btn btn-primary" onclick="return confirm('¿Está seguro de cambiar el estado de la categoría?');" ><i class="fas fa-exchange-alt"></i></button>
                                                         <button type="submit" name="editarCategoria" id="editarCategoria" class="btn btn-info"><i class="fas fa-edit"></i></button>
                                                         <button type="submit" name="eliminarCategoria" id="eliminarCategoria" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
                                                     </form>

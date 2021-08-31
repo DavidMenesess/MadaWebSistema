@@ -312,21 +312,21 @@ if(!isset($_SESSION['correo'])){
 		<form action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8">
 			<div class="form-group">
 				<label for="idCliente" class="text-dark">ID</label>
-				<input type="number" class="form-control" id="idCliente" name="idCliente" autocomplete="of" readonly value="<?php echo $cliente['IdUsuario'] ?>">
+				<input type="number" class="form-control" id="idCliente" name="idCliente" autocomplete="off" readonly value="<?php echo $cliente['IdUsuario'] ?>">
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 				<label for="nombre" class="text-dark">Nombre</label>
-				<input type="text" class="form-control" id="nombre" name="nombre" autocomplete="of" readonly value="<?php echo $cliente['Nombre']; ?>">
+				<input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off" readonly value="<?php echo $cliente['Nombre']; ?>">
 				</div>
 				<div class="form-group col-md-6">
 				<label for="apellido" class="text-dark">Apellidos</label>
-				<input type="text" class="form-control" id="apellido" name="apellido" autocomplete="of" readonly value="<?php echo $cliente['Apellido']; ?>">
+				<input type="text" class="form-control" id="apellido" name="apellido" autocomplete="off" readonly value="<?php echo $cliente['Apellido']; ?>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="correo" class="text-dark">Correo</label>
-				<input type="email" class="form-control" id="correo" name="correo" autocomplete="of" readonly value="<?php echo $cliente['Correo']; ?>">
+				<input type="email" class="form-control" id="correo" name="correo" autocomplete="off" readonly value="<?php echo $cliente['Correo']; ?>">
 			</div>
 			<button type="submit" class="btn btn-success" name="btnActualizarDatos" id="btnGuardar" style="display: none;">Guardar cambios</button>
 			<button type="button" class="btn btn-info" id="btnEditar" onclick="activarInputs();">Editar información</button>

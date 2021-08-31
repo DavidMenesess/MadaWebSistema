@@ -94,7 +94,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">¡Agrega las entradas de este producto</li>
                         </ol>
-                        <!--FORMULARIO DE INGRESAR AS ENTRADAS-->
+                        <!--FORMULARIO DE INGRESAR LAS ENTRADAS-->
                         <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8" novalidate autocomplete="off">
                         <div class="container">
                             <div class="form-group">
@@ -155,7 +155,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                             <input type="hidden" name="IdDetalleProducto" value="<?php echo $entrada['IdDetalleProducto'];?>">
                                             <input type="hidden" name="estadoDetalle" value="<?php echo $entrada['Estado'];?>">
                                             <input type="hidden" name="idProducto" value="<?php echo $producto['IdProducto']?>">
-                                            <button type="submit" name="cambiarEstadoEntrada" id="cambiarEstadoEntrada" class="btn btn-primary"  onclick="return confirm('¿Está seguro de cambiar el estado?');"><i class="fas fa-exchange-alt"></i></button>
+                                            <button type="submit" name="cambiarEstadoEntrada" id="cambiarEstadoEntrada" class="btn btn-primary"  onclick="return confirm('¿Está seguro de cambiar el estado de la entrada del producto?');"><i class="fas fa-exchange-alt"></i></button>
                                             <!--<button type="submit" name="" id="" class="btn btn-info"><i class="fas fa-edit"></i></button>-->
                                             <button type="submit" name="eliminarEntrada" id="eliminarEntrada" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
                                             <button type="submit" name="agregarCantidadEntrada" id="agregarCantidadEntrada" class="btn btn-success"><i class="fas fa-plus"></i></button>
