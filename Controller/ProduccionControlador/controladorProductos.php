@@ -479,6 +479,10 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
     //Buscar producto para agregar el detalle.
     if(isset($_POST["agregarDetalle"])){
         header("Location: ../../View/ProduccionVista/detalleProducto.php?idProducto=" . $_POST["IdProducto"]);
+    }   
+
+    if(isset($_POST["buscarEntradas"])){
+        header("Location: ../../View/ProduccionVista/entradasProducto.php?idProducto=" . $_POST["IdProducto"]);
     }
 
     if(isset($_POST['guardarEntrada'])){
