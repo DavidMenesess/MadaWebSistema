@@ -62,6 +62,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                  <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                  <a class="nav-link" href="../ProduccionVista/categorias.php">Categorías</a>
                                     <a class="nav-link" href="../ProduccionVista/productos.php">Productos</a>
+                                    <a class="nav-link" href="../ProduccionVista/entradasProducto.php">Entradas</a>
                                  </nav>
                              </div>
                              <div class="sb-sidenav-menu-heading">Principal</div>
@@ -85,7 +86,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4 text-center">Agregar más cantidad a la entrada</h1>
+                        <h1 class="mt-4 text-center">Agregar más entradas al detalle del producto</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Alimenta nuevamente una entrada, ingresa en el campo la nueva cantidad</li>
                         </ol>
@@ -113,12 +114,12 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 <input type="hidden" class="form-control" name="idDetalleProducto" readonly value="<?php echo $listarEntrada['IdDetalleProducto']?>">
                                 <input type="hidden" class="form-control" name="idProducto" readonly value="<?php echo $listarEntrada['IdProducto']?>">
                                 <br>
-                                <button type="submit" class="btn btn-success" name="guardarNuevaCantidadEntrada">Guardar</button>
+                                <button type="submit" class="btn btn-success btn-block" name="guardarNuevaCantidadEntrada">Guardar</button>
                             </form>
                             <br>
                             <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST">
                                 <input type="hidden" class="form-control" name="idProducto" readonly value="<?php echo $listarEntrada['IdProducto']?>">
-                                <button type="submit" class="btn btn-secondary" name="volverAentradasDelProducto">Volver a entradas</button>
+                                <button type="submit" class="btn btn-secondary btn-block" name="volverAentradasDelProducto">Ir a detalles del producto</button>
                             </form>
                     </div>
                 </main>

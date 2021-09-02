@@ -63,6 +63,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                  <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                  <a class="nav-link" href="categorias.php">Categorías</a>
                                     <a class="nav-link" href="productos.php">Productos</a>
+                                    <a class="nav-link" href="entradasProductos.php">Entradas</a>
                                  </nav>
                              </div>
                              <div class="sb-sidenav-menu-heading">Principal</div>
