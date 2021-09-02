@@ -113,7 +113,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 <input type="hidden" class="form-control" name="idDetalleProducto" readonly value="<?php echo $listarEntrada['IdDetalleProducto']?>">
                                 <input type="hidden" class="form-control" name="idProducto" readonly value="<?php echo $listarEntrada['IdProducto']?>">
                                 <br>
-                                <button type="submit" class="btn btn-success" name="guardarNuevaCantidadEntrada">Guardar cambios</button>
+                                <button type="submit" class="btn btn-success" name="guardarNuevaCantidadEntrada">Guardar</button>
                             </form>
                             <br>
                             <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST">

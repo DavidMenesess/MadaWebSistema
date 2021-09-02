@@ -89,20 +89,20 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4 text-center">Entradas del producto - <?php echo $producto['NombreProducto']?></h1>
+                        <h1 class="mt-4 text-center">Detalles del producto - <?php echo $producto['NombreProducto']?></h1>
                         <br>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">¡Agrega las entradas de este producto</li>
+                            <li class="breadcrumb-item active">¡Agrega los detalles de este producto</li>
                         </ol>
                         <!--FORMULARIO DE INGRESAR LAS ENTRADAS-->
-                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8" novalidate autocomplete="off">
+                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8" autocomplete="off">
                         <div class="container">
                             <div class="form-group">
                                 <br>
-                                <label for="idUsuario">Generar las entradas del producto</label>
                                 <input type="hidden" name="idProducto" value="<?php echo $producto['IdProducto']?>">
-                                <button type="button" class="btn btn-info" id="generarEntrada" onclick="mostrarBoton();">Generar entrada</button>
-                                <button type="submit" class="btn btn-success" name="guardarEntrada" id="guardarEntrada" style="display: none;">Guardar</button>
+                                <br>
+                                <button type="button" class="btn btn-info btn-block" id="generarEntrada" onclick="mostrarBoton();">Generar detalle</button>
+                                <button type="submit" class="btn btn-success btn-block" name="guardarEntrada" id="guardarEntrada" style="display: none;">Guardar</button>
                             </div>
                         </form>
                         <!--FIN DEL FORMULARIO DE ENTRADAS-->
@@ -157,8 +157,8 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                             <input type="hidden" name="idProducto" value="<?php echo $producto['IdProducto']?>">
                                             <button type="submit" name="cambiarEstadoEntrada" id="cambiarEstadoEntrada" class="btn btn-primary"  onclick="return confirm('¿Está seguro de cambiar el estado de la entrada del producto?');"><i class="fas fa-exchange-alt"></i></button>
                                             <!--<button type="submit" name="" id="" class="btn btn-info"><i class="fas fa-edit"></i></button>-->
-                                            <button type="submit" name="eliminarEntrada" id="eliminarEntrada" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
-                                            <button type="submit" name="agregarCantidadEntrada" id="agregarCantidadEntrada" class="btn btn-success"><i class="fas fa-plus"></i></button>
+                                            <!--<button type="submit" name="eliminarEntrada" id="eliminarEntrada" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>-->
+                                            <!--<button type="submit" name="agregarCantidadEntrada" id="agregarCantidadEntrada" class="btn btn-success"><i class="fas fa-plus"></i></button>-->
                                           </form>
                                         </td>
                                     </tr>
@@ -198,7 +198,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         var contador = $("input[type='text']").length;
 
         
-        $(this).before('<div class="input-group"><div class="input-group-prepend"><span class="input-group-text" id="">Entrada</span></div><input type="text" name="color[]" class="form-control" placeholder="Color"><input type="text" name="talla[]" class="form-control" placeholder="Talla"><input type="text" name="cantidad[]" class="form-control" placeholder="Cantidad"><button type="button" class="btn btn-danger eliminarEntrada">Eliminar</button></div>');
+        $(this).before('<div class="input-group"><div class="input-group-prepend"><span class="input-group-text" id="">Entrada</span></div><input type="text" name="color[]" class="form-control" required placeholder="Color"><input type="text" name="talla[]" class="form-control" required placeholder="Talla"><input type="number" name="cantidad[]" class="form-control" required placeholder="Cantidad"><button type="button" class="btn btn-danger eliminarEntrada">Eliminar</button></div>');
         
 
     });

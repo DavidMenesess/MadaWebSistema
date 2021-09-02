@@ -1,7 +1,10 @@
 <?php
+
 require("../../Controller/ProduccionControlador/controladorProductos.php");
 //Recibo el id que es mandado por medio de controlador, lo envio nuevamente al controlador y este lo manda 
 //Al modelo, que me retorna los valores encontrados según el Id del producto.
+error_reporting(0);
+
 $listaProductos = $controladorProductos->listarProductos();
 //$producto = $controladorProductos->buscarProducto($_GET['idProducto']);
 
@@ -19,7 +22,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Detalles del producto</title>
+        <title>Entradas del producto</title>
         <link href="../../css/styles.css" rel="stylesheet" />
         <link href="../../libraries/dataTables.bootstrap4.min.css" rel="stylesheet"/>
         <script src="../../libraries/fontawesome.js"></script>
@@ -92,15 +95,16 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <h1 class="mt-4 text-center">Entradas de productos<?php //echo //$producto['NombreProducto']?></h1>
                         <br>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">¡Agrega las entradas de este producto</li>
+                            <li class="breadcrumb-item active">¡Agrega las entradas del producto!</li>
                         </ol>
                         <!--FORMULARIO DE INGRESAR LAS ENTRADAS-->
                         <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8" novalidate autocomplete="off">
                         <div class=""> <!--Aqui va el container para el formulario y el producto-->
                             <div class="form-group">
                                 <br>
-                                <label for="idUsuario">Generar las entradas del producto</label>
-                                <select class="form-control form-control-lg" name="IdProducto">
+                                <label for="buscarProducto">Buscar producto</label>
+                                <div class="input-group">
+                                <select class="form-control form-control-lg" id="buscarProducto" name="IdProducto">
                                     <option>Seleccione un producto para ver sus entradas</option>
 
                                     <?php
@@ -112,18 +116,19 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                     ?>
                                 </select>
                                 <br>
-                                <button type="submit" class="btn btn-primary" name="buscarEntradas">Buscar</button>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary" name="buscarEntradas">Buscar</button>
+                                    </div>
+                                </div>
                                 <br>
                                 <input type="hidden" name="idProducto" value="<?php echo $producto['IdProducto']?>">
-                                <button type="button" class="btn btn-info" id="generarEntrada" onclick="mostrarBoton();">Generar entrada</button>
-                                <button type="submit" class="btn btn-success" name="guardarEntrada" id="guardarEntrada" style="display: none;">Guardar</button>
                             </div>
                         </form>
                         <!--FIN DEL FORMULARIO DE ENTRADAS-->
                         <br> 
                             <div class="container-fluid">
                                 <div class="row">
-                                    <a href="productos.php" class="btn btn-secondary ml-auto">Volver a productos</a>
+                                    <a href="productos.php" class="btn btn-secondary ml-auto">Ir a productos</a>
                                 </div>
                             </div>                    
                         <br>
@@ -140,15 +145,20 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                         <th>ID</th>
                                         <th>Color</th>
                                         <th>Talla</th>
-                                        <th>Cantidad</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                   <tbody>
-                                      <?php 
+                                      <div class="">
+                                        <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
+                                        <script src="../../libraries/bootstrap.bundle.min.js"></script>
+                                        <script src="../../js/scripts.js"></script>
+                                        <script src="../../libraries/jquery.dataTables.min.js"></script>
+                                        <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
+                                      </div>
+                                     <?php
                                         $listaEntradas = $controladorProductos->listarEntradasProducto($_GET['idProducto']);
-                                      ?>
+                                     ?>
                                      <?php
                                      foreach ($listaEntradas as $entrada) {
                                      ?>
@@ -156,25 +166,24 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                           <td><?php echo $entrada['IdDetalleProducto'];?></td>
                                           <td><?php echo $entrada['Color'];?></td>
                                           <td><?php echo $entrada['Talla'];?></td>
-                                          <td><?php echo $entrada['Stock'];?></td>
-                                          <td>
+                                          <!--<td>
                                         <?php 
-                                           if($entrada['Estado'] != 1){
-                                            echo '<span class="badge bg-danger text-light">Inactivo</span>';
-                                            }else{
-                                            echo '<span class="badge bg-success text-light">Activo</span>';
-                                             }
+                                           //if($entrada['Estado'] != 1){
+                                            //echo '<span class="badge bg-danger text-light">Inactivo</span>';
+                                            //}else{
+                                            //echo '<span class="badge bg-success text-light">Activo</span>';
+                                             //}
                                         ?>
-                                        </td>
+                                        </td>-->
                                           
                                         <td>
                                           <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8">
                                             <input type="hidden" name="IdDetalleProducto" value="<?php echo $entrada['IdDetalleProducto'];?>">
                                             <input type="hidden" name="estadoDetalle" value="<?php echo $entrada['Estado'];?>">
                                             <input type="hidden" name="idProducto" value="<?php echo $producto['IdProducto']?>">
-                                            <button type="submit" name="cambiarEstadoEntrada" id="cambiarEstadoEntrada" class="btn btn-primary"  onclick="return confirm('¿Está seguro de cambiar el estado de la entrada del producto?');"><i class="fas fa-exchange-alt"></i></button>
+                                            <!--<button type="submit" name="cambiarEstadoEntrada" id="cambiarEstadoEntrada" class="btn btn-primary"  onclick="return confirm('¿Está seguro de cambiar el estado de la entrada del producto?');"><i class="fas fa-exchange-alt"></i></button>-->
                                             <!--<button type="submit" name="" id="" class="btn btn-info"><i class="fas fa-edit"></i></button>-->
-                                            <button type="submit" name="eliminarEntrada" id="eliminarEntrada" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
+                                            <!--<button type="submit" name="eliminarEntrada" id="eliminarEntrada" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>-->
                                             <button type="submit" name="agregarCantidadEntrada" id="agregarCantidadEntrada" class="btn btn-success"><i class="fas fa-plus"></i></button>
                                           </form>
                                         </td>
@@ -203,29 +212,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                 </footer>
             </div>
         </div>
-        <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
-        <script src="../../libraries/bootstrap.bundle.min.js"></script>
-        <script src="../../js/scripts.js"></script>
-        <script src="../../libraries/jquery.dataTables.min.js"></script>
-        <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
     </body>
-    <script>
-       $(document).ready(function() {
-    $("#generarEntrada").click(function(){
-        var contador = $("input[type='text']").length;
-
-        
-        $(this).before('<div class="input-group"><div class="input-group-prepend"><span class="input-group-text" id="">Entrada</span></div><input type="text" name="color[]" class="form-control" placeholder="Color"><input type="text" name="talla[]" class="form-control" placeholder="Talla"><input type="text" name="cantidad[]" class="form-control" placeholder="Cantidad"><button type="button" class="btn btn-danger eliminarEntrada">Eliminar</button></div>');
-        
-
-    });
-
-    $(document).on('click', '.eliminarEntrada', function(){
-        $(this).parent().remove();
-    });
-});
-    </script>
-
 <script>
     $(document).ready(function() {
     $('#tablaEntradaProductos').DataTable();
@@ -255,12 +242,5 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
     
 });
 
-    </script>
-
-    <script>
-        function mostrarBoton(){
-            let boton = document.getElementById('guardarEntrada');
-            boton.style.display='inline';
-        }
     </script>
 </html>
