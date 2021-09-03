@@ -93,25 +93,25 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">¡Los cambios realizados se podrán editar nuevamente</li>
                         </ol>
-                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8">
+                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" onsubmit="return validarEditDatosProducto();" autocomplete="off" accept-charset="utf-8">
                             <div class="form-group">
                                 <label for="idProducto">ID</label>
-                                <input type="number" class="form-control" id="idProducto" name="idProducto" autocomplete="off" readonly value="<?php echo $listarProducto['IdProducto']?>">
+                                <input type="number" class="form-control" id="idProducto" name="idProducto" readonly value="<?php echo $listarProducto['IdProducto']?>">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off" value="<?php echo $listarProducto['NombreProducto']?>">
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $listarProducto['NombreProducto']?>">
                                 </div>
                                 <div class="form-group col-md-6">
                                 <label for="descripcion">Descripción</label>
-                                <input type="text" class="form-control" id="descripcion" name="descripcion" autocomplete="off" value="<?php echo $listarProducto['Descripcion']?>">
+                                <input type="text" class="form-control" id="descripcion" name="descripcion" value="<?php echo $listarProducto['Descripcion']?>">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                 <label for="precio">Precio</label>
-                                <input type="text" class="form-control" id="precio" name="precioNuevo" value="<?php echo $listarProducto['Precio'] ?>">
+                                <input type="text" class="form-control" id="precioNuevo" name="precioNuevo" value="<?php echo $listarProducto['Precio'] ?>">
                                 </div>
                                 <div class="form-group col-md-6">
                                 <div class="input-group-prepend">
@@ -160,10 +160,10 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 
                                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" method="POST">
+                                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" onsubmit="return validarEditImagen1()" method="POST">
                                         <label for="imagen1Nueva">Actualizar imagen #1</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="imagen1Nueva" id="imagen1Nueva" required>
+									            <input type="file" class="form-control" name="imagen1Nueva" id="imagen1Nueva">
                                                 <input type="hidden" class="form-control" id="idProducto" name="idProducto" autocomplete="off" readonly value="<?php echo $listarProducto['IdProducto']?>">
                                                 <input type="hidden" name="imagen1Antigua" value="<?php echo $listarProducto['Imagen1']; ?>">
                                                 <div class="input-group-append">
@@ -176,10 +176,10 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                     </div>
 
                                     <div class="card-body">
-                                    <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" method="POST">
+                                    <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" onsubmit="return validarEditImagen2()" method="POST">
                                         <label for="imagen2">Actualizar imagen #2</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="imagen2Nueva" id="imagen2Nueva" required>
+									            <input type="file" class="form-control" name="imagen2Nueva" id="imagen2Nueva">
                                                 <input type="hidden" class="form-control" id="idProducto" name="idProducto" autocomplete="off" readonly value="<?php echo $listarProducto['IdProducto']?>">
                                                 <input type="hidden" name="imagen2Antigua" value="<?php echo $listarProducto['Imagen2']; ?>">
                                                 <div class="input-group-append">
@@ -192,10 +192,10 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                     </div>
 
                                     <div class="card-body">
-                                    <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" method="POST">
+                                    <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" onsubmit="return validarEditImagen3()" method="POST">
                                         <label for="imagen3">Actualizar imagen #3</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="imagen3Nueva" id="imagen3" required>
+									            <input type="file" class="form-control" name="imagen3Nueva" id="imagen3Nueva">
                                                 <input type="hidden" class="form-control" id="idProducto" name="idProducto" autocomplete="off" readonly value="<?php echo $listarProducto['IdProducto']?>">
                                                 <input type="hidden" name="imagen3Antigua" value="<?php echo $listarProducto['Imagen3']; ?>">
                                                 <div class="input-group-append">
@@ -218,18 +218,18 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 </div>
                                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" method="POST">
+                                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" enctype="multipart/form-data" onsubmit="return validarEditImagenes()" method="POST">
                                             <label for="imagen1">Imagen #1</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="imagen1Nueva" id="imagen1" required>
+									            <input type="file" class="form-control" name="imagen1Nueva" id="imagen1">
                                             </div>
                                             <label for="imagen2">Imagen #2</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="imagen2Nueva" id="imagen2" required>
+									            <input type="file" class="form-control" name="imagen2Nueva" id="imagen2">
                                             </div>
                                             <label for="imagen3">Imagen #3</label>
                                             <div class="input-group">
-									            <input type="file" class="form-control" name="imagen3Nueva" id="imagen3" required>
+									            <input type="file" class="form-control" name="imagen3Nueva" id="imagen3">
                                             </div>
                                             <input type="hidden" class="form-control" id="idProducto" name="idProducto" autocomplete="off" readonly value="<?php echo $listarProducto['IdProducto']?>">
                                             <input type="hidden" name="imagen1Antigua" value="<?php echo $listarProducto['Imagen1']; ?>">
@@ -265,6 +265,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
         <script src="../../libraries/bootstrap.bundle.min.js"></script>
         <script src="../../js/scripts.js"></script>
+        <script src="../../js/validaciones/validacionesProductos.js"></script>
         <script src="../../libraries/jquery.dataTables.min.js"></script>
         <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
     </body>

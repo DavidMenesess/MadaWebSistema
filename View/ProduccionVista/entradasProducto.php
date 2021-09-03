@@ -99,13 +99,13 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             <li class="breadcrumb-item active">¡Agrega las entradas del producto!</li>
                         </ol>
                         <!--FORMULARIO DE INGRESAR LAS ENTRADAS-->
-                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8" novalidate autocomplete="off">
+                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8" onsubmit="return validarBusquedaEntrada()" autocomplete="off">
                         <div class=""> <!--Aqui va el container para el formulario y el producto-->
                             <div class="form-group">
                                 <br>
                                 <label for="buscarProducto">Buscar producto</label>
                                 <div class="input-group">
-                                <select class="form-control form-control-lg" id="buscarProducto" name="IdProducto">
+                                <select class="form-control form-control-lg" id="buscarProducto" name="IdProducto" required>
                                     <option>Seleccione un producto para ver sus entradas</option>
 
                                     <?php
@@ -154,6 +154,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                         <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
                                         <script src="../../libraries/bootstrap.bundle.min.js"></script>
                                         <script src="../../js/scripts.js"></script>
+                                        <script src="../../js/validaciones/validacionesEntradas.js"></script>
                                         <script src="../../libraries/jquery.dataTables.min.js"></script>
                                         <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
                                       </div>

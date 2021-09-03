@@ -114,7 +114,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 				      </div>
 				      <div class="modal-body">
 
-				      	<form class="form" action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
+				      	<form class="form" action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST" enctype="multipart/form-data" onsubmit="return validarRegistroCategoria()" accept-charset="utf-8" autocomplete="off">
 				      		<div class="form-row">
 				      			<div class="form-group col-md-6">
 				      				<label for="nombreCategoria">Nombre:</label>
@@ -212,6 +212,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
         <script src="../../libraries/bootstrap.bundle.min.js"></script>
         <script src="../../js/scripts.js"></script>
+        <script src="../../js/validaciones/validacionesCategorias.js"></script>
         <script src="../../libraries/jquery.dataTables.min.js"></script>
         <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
         <script src="../../libraries/sweetalert2@11.js"></script>

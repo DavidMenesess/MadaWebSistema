@@ -108,9 +108,9 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             </div>                            
                             <br>
                             <br>
-                            <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST">
+                            <form action="../../Controller/ProduccionControlador/controladorProductos.php" onsubmit="return validarRegistroEntrada()" method="POST">
                                 <label for="">Nueva Cantidad</label>
-                                <input  type="number" class="form-control" name="nuevaCantidad" required>
+                                <input  type="number" class="form-control" name="nuevaCantidad" id="nuevaEntrada" required>
                                 <input type="hidden" class="form-control" name="idDetalleProducto" readonly value="<?php echo $listarEntrada['IdDetalleProducto']?>">
                                 <input type="hidden" class="form-control" name="idProducto" readonly value="<?php echo $listarEntrada['IdProducto']?>">
                                 <br>
@@ -140,18 +140,8 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
         <script src="../../libraries/bootstrap.bundle.min.js"></script>
         <script src="../../js/scripts.js"></script>
+        <script src="../../js/validaciones/validacionesEntradas.js"></script>
         <script src="../../libraries/jquery.dataTables.min.js"></script>
         <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
     </body>
-    <script>
-        function mostrarContrasena(){
-           var mostrar = document.getElementById("contrasena");
-           if(mostrar.type=="password"){
-               mostrar.type="text";
-           } 
-           else{
-               mostrar.type="password";
-           }
-        }
-    </script>
 </html>

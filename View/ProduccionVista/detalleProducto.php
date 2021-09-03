@@ -96,7 +96,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             <li class="breadcrumb-item active">¡Agrega los detalles de este producto</li>
                         </ol>
                         <!--FORMULARIO DE INGRESAR LAS ENTRADAS-->
-                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8" autocomplete="off">
+                        <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" onsubmit="return validarRegistroDetalle()" accept-charset="utf-8" autocomplete="off">
                         <div class="container">
                             <div class="form-group">
                                 <br>
@@ -190,6 +190,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
         <script src="../../libraries/bootstrap.bundle.min.js"></script>
         <script src="../../js/scripts.js"></script>
+        <script src="../../js/validaciones/validacionesEntradas.js"></script>
         <script src="../../libraries/jquery.dataTables.min.js"></script>
         <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
     </body>
@@ -199,7 +200,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         var contador = $("input[type='text']").length;
 
         
-        $(this).before('<div class="input-group"><div class="input-group-prepend"><span class="input-group-text" id="">Entrada</span></div><input type="text" name="color[]" class="form-control" required placeholder="Color"><input type="text" name="talla[]" class="form-control" required placeholder="Talla"><input type="number" name="cantidad[]" class="form-control" required placeholder="Cantidad"><button type="button" class="btn btn-danger eliminarEntrada">Eliminar</button></div>');
+        $(this).before('<div class="input-group"><div class="input-group-prepend"><span class="input-group-text" id="">Entrada</span></div><input type="text" name="color[]" class="form-control" id="color" required  placeholder="Color"><input type="text" name="talla[]" class="form-control" id="talla" required  placeholder="Talla"><input type="text" name="cantidad[]" class="form-control" id="cantidad" required placeholder="Cantidad"><button type="button" class="btn btn-danger eliminarEntrada">Eliminar</button></div>');
         
 
     });

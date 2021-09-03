@@ -115,7 +115,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 				      </div>
 				      <div class="modal-body">
 
-				      	<form class="form" action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
+				      	<form class="form" action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" enctype="multipart/form-data" onsubmit="return validarRegistroProducto()" accept-charset="utf-8" autocomplete="off">
 				      		<div class="form-row">
 				      			<div class="form-group col-md-6">
 				      				<label for="nombreProducto">Nombre:</label>
@@ -127,14 +127,14 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
 					      		</div>
 					      		<div class="form-group col-md-6">
 					      			<label for="precioProducto">Precio:</label>
-									<input type="text" class="form-control" name="precioProducto" id="precioProducto" required>
+									<input type="number" class="form-control" name="precioProducto" id="precioProducto" required>
 					      		</div>
                                   <div class="form-group col-md-6">
                                     <div class="input-group-prepend">
                                         <label for="categoria">Categoría:</label>
                                    </div>
                                    
-                                    <select class="custom-select" id="categoria" name="categoria">
+                                    <select class="custom-select" id="categoriaProducto" name="categoria" required>
                                         <option selected>Seleccionar</option>
                                     <?php
                                         foreach($listaCategorias as $categoria){
@@ -264,6 +264,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
         <script src="../../libraries/bootstrap.bundle.min.js"></script>
         <script src="../../js/scripts.js"></script>
+        <script src="../../js/validaciones/validacionesProductos.js"></script>
         <script src="../../libraries/jquery.dataTables.min.js"></script>
         <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
         <script src="../../libraries/sweetalert2@11.js"></script>

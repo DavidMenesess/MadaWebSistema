@@ -214,7 +214,7 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
 
                 else{
                     echo "<script>
-                    location.replace('../../View/ProduccionVista/categorias.php');
+                    location.replace('../../View/ProduccionVista/productos.php');
                     alert('El formato seleccionado no corresponde a una imagen.');
                     </script>";
                 }
@@ -222,8 +222,8 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
 
                 else{
                     echo "<script>
-                    location.replace('../../View/ProduccionVista/categorias.php');
-                    alert('La imagn super el tamaño esperado. Debe ser menor o igual a 5Mb');
+                    location.replace('../../View/ProduccionVista/productos.php');
+                    alert('La imagen super el tamaño esperado. Debe ser menor o igual a 5Mb');
                     </script>";
                     }
 
@@ -491,12 +491,12 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
         if($mensaje ==  "La entrada de este producto ya existe"){
             echo "<script>
             location.replace('../../View/ProduccionVista/productos.php');
-            alert('Ingreso una entrada existente para el producto, verifique las entradas he intente nuevamente.');
+            alert('Ingreso un detalle existente para el producto, verifique he intente nuevamente.');
           </script>";
         }else{
             echo "<script>
             location.replace('../../View/ProduccionVista/productos.php');
-            alert('Registro de entradas exitoso');
+            alert('Registro de detalles exitoso');
           </script>";
         }
     }

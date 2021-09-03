@@ -113,9 +113,9 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 </div>
                                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
-                                <form action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST">
+                                <form action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST" onsubmit="return validarEditNombre()">
                                     <div class="input-group">
-									    <input type="text" class="form-control" name="nuevoNombreCategoria" id="" required autocomplete="off" placeholder="Nuevo nombre">
+									    <input type="text" class="form-control" name="nuevoNombreCategoria" id="nuevoNombreCategoria" required autocomplete="off" placeholder="Nuevo nombre">
                                         <input type="hidden" name="idCategoria" value="<?php echo $listarCategoria['IdCategoria'];?>">
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-success" name="actualizarNombreCategoria" id="actualizarNombreCategoria">
@@ -137,7 +137,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 </div>
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <form action="../../Controller/ProduccionControlador/controladorCategoria.php" enctype="multipart/form-data" method="POST">
+                                    <form action="../../Controller/ProduccionControlador/controladorCategoria.php" enctype="multipart/form-data" onsubmit="return validarEditImagen()" method="POST">
                                         <div class="input-group">
                                             <input type="file" class="form-control" name="nuevaImagenCategoria" id="nuevaImagenCategoria" required>
                                             <input type="hidden" name="imagenAntiguaCategoria" value="<?php echo $listarCategoria['UrlImagen']; ?>">
@@ -162,10 +162,10 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                 </div>
                                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                 <div class="card-body">
-                                <form action="../../Controller/ProduccionControlador/controladorCategoria.php" enctype="multipart/form-data" method="POST">
+                                <form action="../../Controller/ProduccionControlador/controladorCategoria.php" enctype="multipart/form-data" onsubmit="return validarEditAmbas()" method="POST">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="nuevoNombreCategoria" id="nuevoNombreCategoria" required autocomplete="off" placeholder="Nuevo nombre">
-                                        <input type="file" class="form-control" name="nuevaImagenCategoria" id="nuevaImagenCategoria" required>
+                                        <input type="text" class="form-control" name="nuevoNombreCategoria" id="nuevoNombre" required autocomplete="off" placeholder="Nuevo nombre">
+                                        <input type="file" class="form-control" name="nuevaImagenCategoria" id="nuevaImagen" required>
                                         <input type="hidden" name="imagenAntiguaCategoria" value="<?php echo $listarCategoria['UrlImagen']; ?>">
                                         <input type="hidden" name="idCategoria" value="<?php echo $listarCategoria['IdCategoria'];?>">
                                     <div class="input-group-append">
@@ -201,6 +201,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
         <script src="../../libraries/bootstrap.bundle.min.js"></script>
         <script src="../../js/scripts.js"></script>
+        <script src="../../js/validaciones/validacionesCategorias.js"></script>
         <script src="../../libraries/jquery.dataTables.min.js"></script>
         <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
     </body>
