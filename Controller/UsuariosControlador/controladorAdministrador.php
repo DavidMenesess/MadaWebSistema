@@ -59,11 +59,12 @@ class ControladorAdministrador{
 
 	public function actualizarDatosAdmin($idUsuario,$nombre,$apellido){
 
-		
+		$nombreMayus = ucwords($nombre);
+		$apellidoMayus = ucwords($apellido);
 		$usuario = new usuario();
 		$usuario->setIdUsuario($idUsuario);
-		$usuario->setNombre($nombre);
-		$usuario->setApellido($apellido);
+		$usuario->setNombre($nombreMayus);
+		$usuario->setApellido($apellidoMayus);
 	
 
 		$crudAdministrador = new CrudAdministrador();

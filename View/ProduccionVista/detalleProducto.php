@@ -171,6 +171,9 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                             </div>
                          </div>
                     </div>
+                    <button type="button" class="btn btn-danger">Descargar <i class="fas fa-file-pdf"></i> pdf</button>
+                <button type="button" class="btn btn-success">Descargar <i class="fas fa-file-excel"></i> excel</button>
+                    <br>
                     <br>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

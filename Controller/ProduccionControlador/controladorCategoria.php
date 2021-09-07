@@ -179,6 +179,9 @@ class controladorCategoria{
                 $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/categorias/';
 
                 //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+                $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/categorias/$fotoAntigua";
+                unlink($carpetaDestinoEliminarFoto);
+
                 move_uploaded_file($_FILES['nuevaImagenCategoria']['tmp_name'],$carpetaDestino.$nombreFoto);
                 $controladorCategoria->actualizarImagenCategoria($idCategoria,$nombreFoto);
                 //$controladorCategoria->registrarCategoria($nombreCategoria,$nombreFoto);
@@ -198,11 +201,6 @@ class controladorCategoria{
             alert('La imagen super el tamaño esperado. Debe ser menor o igual a 5Mb');
         </script>";
         }
-        
-        $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/categorias/$fotoAntigua";
-        unlink($carpetaDestinoEliminarFoto);
-        
-
 
     }
 
@@ -222,6 +220,10 @@ class controladorCategoria{
                 $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/categorias/';
 
                 //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+
+                $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/categorias/$fotoAntigua";
+                unlink($carpetaDestinoEliminarFoto);
+
                 move_uploaded_file($_FILES['nuevaImagenCategoria']['tmp_name'],$carpetaDestino.$nombreFoto);
                 $controladorCategoria->actualizarTodoCategoria($idCategoria,$nombreFoto,$nuevoNombreCategoria);
                 //$controladorCategoria->registrarCategoria($nombreCategoria,$nombreFoto);
@@ -242,8 +244,6 @@ class controladorCategoria{
         </script>";
         }
         
-        $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/categorias/$fotoAntigua";
-        unlink($carpetaDestinoEliminarFoto);
     }
 
     if(isset($_POST['cambiarEstadoCategoria'])){

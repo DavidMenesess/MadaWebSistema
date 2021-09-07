@@ -276,8 +276,14 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
                 //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
                 $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/productos/';
                 //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+
+                $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua";
+                unlink($carpetaDestinoEliminarFoto);
+
                 move_uploaded_file($_FILES['imagen1Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen1);
                 $controladorProductos->actualizarImagen1Producto($nuevaImagen1,$idProducto);
+
+                
             }
     
             else{
@@ -294,9 +300,7 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
             alert('La imagen supera el tamaño esperado. Debe ser menor o igual a 5Mb');
         </script>";
         }
-        
-        $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua";
-        unlink($carpetaDestinoEliminarFoto);
+
     }
 
     if(isset($_POST['editarImagen2'])){
@@ -315,6 +319,10 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
                 //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
                 $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/productos/';
                 //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+
+                $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua";
+                unlink($carpetaDestinoEliminarFoto);
+
                 move_uploaded_file($_FILES['imagen2Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen2);
                 $controladorProductos->actualizarImagen2Producto($nuevaImagen2,$idProducto);
             }
@@ -334,8 +342,6 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
         </script>";
         }
         
-        $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua";
-        unlink($carpetaDestinoEliminarFoto);
     }
 
     if(isset($_POST['editarImagen3'])){
@@ -354,6 +360,9 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
                 //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
                 $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/productos/';
                 //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+                $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua";
+                unlink($carpetaDestinoEliminarFoto);
+                
                 move_uploaded_file($_FILES['imagen3Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen3);
                 $controladorProductos->actualizarImagen3Producto($nuevaImagen3,$idProducto);
             }
@@ -372,9 +381,6 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
             alert('La imagen supera el tamaño esperado. Debe ser menor o igual a 5Mb');
         </script>";
         }
-        
-        $carpetaDestinoEliminarFoto = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua";
-        unlink($carpetaDestinoEliminarFoto);
     }
 
     if(isset($_POST['editarTodasImagenes'])){
@@ -404,6 +410,15 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
                 //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
                 $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/productos/';
                 //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
+
+                $carpetaDestinoEliminarFoto1 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua1";
+                $carpetaDestinoEliminarFoto2 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua2";
+                $carpetaDestinoEliminarFoto3 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua3";
+        
+                unlink($carpetaDestinoEliminarFoto1);
+                unlink($carpetaDestinoEliminarFoto2);
+                unlink($carpetaDestinoEliminarFoto3);
+
                 move_uploaded_file($_FILES['imagen1Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen1);
                 move_uploaded_file($_FILES['imagen2Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen2);
                 move_uploaded_file($_FILES['imagen3Nueva']['tmp_name'],$carpetaDestino.$nuevaImagen3);
@@ -425,13 +440,6 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
         </script>";
         }
         
-        $carpetaDestinoEliminarFoto1 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua1";
-        $carpetaDestinoEliminarFoto2 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua2";
-        $carpetaDestinoEliminarFoto3 = $_SERVER['DOCUMENT_ROOT']."/MadaWebSistema/images/productos/$imagenAntigua3";
-
-        unlink($carpetaDestinoEliminarFoto1);
-        unlink($carpetaDestinoEliminarFoto2);
-        unlink($carpetaDestinoEliminarFoto3);
     }
     // FINALIZA EDITAR IMAGENES DEL PRODUCTO
 

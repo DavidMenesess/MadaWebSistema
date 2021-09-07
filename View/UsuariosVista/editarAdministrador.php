@@ -86,28 +86,28 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Editar información</h1>
+                        <h1 class="mt-4 text-center">Editar información</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">¡Los cambios realizados se podrán editar nuevamente</li>
                         </ol>
-                        <form action="../../Controller/UsuariosControlador/ControladorAdministrador.php" method="POST" accept-charset="utf-8">
+                        <form action="../../Controller/UsuariosControlador/ControladorAdministrador.php" method="POST" autocomplete="off" onsubmit="return validarEditAdministrador();" accept-charset="utf-8">
                             <div class="form-group">
                                 <label for="idUsuario">ID</label>
-                                <input type="number" class="form-control" id="idUsuario" name="idUsuario" autocomplete="of" readonly value="<?php echo $listarAdministrador['IdUsuario']?>">
+                                <input type="number" class="form-control" id="idUsuario" name="idUsuario" readonly value="<?php echo $listarAdministrador['IdUsuario']?>">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="of" value="<?php echo $listarAdministrador['Nombre']?>">
+                                <input type="text" class="form-control" id="nombre" name="nombre" required value="<?php echo $listarAdministrador['Nombre']?>">
                                 </div>
                                 <div class="form-group col-md-6">
                                 <label for="apellido">Apellidos</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido" autocomplete="of" value="<?php echo $listarAdministrador['Apellido']?>">
+                                <input type="text" class="form-control" id="apellido" name="apellido" required value="<?php echo $listarAdministrador['Apellido']?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="correo">Correo</label>
-                                <input type="email" class="form-control" id="correo" name="correo" autocomplete="of" readonly value="<?php echo $listarAdministrador['Correo']?>">
+                                <input type="email" class="form-control" id="correo" name="correo" readonly value="<?php echo $listarAdministrador['Correo']?>">
                             </div>
                             <button type="submit" class="btn btn-success" name="actualizarDatosAdmin" id="actualizarDatosAdmin">Guardar cambios</button>
                             <a href="administradores.php" class="btn btn-danger">Cancelar</a>
@@ -133,7 +133,28 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
         <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
         <script src="../../libraries/bootstrap.bundle.min.js"></script>
         <script src="../../js/scripts.js"></script>
+        <script src="../../js/validaciones/validacionesUsuarios.js"></script>
         <script src="../../libraries/jquery.dataTables.min.js"></script>
         <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
     </body>
 </html>
+
+
+<script>
+    function validarEditAdministrador(){
+
+nombre = document.getElementById("nombre").value;
+apellido = document.getElementById("apellido").value;
+
+if(nombre == ""){
+    alert("Debe ingresar el nombre");
+    return false;
+}
+else if(apellido == ""){
+    alert("Debe ingresar el apellido");
+    return false;
+}
+
+}
+</script>
+
