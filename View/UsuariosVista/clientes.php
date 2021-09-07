@@ -81,6 +81,7 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                         <div class="small">Frase o slogan</div>
                         que desee el cliente
                     </div>
+                    ---
                 </nav>
              </div>
              <div id="layoutSidenav_content">

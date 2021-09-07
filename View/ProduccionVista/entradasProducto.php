@@ -73,11 +73,11 @@ if(!isset ($_SESSION['correoUsuario'])){//Si no existe la varible de sesión lo 
                                  </nav>
                              </div>
                              <div class="sb-sidenav-menu-heading">Principal</div>
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="../VentasVista/pedidos.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
                                     Pedidos
                                 </a>
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="../VentasVista/ventasEnviadas.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-piggy-bank"></i></div>
                                     Ventas
                                 </a>
