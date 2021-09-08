@@ -529,5 +529,3 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
     if(isset($_POST['eliminarEntrada'])){
         $controladorProductos->eliminarEntradaProducto($_POST['IdDetalleProducto'],$_POST['idProducto']);
     }
-
-?>

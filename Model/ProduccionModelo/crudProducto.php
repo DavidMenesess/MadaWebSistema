@@ -310,6 +310,4 @@
             return $mensaje;
         }
 
-    }   
-
-?>
+    }

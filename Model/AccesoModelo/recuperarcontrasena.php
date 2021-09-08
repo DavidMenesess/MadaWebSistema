@@ -35,4 +35,3 @@ class recuperarcontrasena{
         return $this->correo;
     }
 }
-?>

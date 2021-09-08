@@ -132,7 +132,7 @@ class CrudVentas{
 		try{
 	    	$sql->execute();
 	    	$mensaje= "Modificación cool";
-	    }catch(exeption $e){
+	    }catch(Exception $e){
 	    	$mensaje = $e->getMessage();
 	    }
 
@@ -152,7 +152,7 @@ class CrudVentas{
 		try{
 	    	$sql->execute();
 	    	$mensaje= "Modificación cool";
-	    }catch(exeption $e){
+	    }catch(Exception $e){
 	    	$mensaje = $e->getMessage();
 	    }
 
@@ -176,7 +176,7 @@ class CrudVentas{
 		try{
 	    	$sql->execute();
 	    	$mensaje= "Modificación cool";
-	    }catch(exeption $e){
+	    }catch(Exception $e){
 	    	$mensaje = $e->getMessage();
 	    }
 
@@ -197,7 +197,7 @@ class CrudVentas{
 	    try{
 	    	$sql->execute();
 	    	$mensaje= "Modificación cool";
-	    }catch(exeption $e){
+	    }catch(Exception $e){
 	    	$mensaje = $e->getMessage();
 	    }
 	    Db::CerrarConexion($Db);

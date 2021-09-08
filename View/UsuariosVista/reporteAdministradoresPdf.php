@@ -56,7 +56,3 @@ foreach($listarAdministrador as $administrador){
 
 
 $pdf->Output();
-
-
-
-?>

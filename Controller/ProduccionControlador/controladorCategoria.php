@@ -278,7 +278,3 @@ class controladorCategoria{
         */
 
     }
-?>
-
- 
-

@@ -224,6 +224,3 @@ class controladorAcceso{
               </script>";
       }
   }
-    
-
-?>

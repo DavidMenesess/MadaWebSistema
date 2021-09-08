@@ -1,4 +1,3 @@
-
 <?php
 
 require_once('../../Controller/UsuariosControlador/ControladorClientes.php');
@@ -6,7 +5,7 @@ $cliente = $ControladorCliente->buscarCliente($_GET['idCliente']);
 
 
 session_start();
-if(!isset($_SESSION['correo'])){
+if (!isset($_SESSION['correo'])) {
 	header('Location: index.php');
 }
 
@@ -14,46 +13,48 @@ if(!isset($_SESSION['correo'])){
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<title>Mi perfíl</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="../../images/icons/favicon.png"/>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="../../images/icons/favicon.png" />
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../fonts/linearicons-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../vendor/animate/animate.css">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../vendor/select2/select2.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../css/util.css">
 	<link rel="stylesheet" type="text/css" href="../../css/main.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 </head>
+
 <body class="animsition">
-	
+
 	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
-			
+
 			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
-					
-					<!-- Logo desktop -->		
+
+					<!-- Logo desktop -->
 					<a href="#" class="logo">
 						<img src="../../images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
@@ -87,30 +88,30 @@ if(!isset($_SESSION['correo'])){
 							</li>
 
 							<?php
-							if(!isset($_SESSION['correo'])){
+							if (!isset($_SESSION['correo'])) {
 							?>
-							<li>
-								<a href="contact.html">Ingresar</a>
-							</li>
+								<li>
+									<a href="contact.html">Ingresar</a>
+								</li>
 							<?php
 							}
 							?>
 							<?php
-							if(isset($_SESSION['correo'])){
+							if (isset($_SESSION['correo'])) {
 							?>
 
-							<li  class="active-menu">
-								<a href="perfilCliente.php">Mí perfíl</a>
-							</li>
+								<li class="active-menu">
+									<a href="perfilCliente.php">Mí perfíl</a>
+								</li>
 
-							<li>
-							  <a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
-							</li>
+								<li>
+									<a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
+								</li>
 							<?php
 							}
 							?>
 						</ul>
-					</div>	
+					</div>
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
@@ -121,12 +122,12 @@ if(!isset($_SESSION['correo'])){
 						</div>
 					</div>
 				</nav>
-			</div>	
+			</div>
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
+			<!-- Logo moblie -->
 			<div class="logo-mobile">
 				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
@@ -177,29 +178,29 @@ if(!isset($_SESSION['correo'])){
 				<li>
 					<a href="contact.html">Contacto</a>
 				</li>
-				
+
 				<?php
-				if(isset($_SESSION['correo'])){
+				if (isset($_SESSION['correo'])) {
 				?>
-				<li>
-					<a href="contact.html">Ingresar</a>
-				</li>
+					<li>
+						<a href="contact.html">Ingresar</a>
+					</li>
 				<?php
 				}
 				?>
 
 				<?php
-				if(isset($_SESSION['correo'])){
+				if (isset($_SESSION['correo'])) {
 				?>
-				<li>
-					<a href="perfilCliente.php">Mí perfíl</a>
-				</li>
+					<li>
+						<a href="perfilCliente.php">Mí perfíl</a>
+					</li>
 
-				<li>
-					<a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
-				</li>
+					<li>
+						<a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
+					</li>
 				<?php
-					}
+				}
 				?>
 			</ul>
 		</div>
@@ -219,7 +220,7 @@ if(!isset($_SESSION['correo'])){
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-			
+
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
@@ -270,7 +271,7 @@ if(!isset($_SESSION['correo'])){
 						</div>
 					</li>
 				</ul>
-				
+
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
 						Total: $75.00
@@ -296,7 +297,7 @@ if(!isset($_SESSION['correo'])){
 		<h2 class="ltext-105 cl0 txt-center">
 			<?php echo $_SESSION['nombre']; ?>
 		</h2>
-	</section>	
+	</section>
 
 
 	<!-- Content page -->
@@ -304,63 +305,67 @@ if(!isset($_SESSION['correo'])){
 		<div class="container">
 			<h1 class="mt-4 text-center text-dark">Mis datos</h1>
 			<br>
-            <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item active text-dark"><p>¡Hola!, este es tú perfíl en el encontrarás tú información personal, podrás editar algunos datos y guardar la nueva información. Tambien puedes ver las compras que haz realizado.</p></li>
-            </ol>
+			<ol class="breadcrumb mb-4">
+				<li class="breadcrumb-item active text-dark">
+					<p>¡Hola!, este es tú perfíl en el encontrarás tú información personal, podrás editar algunos datos y guardar la nueva información. Tambien puedes ver las compras que haz realizado.</p>
+				</li>
+			</ol>
 		</div>
 		<div class="container">
-		<form action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8">
-			<div class="form-group">
-				<label for="idCliente" class="text-dark">ID</label>
-				<input type="number" class="form-control" id="idCliente" name="idCliente" autocomplete="off" readonly value="<?php echo $cliente['IdUsuario'] ?>">
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-				<label for="nombre" class="text-dark">Nombre</label>
-				<input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off" readonly value="<?php echo $cliente['Nombre']; ?>">
+			<form action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8">
+				<div class="form-group">
+					<label for="idCliente" class="text-dark">ID</label>
+					<input type="number" class="form-control" id="idCliente" name="idCliente" autocomplete="off" readonly value="<?php echo $cliente['IdUsuario'] ?>">
 				</div>
-				<div class="form-group col-md-6">
-				<label for="apellido" class="text-dark">Apellidos</label>
-				<input type="text" class="form-control" id="apellido" name="apellido" autocomplete="off" readonly value="<?php echo $cliente['Apellido']; ?>">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="nombre" class="text-dark">Nombre</label>
+						<input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off" readonly value="<?php echo $cliente['Nombre']; ?>">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="apellido" class="text-dark">Apellidos</label>
+						<input type="text" class="form-control" id="apellido" name="apellido" autocomplete="off" readonly value="<?php echo $cliente['Apellido']; ?>">
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="correo" class="text-dark">Correo</label>
-				<input type="email" class="form-control" id="correo" name="correo" autocomplete="off" readonly value="<?php echo $cliente['Correo']; ?>">
-			</div>
-			<button type="submit" class="btn btn-success" name="btnActualizarDatos" id="btnGuardar" style="display: none;">Guardar cambios</button>
-			<button type="button" class="btn btn-info" id="btnEditar" onclick="activarInputs();">Editar información</button>
-			<button type="button" class="btn btn-danger" id="btnCancelar" style="display: none;" onclick="ocultarBotones();">Cancelar</button>
-		</form>
-	</div>
-	<div class="container">
-		<h1 class="mt-4 text-center text-dark">Mis pedidos</h1>
-		<br>
-		<ol class="breadcrumb mb-4">
-		  <li class="breadcrumb-item active text-dark"><p>¡Hola!, aquí tienes las compras que haz realizado.</p></li>
-		</ol>
-	</div>
-	<div class="container">
-	<div class="accordion" id="accordionExample">
-		<div class="card">
-		  <div class="card-header" id="headingTwo">
-			<h2 class="mb-0">
-			  <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				Da click aquí para ver tus compras
-			  </button>
-			</h2>
-		  </div>
-		  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-			<div class="card-body">
-			  En esta parte es donde van los pedidos, en forma de tabla u otra forma (por definir)
-			</div>
-		  </div>
+				<div class="form-group">
+					<label for="correo" class="text-dark">Correo</label>
+					<input type="email" class="form-control" id="correo" name="correo" autocomplete="off" readonly value="<?php echo $cliente['Correo']; ?>">
+				</div>
+				<button type="submit" class="btn btn-success" name="btnActualizarDatos" id="btnGuardar" style="display: none;">Guardar cambios</button>
+				<button type="button" class="btn btn-info" id="btnEditar" onclick="activarInputs();">Editar información</button>
+				<button type="button" class="btn btn-danger" id="btnCancelar" style="display: none;" onclick="ocultarBotones();">Cancelar</button>
+			</form>
 		</div>
-	  </div>
-	</div>
-	</section>	
-	
-		
+		<div class="container">
+			<h1 class="mt-4 text-center text-dark">Mis pedidos</h1>
+			<br>
+			<ol class="breadcrumb mb-4">
+				<li class="breadcrumb-item active text-dark">
+					<p>¡Hola!, aquí tienes las compras que haz realizado.</p>
+				</li>
+			</ol>
+		</div>
+		<div class="container">
+			<div class="accordion" id="accordionExample">
+				<div class="card">
+					<div class="card-header" id="headingTwo">
+						<h2 class="mb-0">
+							<button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								Da click aquí para ver tus compras
+							</button>
+						</h2>
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+						<div class="card-body">
+							En esta parte es donde van los pedidos, en forma de tabla u otra forma (por definir)
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
@@ -412,7 +417,7 @@ if(!isset($_SESSION['correo'])){
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Devoluciones 
+								Devoluciones
 							</a>
 						</li>
 
@@ -462,15 +467,17 @@ if(!isset($_SESSION['correo'])){
 					<a href="#" class="fs-14 cl7 hov-cl1 trans-04 m-r-16">Términos & Condiciones</a>
 					<br>
 					<a href="#" class="fs-14 cl7 hov-cl1 trans-04 m-r-16">Políticas de privacidad</a>
-					
-					
-				 </div>
-			   </div>
+
+
+				</div>
+			</div>
 
 			<div class="p-t-40">
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Todos los derechos reservados &copy; <script>document.write(new Date().getFullYear());</script> | Mada <i class="fa fa-heart-o" aria-hidden="true"></i>
+					Todos los derechos reservados &copy; <script>
+						document.write(new Date().getFullYear());
+					</script> | Mada <i class="fa fa-heart-o" aria-hidden="true"></i>
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 				</p>
 			</div>
@@ -485,49 +492,48 @@ if(!isset($_SESSION['correo'])){
 		</span>
 	</div>
 
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<script src="../../vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../../vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../../vendor/bootstrap/js/popper.js"></script>
 	<script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../../vendor/select2/select2.min.js"></script>
 	<script>
-		$(".js-select2").each(function(){
+		$(".js-select2").each(function() {
 			$(this).select2({
 				minimumResultsForSearch: 20,
 				dropdownParent: $(this).next('.dropDownSelect2')
 			});
 		})
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
-		$('.js-pscroll').each(function(){
-			$(this).css('position','relative');
-			$(this).css('overflow','hidden');
+		$('.js-pscroll').each(function() {
+			$(this).css('position', 'relative');
+			$(this).css('overflow', 'hidden');
 			var ps = new PerfectScrollbar(this, {
 				wheelSpeed: 1,
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
 
-			$(window).on('resize', function(){
+			$(window).on('resize', function() {
 				ps.update();
 			})
 		});
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../../js/main.js"></script>
 
 	<script>
+		function activarInputs() {
 
-		function activarInputs(){
-			
 			document.getElementById('nombre').readOnly = false;
 			document.getElementById('apellido').readOnly = false;
 
@@ -539,14 +545,12 @@ if(!isset($_SESSION['correo'])){
 			btnGuardar.style.display = 'inline';
 			btnCancelar.style.display = 'inline';
 
-			
+
 		}
-		
 	</script>
 
 	<script>
-
-		function ocultarBotones(){
+		function ocultarBotones() {
 
 			document.getElementById('nombre').readOnly = true;
 			document.getElementById('apellido').readOnly = true;
@@ -559,9 +563,9 @@ if(!isset($_SESSION['correo'])){
 			btnGuardar.style.display = 'none';
 			btnCancelar.style.display = 'none';
 		}
-
 	</script>
-	
+
 
 </body>
+
 </html>

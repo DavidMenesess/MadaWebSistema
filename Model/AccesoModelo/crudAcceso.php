@@ -144,6 +144,3 @@ class CrudAcceso{
     }
 
 }
-
-
-?>

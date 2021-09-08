@@ -55,7 +55,3 @@ foreach($listarCliente as $cliente){
 
 
 $pdf->Output();
-
-
-
-?>
