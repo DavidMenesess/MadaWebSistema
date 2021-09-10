@@ -113,7 +113,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                 <br>
                                 <label for="buscarProducto">Buscar producto</label>
                                 <div class="input-group">
-                                    <select class="form-control form-control-lg" id="buscarProducto" name="IdProducto" required>
+                                    <select class="form-control form-control-lg" id="buscarProducto" name="IdProducto">
                                         <option>Seleccione un producto para ver sus entradas</option>
 
                                         <?php
@@ -164,6 +164,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                             <script src="../../js/scripts.js"></script>
                                             <script src="../../js/validaciones/validacionesEntradas.js"></script>
                                             <script src="../../libraries/jquery.dataTables.min.js"></script>
+                                            <script src="../../libraries/sweetalert2@11.js"></script>
                                             <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
                                         </div>
                                         <?php

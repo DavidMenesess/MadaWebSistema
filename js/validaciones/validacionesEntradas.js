@@ -28,7 +28,7 @@ function validarBusquedaEntrada(){
     nombreProducto = document.getElementById("buscarProducto").value;
 
     if(nombreProducto == "Seleccione un producto para ver sus entradas"){
-        alert("Debe seleccionar un producto para realizar la búsqueda");
+        Swal.fire("Debe seleccionar un producto para realizar la búsqueda");
         return false;
     }
 
@@ -42,11 +42,11 @@ function validarRegistroEntrada(){
     nuevaCantidad = document.getElementById("nuevaEntrada").value;
 
     if(nuevaCantidad == ""){
-        alert("Debe ingresar la cantidad");
+        Swal.fire("Debe ingresar la cantidad");
         return false;
     }
     else if(!expresionNumeros.test(nuevaCantidad)){
-        alert("El campo de agregar más cantidad solo debe contener números");
+        Swal.fire("El campo de agregar más cantidad solo debe contener números");
         return false;
     }
 

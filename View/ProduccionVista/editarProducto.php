@@ -97,7 +97,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                     <br>
                     <br>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">¡Los cambios realizados se podrán editar nuevamente</li>
+                        <li class="breadcrumb-item active">¡Los cambios realizados se podrán editar nuevamente!</li>
                     </ol>
                     <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" onsubmit="return validarEditDatosProducto();" autocomplete="off" accept-charset="utf-8">
                         <div class="form-group">
@@ -273,6 +273,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
     <script src="../../js/scripts.js"></script>
     <script src="../../js/validaciones/validacionesProductos.js"></script>
     <script src="../../libraries/jquery.dataTables.min.js"></script>
+    <script src="../../libraries/sweetalert2@11.js"></script>
     <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
 </body>
 

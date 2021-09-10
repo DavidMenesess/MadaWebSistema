@@ -28,7 +28,7 @@
                                             <input type="hidden" name="codigo" id="codigo" value="<?php echo $codigo ?>">
                                             <div class="form-group">
                                                 <!--<label class="small mb-1" for="nuevaContrasena">Nueva contraseña</label>-->
-                                                <input class="form-control py-4" id="nuevaContrasena" name="nuevaContrasena" placeholder="Nueva contraseña" type="password" minlength="8" maxlength="15" required/>
+                                                <input class="form-control py-4" id="nuevaContrasena" name="nuevaContrasena" placeholder="Nueva contraseña" type="password"/>
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <button type="submit" class="btn btn-primary text-left" id="guardarNuevaContra" name="guardarNuevaContra">Restablecer contraseña</button>

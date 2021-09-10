@@ -125,19 +125,19 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="Nombre">Nombre: </label>
-                                                <input type="text" class="form-control" name="Nombre" id="Nombre" required>
+                                                <input type="text" class="form-control" name="Nombre" id="Nombre">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Apellido">Apellido: </label>
-                                                <input type="text" class="form-control" name="Apellido" id="Apellido" required>
+                                                <input type="text" class="form-control" name="Apellido" id="Apellido">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Correo">Correo: </label>
-                                                <input type="email" class="form-control" name="Correo" id="Correo" required>
+                                                <input type="text" class="form-control" name="Correo" id="Correo">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Contrasena">Contraseña: </label>
-                                                <input type="password" class="form-control" name="Contrasena" id="Contrasena" minlength="8" maxlength="15" required>
+                                                <input type="password" class="form-control" name="Contrasena" id="Contrasena">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -226,6 +226,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
 
 
     <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
+    <script src="../../libraries/sweetalert2@11.js"></script>
     <script src="../../libraries/bootstrap.bundle.min.js"></script>
     <script src="../../js/scripts.js"></script>
     <script src="../../libraries/jquery.dataTables.min.js"></script>
@@ -261,5 +262,6 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
 
     });
 </script>
+
 
 </html>

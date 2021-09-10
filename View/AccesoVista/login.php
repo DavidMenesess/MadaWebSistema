@@ -23,11 +23,11 @@
                                         <form action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST" onsubmit="return validarCamposIngreso();" >
                                             <div class="form-group">
                                                 <!--<label class="small mb-1" for="correoUsuario">Correo</label>-->
-                                                <input class="form-control py-4" id="correoUsuario" name="correoUsuario" type="email" placeholder="Correo electrónico" required/>
+                                                <input class="form-control py-4" id="correoUsuario" name="correoUsuario" type="text" placeholder="Correo electrónico" />
                                             </div>
                                             <div class="form-group">
                                                 <!--<label class="small mb-1" for="contrasena">Contraseña</label>-->
-                                                <input class="form-control py-4" id="contrasenaUsuario" name="contrasenaUsuario" type="password" placeholder="Contraseña" minlength="8" maxlength="15" required/>
+                                                <input class="form-control py-4" id="contrasenaUsuario" name="contrasenaUsuario" type="password" placeholder="Contraseña" />
                                             </div>
                                             
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">

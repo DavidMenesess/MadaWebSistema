@@ -7,11 +7,11 @@
     imagenCategoria = document.getElementById("foto").value;
 
     if(nombreCategoria == ""){
-        alert("Debe ingresar el nombre de la categoría");
+        Swal.fire("Debe ingresar el nombre de la categoría");
         return false;
     }
     else if(imagenCategoria == ""){
-        alert("Debe cargar la imagen de la categoría")
+        Swal.fire("Debe cargar la imagen de la categoría")
         return false;
     }
 
@@ -24,7 +24,7 @@
     nuevoNombre = document.getElementById("nuevoNombreCategoria").value;
 
     if(nuevoNombre == ""){
-        alert("Debe ingresar el nombre de la categoría");
+        Swal.fire("Debe ingresar el nombre de la categoría");
         return false;
     }
  }
@@ -36,7 +36,7 @@
     nuevaImagenCategoria = document.getElementById("nuevaImagenCategoria").value;
 
     if(nuevaImagenCategoria == ""){
-        alert("Debe cargar la imagen de la categoría");
+        Swal.fire("Debe cargar la imagen de la categoría");
         return false;
     }
  }
@@ -49,11 +49,11 @@
     nuevaImagen = document.getElementById("nuevaImagen").value;
 
     if(nuevoNombre == ""){
-        alert("Debe ingresar el nombre de la categoría");
+        Swal.fire("Debe ingresar el nombre de la categoría");
         return false;
     }
     else if(nuevaImagen == ""){
-        alert("Debe cargar la imagen de la categoria");
+        Swal.fire("Debe cargar la imagen de la categoria");
         return false;
     }
 

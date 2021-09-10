@@ -24,24 +24,24 @@
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input class="form-control py-4" id="nombre" name="nombre" type="text" placeholder="Nombre" autocomplete="off" required/>
+                                                        <input class="form-control py-4" id="nombre" name="nombre" type="text" placeholder="Nombre" autocomplete="off"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input class="form-control py-4" id="apellido" name="apellido" type="text" placeholder="Apellidos" autocomplete="off" required/>
+                                                        <input class="form-control py-4" id="apellido" name="apellido" type="text" placeholder="Apellidos" autocomplete="off"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input class="form-control py-4" id="correo" name="correo" type="email" placeholder="Correo electrónico" autocomplete="off" required/>
+                                                        <input class="form-control py-4" id="correo" name="correo" type="text" placeholder="Correo electrónico" autocomplete="off"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input class="form-control py-4" id="contrasena" name="contrasena" type="password" placeholder="Contraseña" autocomplete="off" minlength="8" maxlength=15 required/>
+                                                        <input class="form-control py-4" id="contrasena" name="contrasena" type="password" placeholder="Contraseña" autocomplete="off"/>
                                                     </div>
                                                 </div>
                                             </div>

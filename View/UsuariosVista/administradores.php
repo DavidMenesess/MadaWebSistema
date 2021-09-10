@@ -123,19 +123,19 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="Nombre">Nombre: </label>
-                                                <input type="text" class="form-control" name="Nombre" id="Nombre" required>
+                                                <input type="text" class="form-control" name="Nombre" id="Nombre">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Apellido">Apellido: </label>
-                                                <input type="text" class="form-control" name="Apellido" id="Apellido" required>
+                                                <input type="text" class="form-control" name="Apellido" id="Apellido">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Correo">Correo: </label>
-                                                <input type="email" class="form-control" name="Correo" id="Correo" required>
+                                                <input type="text" class="form-control" name="Correo" id="Correo">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Contrasena">Contraseña: </label>
-                                                <input type="password" class="form-control" name="Contrasena" id="Contrasena" minlength="8" maxlength="15" required>
+                                                <input type="password" class="form-control" name="Contrasena" id="Contrasena">
                                             </div>
                                         </div>
 

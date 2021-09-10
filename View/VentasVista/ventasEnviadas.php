@@ -95,18 +95,15 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
             <main>
                 <div class="container-fluid">
                     <div class="container-fluid">
-                        <h1 class="mt-4" style="text-align:center;">Gestión de ventas enviadas</h1>
+                        <h1 class="mt-4" style="text-align:center;">Gestión de ventas</h1>
                         <br>
                         <br>
-
                         <div>
-
                         </div>
                         <div class="card-body">
                             <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item active">Dashboard</li>
+                                <li class="breadcrumb-item active">Visualiza las ventas que se llevan hasta la fecha y el detalle de cada una</li>
                             </ol>
-
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
@@ -115,7 +112,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="sampleTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="tablaVentas" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -123,7 +120,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                 <th>Subtotal</th>
                                                 <th>Total</th>
                                                 <th>Estado</th>
-                                                <th>Documento Usuario</th>
+                                                <th>Nombre Cliente</th>
                                                 <th>Botones</th>
                                             </tr>
                                         </thead>
@@ -138,13 +135,13 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                     <td><?php echo $ventas['Total']; ?></td>
                                                     <td>
                                                         <?php if ($ventas['IdEstadoPedido'] == 1) {
-                                                            echo '<span class="badge bg-warning">Pendiente</span>';
+                                                            echo '<span class="badge bg-warning text-light">Pendiente</span>';
                                                         } else if ($ventas['IdEstadoPedido'] == 2) {
-                                                            echo '<span class="badge bg-success">En proceso</span>';
+                                                            echo '<span class="badge bg-success text-light">En proceso</span>';
                                                         } else if ($ventas['IdEstadoPedido'] == 3) {
-                                                            echo '<span class="badge bg-danger">Cancelado</span>';
+                                                            echo '<span class="badge bg-danger text-light">Cancelado</span>';
                                                         } else {
-                                                            echo '<span class="badge bg-primary">Enviado</span>';
+                                                            echo '<span class="badge bg-primary text-light">Enviado</span>';
                                                         }
                                                         ?>
 
@@ -154,7 +151,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                         <form action="../../Controller/VentasControlador/ControladorVentas.php" method="POST" accept-charset="utf-8">
                                                             <input type="hidden" name="IdPedido" value="<?php echo $ventas['IdPedido']; ?>">
 
-                                                            <button type="submit" id="verDetalleVenta" name="verDetalleVenta" class="btn btn-primary">Ver Detalle</button>
+                                                            <button type="submit" id="verDetalleVenta" name="verDetalleVenta" class="btn btn-warning"><i class="fa fa-eye"></i></button>
 
                                                             <!-- <button type="submit" id="eliminarUsuario"  name="eliminarUsuario" class="btn btn-warning">Eliminar</button> -->
 
@@ -172,7 +169,9 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                 </div>
                             </div>
                         </div>
-            </main>
+                        <a href="#" target="_blank" class="btn btn-danger">Descargar <i class="fas fa-file-pdf"></i> pdf</a>
+                        <a href="#" class="btn btn-success">Descargar <i class="fas fa-file-excel"></i> excel</a>
+                </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
@@ -216,5 +215,36 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
         $('#sampleTable').DataTable();
     </script> -->
 </body>
+
+<script>
+    $(document).ready(function() {
+        $('#tablaVentas').DataTable();
+    });
+
+    let table = $('#tablaVentas').DataTable({
+        language: {
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+            "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        },
+
+    });
+</script>
+
 
 </html>

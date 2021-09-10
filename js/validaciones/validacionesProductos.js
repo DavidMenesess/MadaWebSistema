@@ -13,36 +13,28 @@ function validarRegistroProducto(){
     imagen2 = document.getElementById("foto2").value;
     imagen3 = document.getElementById("foto3").value;
 
-    if(nombre == ""){
-        alert("Debe ingresar el nombre del producto");
-        return false;
-    }
-    else if(descripcion == ""){
-        alert("Debe ingresar la descripción del produto");
-        return false;
-    }
-    else if(precio == ""){
-        alert("Debe ingresar el precio del producto");
+    if(nombre == "" || descripcion == "" || precio == ""){
+        Swal.fire("Todos los campos deben ser diligenciados");
         return false;
     }
     else if(!expresionNumeros.test(precio)){
-        alert("El campo Precio solo debe contener númeos");
+        Swal.fire("El campo Precio solo debe contener números");
         return false;
     }
     else if(categoria == "Seleccionar"){
-        alert("Debe seleccionar una categoria para el producto");
+        Swal.fire("Debe seleccionar una categoría para el producto");
         return false;
     }
     else if(imagen1 == ""){
-        alert("Debe cargar la imagen #1 del producto");
+        Swal.fire("Debe cargar la imagen #1 del producto");
         return false;
     }
     else if(imagen2 == ""){
-        alert("Debe cargar la imagen #2 del producto");
+        Swal.fire("Debe cargar la imagen #2 del producto");
         return false;
     }
     else if(imagen3 == ""){
-        alert("Debe cargar la imagen #3 del producto");
+        Swal.fire("Debe cargar la imagen #3 del producto");
         return false;
     }
     
@@ -58,20 +50,12 @@ function validarEditDatosProducto(){
     descripcion = document.getElementById("descripcion").value;
     precio = document.getElementById("precioNuevo").value;
 
-    if(nombre == ""){
-        alert("Debe ingresar el nombre del producto");
-        return false;
-    }
-    else if(descripcion == ""){
-        alert("Debe ingresar la descripción del produto");
-        return false;
-    }
-    else if(precio == ""){
-        alert("Debe ingresar el precio del producto");
+    if(nombre == "" || descripcion == "" || precio == ""){
+        Swal.fire("Todos los campos deben ser diligenciados");
         return false;
     }
     else if(!expresionNumeros.test(precio)){
-        alert("El campo Precio solo debe contener númeos");
+        Swal.fire("El campo Precio solo debe contener números");
         return false;
     }
 }
@@ -82,7 +66,7 @@ function validarEditImagen1(){
     nuevaImagen1 = document.getElementById("imagen1Nueva").value;
 
     if(nuevaImagen1 == ""){
-        alert("Debe cargar la nueva imagen #1 del producto");
+        Swal.fire("Debe cargar la nueva imagen #1 del producto");
         return false;
     }
 }
@@ -94,7 +78,7 @@ function validarEditImagen2(){
     nuevaImagen2 = document.getElementById("imagen2Nueva").value;
 
     if(nuevaImagen2 == ""){
-        alert("Debe cargar la nueva imagen #2 del producto");
+        Swal.fire("Debe cargar la nueva imagen #2 del producto");
         return false;
     }
 }
@@ -105,7 +89,7 @@ function validarEditImagen3(){
     nuevaImagen3 = document.getElementById("imagen3Nueva").value;
 
     if(nuevaImagen3 == ""){
-        alert("Debe cargar la nueva imagen #3 del producto");
+        Swal.fire("Debe cargar la nueva imagen #3 del producto");
         return false;
     }
 }
@@ -120,15 +104,15 @@ function validarEditImagenes(){
     nuevaImagen3 = document.getElementById("imagen3").value;
 
     if(nuevaImagen1 == ""){
-        alert("Debe cargar la imagen #1 del producto");
+        Swal.fire("Debe cargar la imagen #1 del producto");
         return false;
     }
     else if(nuevaImagen2 == ""){
-        alert("Debe cargar la imagen #2 del producto");
+        Swal.fire("Debe cargar la imagen #2 del producto");
         return false;
     }
     else if(nuevaImagen3 == ""){
-        alert("Debe cargar la imagen #3 del producto");
+        Swal.fire("Debe cargar la imagen #3 del producto");
         return false;
     }
 

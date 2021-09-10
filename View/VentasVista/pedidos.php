@@ -132,13 +132,13 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                 <td><?php echo $ventas['Total']; ?></td>
                                                 <td>
                                                     <?php if ($ventas['IdEstadoPedido'] == 1) {
-                                                        echo '<span class="badge bg-warning">Pendiente</span>';
+                                                        echo '<span class="badge bg-warning text-light">Pendiente</span>';
                                                     } else if ($ventas['IdEstadoPedido'] == 2) {
-                                                        echo '<span class="badge bg-success">En proceso</span>';
+                                                        echo '<span class="badge bg-success text-light">En proceso</span>';
                                                     } else if ($ventas['IdEstadoPedido'] == 3) {
-                                                        echo '<span class="badge bg-danger">Cancelado</span>';
+                                                        echo '<span class="badge bg-danger text-light">Cancelado</span>';
                                                     } else {
-                                                        echo '<span class="badge bg-primary">Enviado</span>';
+                                                        echo '<span class="badge bg-primary text-light">Enviado</span>';
                                                     }
                                                     ?>
                                                 </td>
@@ -147,7 +147,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                     <form action="../../Controller/VentasControlador/ControladorVentas.php" method="POST" accept-charset="utf-8">
                                                         <input type="hidden" name="IdPedido" value="<?php echo $ventas['IdPedido']; ?>">
 
-                                                        <button type="submit" id="verDetalleVenta" name="verDetalleVenta" class="btn btn-primary">Ver Detalle</button>
+                                                        <button type="submit" id="verDetalleVenta" name="verDetalleVenta" class="btn btn-warning"><i class="fa fa-eye"></i></button>
 
                                                         <!-- <button type="submit" id="eliminarUsuario"  name="eliminarUsuario" class="btn btn-warning">Eliminar</button> -->
 

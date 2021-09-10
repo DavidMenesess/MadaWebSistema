@@ -125,22 +125,22 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="nombreProducto">Nombre:</label>
-                                                <input type="text" class="form-control" name="nombreProducto" id="nombreProducto" required>
+                                                <input type="text" class="form-control" name="nombreProducto" id="nombreProducto">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="descripcionProducto">Descripción:</label>
-                                                <input type="text" class="form-control" name="descripcionProducto" id="descripcionProducto" required>
+                                                <input type="text" class="form-control" name="descripcionProducto" id="descripcionProducto">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="precioProducto">Precio:</label>
-                                                <input type="number" class="form-control" name="precioProducto" id="precioProducto" required>
+                                                <input type="text" class="form-control" name="precioProducto" id="precioProducto">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <div class="input-group-prepend">
                                                     <label for="categoria">Categoría:</label>
                                                 </div>
 
-                                                <select class="custom-select" id="categoriaProducto" name="categoria" required>
+                                                <select class="custom-select" id="categoriaProducto" name="categoria">
                                                     <option selected>Seleccionar</option>
                                                     <?php
                                                     foreach ($listaCategorias as $categoria) {
@@ -154,15 +154,15 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                             </div>
                                             <div class="form-group">
                                                 <label for="foto1">Imagen1:</label>
-                                                <input type="file" class="form-control-file" name="foto1" id="foto1" required>
+                                                <input type="file" class="form-control-file" name="foto1" id="foto1">
                                             </div>
                                             <div class="form-group">
                                                 <label for="foto2">Imagen2:</label>
-                                                <input type="file" class="form-control-file" name="foto2" id="foto2" required>
+                                                <input type="file" class="form-control-file" name="foto2" id="foto2">
                                             </div>
                                             <div class="form-group">
                                                 <label for="foto3">Imagen3:</label>
-                                                <input type="file" class="form-control-file" name="foto3" id="foto3" required>
+                                                <input type="file" class="form-control-file" name="foto3" id="foto3">
                                             </div>
                                         </div>
 

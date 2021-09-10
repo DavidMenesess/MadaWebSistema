@@ -5,7 +5,10 @@ require('../../Controller/UsuariosControlador/ControladorAdministrador.php');
 
 $listarAdministrador = $ControladorAdministrador ->listarAdministrador();
 
-
+session_start();
+if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión lo redirecciona al login
+    header("Location: ../../View/AccesoVista/login.php");
+}
 
 
 class PDF extends FPDF

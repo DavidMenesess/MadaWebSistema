@@ -124,11 +124,11 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="nombreCategoria">Nombre:</label>
-                                                <input type="text" class="form-control" name="nombreCategoria" id="nombreCategoria" required>
+                                                <input type="text" class="form-control" name="nombreCategoria" id="nombreCategoria">
                                             </div>
                                             <div class="form-group">
                                                 <label for="foto">Imagen:</label>
-                                                <input type="file" class="form-control-file" name="foto" id="foto" required>
+                                                <input type="file" class="form-control-file" name="foto" id="foto">
                                             </div>
                                         </div>
 

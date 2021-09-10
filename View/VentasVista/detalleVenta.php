@@ -60,8 +60,8 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
             </a>
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link" href="administradores.php">Administradores</a>
-                <a class="nav-link" href="clientes.php">Clientes</a>
+                <a class="nav-link" href="../UsuariosVista/administradores.php">Administradores</a>
+                <a class="nav-link" href="../UsuariosVista/clientes.php">Clientes</a>
               </nav>
             </div>
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -97,12 +97,12 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
     <div id="layoutSidenav_content">
       <main>
         <div class="container-fluid">
-          <h1 class="mt-4">Administrador MADA</h1>
+          <h1 class="mt-4 text-center">Gestión de detalles de venta</h1>
           <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Detalle Venta</li>
+            <li class="breadcrumb-item active">Gestiona detalladamente la compra de un respectivo cliente</li>
           </ol>
 
-          <h3 align="center">Detalle de la venta</h3>
+          <h3 class="text-center">Detalle de la venta</h3>
           <br>
 
           <div class="row">
@@ -151,7 +151,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                   <th scope="col">Valor Unitario</th>
                   <th scope="col">Cantidad</th>
                   <th scope="col">Iva</th>
-                  <th scope="col">Acciones</th>
+                  <th scope="col">Anular</th>
                 </tr>
               </thead>
               <tbody>
@@ -179,7 +179,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                       <?php
                       if ($deta['IdEstadoPedido'] < 3) {
                       ?>
-                        <button type="button" id="anularProductoVenta" onclick="anularProductoVenta(<?php echo $deta['IdDetallePedido']; ?>,<?php echo $deta['ValorUnitario']; ?>,<?php echo $detalle['Total']; ?>,<?php echo $detalle['Subtotal']; ?>,<?php echo $deta['IdPedido']; ?>,<?php echo $deta['Cantidad']; ?>,<?php echo $deta['IdDetalleProducto']; ?>,<?php echo $deta['Stock']; ?>,<?php echo $TotalIvaIndi; ?>);" name="anularProductoVenta" class="btn btn-primary">Anular</button>
+                        <button type="button" id="anularProductoVenta" onclick="anularProductoVenta(<?php echo $deta['IdDetallePedido']; ?>,<?php echo $deta['ValorUnitario']; ?>,<?php echo $detalle['Total']; ?>,<?php echo $detalle['Subtotal']; ?>,<?php echo $deta['IdPedido']; ?>,<?php echo $deta['Cantidad']; ?>,<?php echo $deta['IdDetalleProducto']; ?>,<?php echo $deta['Stock']; ?>,<?php echo $TotalIvaIndi; ?>);" name="anularProductoVenta" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
                       <?php
                       } else if ($deta['IdEstadoPedido'] == 3) {
                         echo '<span class="badge bg-danger">Cancelado</span>';
@@ -220,7 +220,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
               <form action="../../Controller/VentasControlador/ControladorVentas.php" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="IdPedido" value="<?php echo $detalle['IdPedido']; ?>">
 
-                <button type="submit" id="factura" name="factura" class="btn btn-success">Generar recibo de venta</button>
+                <button type="submit" id="factura" name="factura" class="btn btn-danger">Generar recibo de venta <i class="fas fa-file-pdf"></i> pdf</button>
 
               </form>
 
@@ -262,7 +262,6 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                 <option value="4">Enviado</option>
                               </select>
                               <input type="hidden" name="idPedido" id="idPedido" value="<?php echo $detalle['IdPedido']; ?>">
-
                             <?php
                             } else {
                               echo '<div class="alert alert-danger" role="alert">
@@ -270,8 +269,6 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                             </div>';
                             }
                             ?>
-
-
                           </div>
                           <div class="form-group col-md-10">
                             <label for="Estado">Estado Actual: </label>
@@ -285,13 +282,8 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                               echo '<span class="badge bg-primary">Enviado</span>';
                             }
                             ?>
-
-
                           </div>
-
-
                       </div>
-
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerar</button>
@@ -302,15 +294,12 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                 </div>
               </div>
               <!-- Modal -->
-
             </div>
             <!-- Estado      -->
-
-
             <!-- Mostar Productos Anulados -->
             <div class="form-group col-md-3">
               <!-- Large modal -->
-              <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".bd-example-modal-lg">Productos anulados</button>
+              <button type="button" class="btn btn-warning text-light" data-toggle="modal" data-target=".bd-example-modal-lg">Productos anulados</button>
 
               <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -360,8 +349,6 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
 
             </div>
             <!-- ostar Productos Anulados -->
-
-
             <!-- Anular producto venta -->
             <div class="modal fade" id="AnularModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -374,7 +361,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                   </div>
                   <div class="modal-body">
                     <div class="form-group">
-                      <label for="Observacion" class="col-form-label">Escribe a continuación el por qué de la anulación de este producto:</label>
+                      <label for="Observacion" class="col-form-label">Escribe a continuación el por qué de la anulación de este producto en el pedido:</label>
                       <input style="height: 98px" type="text" class="form-control" placeholder="Escribe aquí la observación" id="Observacion" name="Observacion" required></input>
                       <br>
                       <div id="containerAlerta">

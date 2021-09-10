@@ -104,11 +104,11 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required value="<?php echo $listarAdministrador['Nombre'] ?>">
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $listarAdministrador['Nombre'] ?>">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="apellido">Apellidos</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido" required value="<?php echo $listarAdministrador['Apellido'] ?>">
+                                <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo $listarAdministrador['Apellido'] ?>">
                             </div>
                         </div>
                         <div class="form-group">
@@ -139,6 +139,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
     <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
     <script src="../../libraries/bootstrap.bundle.min.js"></script>
     <script src="../../js/scripts.js"></script>
+    <script src="../../libraries/sweetalert2@11.js"></script>
     <script src="../../js/validaciones/validacionesUsuarios.js"></script>
     <script src="../../libraries/jquery.dataTables.min.js"></script>
     <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
@@ -147,19 +148,3 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
 </html>
 
 
-<script>
-    function validarEditAdministrador() {
-
-        nombre = document.getElementById("nombre").value;
-        apellido = document.getElementById("apellido").value;
-
-        if (nombre == "") {
-            alert("Debe ingresar el nombre");
-            return false;
-        } else if (apellido == "") {
-            alert("Debe ingresar el apellido");
-            return false;
-        }
-
-    }
-</script>
