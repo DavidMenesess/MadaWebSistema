@@ -59,7 +59,7 @@ class ControladorCliente
 		$usuario->setEstado($EstadoActualizado);
 		$CrudCliente = new CrudCliente();
 		$CrudCliente->actualizarEstadoCliente($usuario);
-		header('Location:../../View/UsuariosVista/clientes.php');
+		//header('Location:../../View/UsuariosVista/clientes.php');
 	}
 
 	public function actualizarDatosCliente($idCliente, $nombre, $apellido)

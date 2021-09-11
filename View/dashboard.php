@@ -17,10 +17,11 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
     <title>Mada || Administración</title>
     <link href="../css/styles.css" rel="stylesheet" />
     <link href="../libraries/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/estiloReloj.css">
     <script src="../libraries/fontawesome.js"></script>
 </head>
 
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed" onload="startTime()">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="dashboard.php">Mada</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
@@ -91,6 +92,13 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">¡Bienvenid@ nuevamente! <b><?php echo $_SESSION['Nombre']; ?></b></li>
                     </ol>
+                    <div id="clockdate">
+                        <div class="clockdate-wrapper">
+                            <div id="clock"></div>
+                            <div id="date"></div>
+                        </div>
+                    </div>
+                    <br>
                     <div class="accordion" id="accordionExample">
                         <div class="card">
                             <div class="card-header" id="headingOne">
@@ -101,7 +109,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                 </h2>
                             </div>
                             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                <div class="bg-info text-light">Selecciona el módulo con el que tienes dudas</div>
+                                <div class="bg-info text-light text-center">Selecciona el módulo con el que tienes dudas</div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-xl-3 col-md-6">
@@ -246,6 +254,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
     <script src="../js/scripts.js"></script>
     <script src="../libraries/jquery.dataTables.min.js"></script>
     <script src="../libraries/dataTables.bootstrap4.min.js"></script>
+    <script src="../js/reloj.js"></script>
 </body>
 <script>
     $(document).ready(function() {

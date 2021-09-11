@@ -193,7 +193,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                     <form action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8">
                                                         <input type="hidden" name="IdUsuario" value="<?php echo $cliente['IdUsuario']; ?>">
                                                         <input type="hidden" name="Estado" value="<?php echo $cliente['Estado']; ?>">
-                                                        <button type="" id="actualizarUsuario" name="actualizarCliente" class="btn btn-primary" onclick="return confirm('¿Está seguro de cambiar el estado del usuario?');"><i class="fas fa-exchange-alt"></i></button>
+                                                        <button type="button" id="actualizarUsuario" name="actualizarCliente" class="btn btn-primary" onclick="cambiarEstadoCliente(<?php echo $cliente['IdUsuario'], $cliente['Estado']?>)"><i class="fas fa-exchange-alt"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -226,6 +226,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
 
 
     <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
     <script src="../../libraries/sweetalert2@11.js"></script>
     <script src="../../libraries/bootstrap.bundle.min.js"></script>
     <script src="../../js/scripts.js"></script>
@@ -261,6 +262,56 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
         },
 
     });
+</script>
+
+<script>
+
+function cambiarEstadoCliente(idUsuario,estado){
+
+    let formData = new FormData();
+    formData.append('IdUsuario',idUsuario);
+    formData.append('Estado',estado);
+    formData.append('actualizarCliente','');
+
+    Swal.fire({
+        title: '¿Seguro que deseas cambiar el estado del usuario?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Si, cambialo!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            $.ajax({
+                url:'../../Controller/UsuariosControlador/ControladorClientes.php', //petición asincrona al controlador
+                type: 'post',
+                data:formData,
+                contentType:false,
+                processData:false,
+                success: function(response){
+                    if(response == 1){
+                        location.reload("clientes.php");
+                        Swal.fire(
+                        'Eliminado!',
+                        'El registro ha sido eliminado',
+                        'success'
+                        );
+                    }
+                    else{
+                        Swal.fire(
+                        'Ocurrio un error!',
+                        response,
+                        'info'
+                        );
+                    }
+                    
+                }
+            }); 
+        }
+    });
+}
+
 </script>
 
 

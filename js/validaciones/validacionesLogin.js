@@ -66,11 +66,11 @@ function validarCorreoRestablecer(){
     correo = document.getElementById("recuperarContra").value;
 
     if(correo == ""){
-        alert("Debe ingresar el correo electrónico con el cual se encuentra registrado");
+        Swal.fire("Debe ingresar el correo electrónico con el cual se encuentra registrado");
         return false;
     }
     else if(!expresionCorreo.test(correo)){
-        alert("Debe ingresar un formato válido de correo electrónico");
+        Swal.fire("Debe ingresar un formato válido de correo electrónico");
         return false;
     }
 

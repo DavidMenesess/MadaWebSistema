@@ -1,83 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Registrarse - Mada</title>
-        <link href="../../css/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="bg-secondary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-7">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Crear mi cuenta</h3></div>
-                                    <div class="card-body">
-                                        <form action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST" onsubmit="return validarCamposRegistrar();">
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input class="form-control py-4" id="nombre" name="nombre" type="text" placeholder="Nombre" autocomplete="off"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input class="form-control py-4" id="apellido" name="apellido" type="text" placeholder="Apellidos" autocomplete="off"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input class="form-control py-4" id="correo" name="correo" type="text" placeholder="Correo electrónico" autocomplete="off"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input class="form-control py-4" id="contrasena" name="contrasena" type="password" placeholder="Contraseña" autocomplete="off"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group mt-4 mb-0">
-                                            <button type="submit" class="btn btn-primary btn-block" id="registrarUsuario" name="registrarUsuario">Crear cuenta</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <div class="small"><a href="login.php">¿Ya tienes una cuenta? ¡Ingresa!</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Todos los derechos reservados &copy; Mada 2021</div>
-                            <div>
-                                <a href="#">Políticas de privacidad</a>
-                                &middot;
-                                <a href="#">Términos &amp; Condiciones</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
-        <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
-        <script src="../../libraries/bootstrap.bundle.min.js"></script>
-        <script src="../../js/scripts.js"></script>
-        <script src="../../js/validaciones/validacionesLogin.js"></script>
-        <script src="../../libraries/sweetalert2@11.js"></script>
-    </body>
+<head>
+	<title>Registrarse || Mada</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../../fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../../vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../../vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../../vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../../vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../../vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../../css/utilLogin.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mainLogin.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+				<form class="login100-form validate-form flex-sb flex-w" action="../../Controller/AccesoControlador/controladorAcceso.php" method="POST" autocomplete="off" onsubmit="return validarCamposRegistrar()" >
+					<span class="login100-form-title p-b-32 text-center">
+						Mada
+					</span>
+
+					<span class="txt1 p-b-11">
+						Nombre
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "El nombre es necesario">
+						<input class="input100" type="text" name="nombre" id="nombre" >
+						<span class="focus-input100"></span>
+					</div>
+					
+					<span class="txt1 p-b-11">
+						Apellidos
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "El apellido es necesario">
+						<input class="input100" type="text" name="apellido" id="apellido" >
+						<span class="focus-input100"></span>
+					</div>
+
+                    <span class="txt1 p-b-11">
+						Correo
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "El correo es necesario">
+						<input class="input100" type="text" name="correo" id="correo" >
+						<span class="focus-input100"></span>
+					</div>
+					
+					<span class="txt1 p-b-11">
+						Contraseña
+					</span>
+					<div class="wrap-input100 validate-input m-b-12" data-validate = "La contraseña es necesaria">
+						<span class="btn-show-pass">
+							<i class="fa fa-eye"></i>
+						</span>
+						<input class="input100" type="password" name="contrasena" id="contrasena" >
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="flex-sb-m w-full p-b-48">
+						<div class="contact100-form">
+							<a href="login.php" class="txt3">
+								¿Ya tienes una cuenta? ¡Ingresa!
+							</a>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" name="registrarUsuario" id="registrarUsuario">
+							Registrar
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+<!--===============================================================================================-->
+	<script src="../../vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../../vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../../vendor/bootstrap/js/popper.js"></script>
+	<script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../../vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../../vendor/daterangepicker/moment.min.js"></script>
+	<script src="../../vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="../../vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="../../js/mainLogin.js"></script>
+
+    <script src="../../js/scripts.js"></script>
+    <script src="../../js/validaciones/validacionesLogin.js"></script>
+    <script src="../../libraries/sweetalert2@11.js"></script>
+
+</body>
 </html>
