@@ -15,6 +15,8 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
             return $crudProducto->listarProductos();
         }
 
+        
+
         public function listarCategorias(){
             $crudProducto = new CrudProducto();
             return $crudProducto->obtenerCategorias();

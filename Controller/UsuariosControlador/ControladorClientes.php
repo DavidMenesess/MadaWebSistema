@@ -48,15 +48,15 @@ class ControladorCliente
 
 	public function actualizarEstadoCliente($IdUsuario, $Estado)
 	{
-		$EstadoActualizado = null;
-		if ($Estado == 1) {
-			$EstadoActualizado = 0;
-		} elseif ($Estado == 0) {
-			$EstadoActualizado = 1;
-		}
+		// $EstadoActualizado = null;
+		// if ($Estado == 1) {
+		// 	$EstadoActualizado = 0;
+		// } elseif ($Estado == 0) {
+		// 	$EstadoActualizado = 1;
+		// }
 		$usuario = new usuario();
 		$usuario->setIdUsuario($IdUsuario);
-		$usuario->setEstado($EstadoActualizado);
+		$usuario->setEstado($Estado);
 		$CrudCliente = new CrudCliente();
 		$CrudCliente->actualizarEstadoCliente($usuario);
 		//header('Location:../../View/UsuariosVista/clientes.php');

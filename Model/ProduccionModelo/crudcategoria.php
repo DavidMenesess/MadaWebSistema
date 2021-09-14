@@ -16,6 +16,8 @@ class crudcategoria
 
     }
 
+    
+
     public function registrarCategorias($categoria)
     {
         $mensaje = "";

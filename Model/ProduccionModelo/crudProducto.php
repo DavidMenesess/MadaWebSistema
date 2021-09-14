@@ -16,6 +16,7 @@
             return $sql->fetchAll();
         }
 
+
         public function obtenerCategorias(){
             $Db = Db::Conectar();
             $sql= $Db->query("SELECT IdCategoria,NombreCategoria FROM categorias WHERE Estado = 1");

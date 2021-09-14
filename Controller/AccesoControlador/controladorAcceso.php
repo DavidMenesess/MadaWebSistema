@@ -101,7 +101,7 @@ class controladorAcceso{
         $_SESSION['rol'] = $usuario->getRol();
         $_SESSION['nombre'] = $usuario->getNombre();
         $_SESSION['id'] = $usuario->getIdUsuario();
-        header("Location: ../../index.php");
+        header("Location: ../../View/UsuariosVista/index.php");
 
       }
 
@@ -117,7 +117,7 @@ class controladorAcceso{
     else if(isset($_GET['cerrarSesion'])){//Destruir la variable de sesión
       session_start();
       session_destroy();
-      header("Location: ../../index.php");
+      header("Location: ../../View/UsuariosVista/index.php");
     }
 
     if(isset($_POST['registrarUsuario'])){

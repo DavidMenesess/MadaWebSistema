@@ -80,7 +80,7 @@
 				</form>
 			</div>
 			<div class="container-login100-form-btn">
-				<a href="../../index.php" class="login100-form-btn-regresarTienda" name="validarAcceso" id="validarAcceso">
+				<a href="../../View/UsuariosVista/index.php" class="login100-form-btn-regresarTienda" name="validarAcceso" id="validarAcceso">
 					Volver a la tienda
 				</a>
 			</div>

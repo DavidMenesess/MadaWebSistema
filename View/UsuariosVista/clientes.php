@@ -190,11 +190,8 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <form action="../../Controller/UsuariosControlador/ControladorClientes.php" method="POST" accept-charset="utf-8">
-                                                        <input type="hidden" name="IdUsuario" value="<?php echo $cliente['IdUsuario']; ?>">
-                                                        <input type="hidden" name="Estado" value="<?php echo $cliente['Estado']; ?>">
-                                                        <button type="button" id="actualizarUsuario" name="actualizarCliente" class="btn btn-primary" onclick="cambiarEstadoCliente(<?php echo $cliente['IdUsuario'], $cliente['Estado']?>)"><i class="fas fa-exchange-alt"></i></button>
-                                                    </form>
+                                                    <button type="button" id="actualizarUsuario" name="actualizarCliente" class="btn btn-primary" onclick="actualizarUsuario(<?php echo $cliente['IdUsuario']?>,<?php  echo $cliente['Estado']?>)"><i class="fas fa-exchange-alt"></i></button>
+                                                    
                                                 </td>
                                             </tr>
                                         <?php
@@ -266,51 +263,107 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
 
 <script>
 
-function cambiarEstadoCliente(idUsuario,estado){
+function actualizarUsuario(IdUsuario,Estado){
+                // alert(IdUsuario, Estado);
+                Swal.fire({
+                title: 'Cambiar estado del cliente',
+                text: "Se va a cambiar estado del cliente ¿Seguro?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, cambiar estado!',
+                cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                if (result.isConfirmed) {
 
-    let formData = new FormData();
-    formData.append('IdUsuario',idUsuario);
-    formData.append('Estado',estado);
-    formData.append('actualizarCliente','');
-
-    Swal.fire({
-        title: '¿Seguro que deseas cambiar el estado del usuario?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '¡Si, cambialo!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-
-            $.ajax({
-                url:'../../Controller/UsuariosControlador/ControladorClientes.php', //petición asincrona al controlador
-                type: 'post',
-                data:formData,
-                contentType:false,
-                processData:false,
-                success: function(response){
-                    if(response == 1){
-                        location.reload("clientes.php");
-                        Swal.fire(
-                        'Eliminado!',
-                        'El registro ha sido eliminado',
-                        'success'
-                        );
+                    $estado = null;
+                    if (Estado == 0) {
+                        $estado = 1; 
+                    }else{
+                        $estado = 0;
                     }
-                    else{
-                        Swal.fire(
-                        'Ocurrio un error!',
-                        response,
-                        'info'
-                        );
-                    }
-                    
-                }
-            }); 
+                    Estado = $estado;
+                    var formData = new FormData();
+                    formData.append('actualizarCliente','');
+                    formData.append('IdUsuario',IdUsuario);
+                    formData.append('Estado', Estado);
+
+                    $.ajax({
+                        url: '../../Controller/UsuariosControlador/ControladorClientes.php',
+                        type: 'post',
+                        data:formData,
+                        contentType:false,
+                        processData:false,
+                        success: function(response){
+                            // alert(response);
+                            Swal.fire({
+                              title: 'El estado se ha cambiado',
+                              icon: 'success',
+                              confirmButtonText: `OK`,
+
+                            }).then((result) => {
+                              /* Read more about isConfirmed, isDenied below */
+                              if (result.isConfirmed) {
+                                location.reload(); 
+                              }
+                            })
+                            
+                        }
+                        
+
+                    });
+                    // 
+
+                  }
+                })
         }
-    });
-}
+
+// function cambiarEstadoCliente(idUsuario,estado){
+
+//     let formData = new FormData();
+//     formData.append('IdUsuario',idUsuario);
+//     formData.append('Estado',estado);
+//     formData.append('actualizarCliente','');
+
+//     Swal.fire({
+//         title: '¿Seguro que deseas cambiar el estado del usuario?',
+//         icon: 'warning',
+//         showCancelButton: true,
+//         confirmButtonColor: '#3085d6',
+//         cancelButtonColor: '#d33',
+//         confirmButtonText: '¡Si, cambialo!'
+//     }).then((result) => {
+//         if (result.isConfirmed) {
+
+//             $.ajax({
+//                 url:'../../Controller/UsuariosControlador/ControladorClientes.php', //petición asincrona al controlador
+//                 type: 'post',
+//                 data:formData,
+//                 contentType:false,
+//                 processData:false,
+//                 success: function(response){
+//                     if(response == 1){
+//                         location.reload("clientes.php");
+//                         Swal.fire(
+//                         'Eliminado!',
+//                         'El registro ha sido eliminado',
+//                         'success'
+//                         );
+//                     }
+//                     else{
+//                         Swal.fire(
+//                         'Ocurrio un error!',
+//                         response,
+//                         'info'
+//                         );
+//                     }
+                    
+//                 }
+//             }); 
+//         }
+//     });
+// }
 
 </script>
 
