@@ -16,7 +16,6 @@ class controladorVistaCliente{
     }
 
     public function obtenerDatosProducto($idProducto){
-        var_dump($idProducto);
         $crudVista = new CrudVista();
 		return $crudVista->obtenerDatosProducto($idProducto);
     }

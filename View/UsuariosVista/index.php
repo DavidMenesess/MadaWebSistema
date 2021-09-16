@@ -168,9 +168,14 @@ session_start();
 				<li>
 					<a href="shoping-cart.html">Categorías</a>
 					<ul class="sub-menu-m">
-						<li><a href="#">Categoría 1</a></li>
-						<li><a href="#">Categoría 2</a></li>
-						<li><a href="#">Categoría 3</a></li>
+						<?php
+							foreach($listarcategorias as $listar){
+						?>
+							<li><a href="#"><?php echo $listar['NombreCategoria']?></a></li>
+									
+						<?php
+							}
+						?>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
