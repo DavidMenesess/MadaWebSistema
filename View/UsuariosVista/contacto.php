@@ -1,37 +1,44 @@
+
 <?php
+
+include "../../Controller/VistaClienteControlador/controladorVistaCliente.php";
+
+
+$listarcategorias = $controladorVistaCliente->listarCategoriasVista();
+$listarProductos = $controladorVistaCliente->listarProductosVista();
+
 session_start();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Nosotros || Mada</title>
+	<title>Contacto || Mada</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../../fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../../fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="../../vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="../../css/util.css">
+	<link rel="stylesheet" type="text/css" href="../../css/main.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -52,7 +59,7 @@ session_start();
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Inicio</a>
+								<a href="index.php">Inicio</a>
 							</li>
 
 							<li>
@@ -62,24 +69,29 @@ session_start();
 							<li>
 								<a href="#">Categorías</a>
 								<ul class="sub-menu">
-									<li><a href="#">Categoría 1</a></li>
-									<li><a href="#">Categoría 2</a></li>
-									<li><a href="#">Categoría 3</a></li>
+									<?php
+									foreach($listarcategorias as $listar){
+									?>
+									<li><a href="#"><?php echo $listar['NombreCategoria']?></a></li>
+									
+									<?php
+									}
+									?>
 								</ul>
 							</li>
 
 							<li>
-								<a href="about.html">Nosotros</a>
+								<a href="nosotros.php">Nosotros</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contacto</a>
+								<a href="contacto.php">Contacto</a>
 							</li>
 							<?php
 							if(!isset($_SESSION['correo'])){
 							?>
 							<li>
-								<a href="View/AccesoVista/login.php">Ingresar</a>
+								<a href="../AccesoVista/login.php">Ingresar</a>
 							</li>
 							<?php
 							}
@@ -89,11 +101,11 @@ session_start();
 							?>
 
 							<li>
-								<a href="View/UsuariosVista/perfilCliente.php?idCliente=<?php echo $_SESSION['id'] ?>">Mí perfíl</a>
+								<a href="perfilCliente.php?idCliente=<?php echo $_SESSION['id'] ?>">Mí perfíl</a>
 							</li>
 
 							<li>
-							  <a href="Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
+							  <a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
 							</li>
 							<?php
 							}
@@ -135,23 +147,27 @@ session_start();
 
 
 		<!-- Menu Mobile -->
-		<!-- Menu Mobile -->
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Inicio</a>
+					<a href="index.php">Inicio</a>
 				</li>
 
 				<li>
-					<a href="product.html">Productos</a>
+					<a href="productosC.php">Productos</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.html">Categorías</a>
+					<a href="#">Categorías</a>
 					<ul class="sub-menu-m">
-						<li><a href="#">Categoría 1</a></li>
-						<li><a href="#">Categoría 2</a></li>
-						<li><a href="#">Categoría 3</a></li>
+						<?php
+							foreach($listarcategorias as $listar){
+						?>
+							<li><a href="#"><?php echo $listar['NombreCategoria']?></a></li>
+									
+						<?php
+							}
+						?>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -159,18 +175,18 @@ session_start();
 				</li>
 
 				<li>
-					<a href="about.html">Nosotros</a>
+					<a href="nosotros.php">Nosotros</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Contacto</a>
+					<a href="contacto.php">Contacto</a>
 				</li>
 
 				<?php
 				if(!isset($_SESSION['correo'])){
 				?>
 				<li>
-					<a href="View/AccesoVista/login.php">Ingresar</a>
+					<a href="../AccesoVista/login.php">Ingresar</a>
 				</li>
 				<?php
 				 }
@@ -180,32 +196,16 @@ session_start();
 				if(isset($_SESSION['correo'])){
 				?>
 				<li>
-					<a href="View/UsuariosVista/perfilCliente.php?idCliente=<?php echo $_SESSION['id'] ?>">Mí perfíl</a>
+					<a href="perfilCliente.php?idCliente=<?php echo $_SESSION['id'] ?>">Mí perfíl</a>
 				</li>
 
 				<li>
-					<a href="Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
+					<a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
 				</li>
 				<?php
 				 }
 				?>
 			</ul>
-		</div>
-
-		<!-- Modal Search -->
-		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-			<div class="container-search-header">
-				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="images/icons/icon-close2.png" alt="CLOSE">
-				</button>
-
-				<form class="wrap-search-header flex-w p-l-15">
-					<button class="flex-c-m trans-04">
-						<i class="zmdi zmdi-search"></i>
-					</button>
-					<input class="plh3" type="text" name="search" placeholder="Search...">
-				</form>
-			</div>
 		</div>
 	</header>
 
@@ -296,69 +296,84 @@ session_start();
 
 
 	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../../images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
-			Sobre Mada
+			Contacto
 		</h2>
 	</section>	
 
 
 	<!-- Content page -->
-	<section class="bg0 p-t-75 p-b-120">
+	<section class="bg0 p-t-104 p-b-116">
 		<div class="container">
-			<div class="row p-b-148">
-				<div class="col-md-7 col-lg-8">
-					<div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
-						<h3 class="mtext-111 cl2 p-b-16">
-							Nuestra historia
-						</h3>
+			<div class="flex-w flex-tr">
+				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+					<form>
+						<h4 class="mtext-105 cl2 txt-center p-b-30">
+							Escribenos
+						</h4>
 
-						<p class="stext-113 cl6 p-b-26">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat consequat enim, non auctor massa ultrices non. Morbi sed odio massa. Quisque at vehicula tellus, sed tincidunt augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas varius egestas diam, eu sodales metus scelerisque congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas gravida justo eu arcu egestas convallis. Nullam eu erat bibendum, tempus ipsum eget, dictum enim. Donec non neque ut enim dapibus tincidunt vitae nec augue. Suspendisse potenti. Proin ut est diam. Donec condimentum euismod tortor, eget facilisis diam faucibus et. Morbi a tempor elit.
-						</p>
-
-						<p class="stext-113 cl6 p-b-26">
-							Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. 
-						</p>
-					</div>
-				</div>
-
-				<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
-					<div class="how-bor1 ">
-						<div class="hov-img0">
-							<img src="images/about-01.jpg" alt="IMG">
+						<div class="bor8 m-b-20 how-pos4-parent">
+							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Tu correo">
+							<img class="how-pos4 pointer-none" src="../../images/icons/icon-email.png" alt="ICON">
 						</div>
-					</div>
+
+						<div class="bor8 m-b-30">
+							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="¿En que podemos ayudarte?"></textarea>
+						</div>
+
+						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+							Enviar
+						</button>
+					</form>
 				</div>
-			</div>
-			
-			<div class="row">
-				<div class="order-md-2 col-md-7 col-lg-8 p-b-30">
-					<div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
-						<h3 class="mtext-111 cl2 p-b-16">
-							Nuestra Misión
-						</h3>
 
-						<p class="stext-113 cl6 p-b-26">
-							Mauris non lacinia magna. Sed nec lobortis dolor. Vestibulum rhoncus dignissim risus, sed consectetur erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam maximus mauris sit amet odio convallis, in pharetra magna gravida. Praesent sed nunc fermentum mi molestie tempor. Morbi vitae viverra odio. Pellentesque ac velit egestas, luctus arcu non, laoreet mauris. Sed in ipsum tempor, consequat odio in, porttitor ante. Ut mauris ligula, volutpat in sodales in, porta non odio. Pellentesque tempor urna vitae mi vestibulum, nec venenatis nulla lobortis. Proin at gravida ante. Mauris auctor purus at lacus maximus euismod. Pellentesque vulputate massa ut nisl hendrerit, eget elementum libero iaculis.
-						</p>
+				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
+					<div class="flex-w w-full p-b-42">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-map-marker"></span>
+						</span>
 
-						<div class="bor16 p-l-29 p-b-9 m-t-22">
-							<p class="stext-114 cl6 p-r-40 p-b-11">
-								Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
-							</p>
-
-							<span class="stext-111 cl8">
-								- Steve Job’s 
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								Dirección
 							</span>
+
+							<p class="stext-115 cl6 size-213 p-t-18">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit
+							</p>
 						</div>
 					</div>
-				</div>
 
-				<div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
-					<div class="how-bor2">
-						<div class="hov-img0">
-							<img src="images/about-02.jpg" alt="IMG">
+					<div class="flex-w w-full p-b-42">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-phone-handset"></span>
+						</span>
+
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								Hablemos
+							</span>
+
+							<p class="stext-115 cl1 size-213 p-t-18">
+								+57 123456789
+							</p>
+						</div>
+					</div>
+
+					<div class="flex-w w-full">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-envelope"></span>
+						</span>
+
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								Soporte al cliente
+							</span>
+
+							<p class="stext-115 cl1 size-213 p-t-18">
+								contact@example.com
+							</p>
 						</div>
 					</div>
 				</div>
@@ -366,10 +381,8 @@ session_start();
 		</div>
 	</section>	
 	
-		
-
-		<!-- Footer -->
-		<footer class="bg3 p-t-75 p-b-32">
+	<!-- Footer -->
+	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-lg-3 p-b-50">
@@ -492,14 +505,14 @@ session_start();
 	</div>
 
 <!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../../vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="../../vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../vendor/bootstrap/js/popper.js"></script>
+	<script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+	<script src="../../vendor/select2/select2.min.js"></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -509,9 +522,9 @@ session_start();
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script src="../../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="../../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');
@@ -528,7 +541,7 @@ session_start();
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
-	
+	<script src="../../js/main.js"></script>
+
 </body>
 </html>

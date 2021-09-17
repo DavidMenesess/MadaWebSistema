@@ -1,8 +1,9 @@
 <?php
 
 require_once('../../Controller/UsuariosControlador/ControladorClientes.php');
-$cliente = $ControladorCliente->buscarCliente($_GET['idCliente']);
 
+$listarcategorias = $ControladorCliente->listarCategoriasPerfilCliente(); 
+$cliente = $ControladorCliente->buscarCliente($_GET['idCliente']);
 
 session_start();
 if (!isset($_SESSION['correo'])) {
@@ -67,51 +68,55 @@ if (!isset($_SESSION['correo'])) {
 							</li>
 
 							<li>
-								<a href="product.html">Productos</a>
+								<a href="productosC.php">Productos</a>
 							</li>
 
 							<li>
-								<a href="shoping-cart.html">Categorías</a>
+								<a href="#">Categorías</a>
 								<ul class="sub-menu">
-									<li><a href="#">Categoría 1</a></li>
-									<li><a href="#">Categoría 2</a></li>
-									<li><a href="#">Categoriá 3</a></li>
+									<?php
+									foreach($listarcategorias as $listar){
+									?>
+									<li><a href="#"><?php echo $listar['NombreCategoria']?></a></li>
+									
+									<?php
+									}
+									?>
 								</ul>
 							</li>
 
 							<li>
-								<a href="about.html">Nosotros</a>
+								<a href="nosotros.php">Nosotros</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contacto</a>
+								<a href="contacto.php">Contacto</a>
 							</li>
-
 							<?php
-							if (!isset($_SESSION['correo'])) {
+							if(!isset($_SESSION['correo'])){
 							?>
-								<li>
-									<a href="contact.html">Ingresar</a>
-								</li>
+							<li>
+								<a href="../AccesoVista/login.php">Ingresar</a>
+							</li>
 							<?php
 							}
 							?>
 							<?php
-							if (isset($_SESSION['correo'])) {
+							if(isset($_SESSION['correo'])){
 							?>
 
-								<li class="active-menu">
-									<a href="perfilCliente.php">Mí perfíl</a>
-								</li>
+							<li>
+								<a href="perfilCliente.php?idCliente=<?php echo $_SESSION['id'] ?>">Mí perfíl</a>
+							</li>
 
-								<li>
-									<a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
-								</li>
+							<li>
+							  <a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
+							</li>
 							<?php
 							}
 							?>
 						</ul>
-					</div>
+					</div>	
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
@@ -156,15 +161,20 @@ if (!isset($_SESSION['correo'])) {
 				</li>
 
 				<li>
-					<a href="product.html">Productos</a>
+					<a href="productosC.php">Productos</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.html">Categorías</a>
+					<a href="#">Categorías</a>
 					<ul class="sub-menu-m">
-						<li><a href="#">Categoría 1</a></li>
-						<li><a href="#">Categoría 2</a></li>
-						<li><a href="#">Categoría 3</a></li>
+						<?php
+							foreach($listarcategorias as $listar){
+						?>
+							<li><a href="#"><?php echo $listar['NombreCategoria']?></a></li>
+									
+						<?php
+							}
+						?>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -172,35 +182,35 @@ if (!isset($_SESSION['correo'])) {
 				</li>
 
 				<li>
-					<a href="about.html">Nosotros</a>
+					<a href="nosotros.php">Nosotros</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Contacto</a>
+					<a href="contacto.php">Contacto</a>
 				</li>
 
 				<?php
-				if (isset($_SESSION['correo'])) {
+				if(!isset($_SESSION['correo'])){
 				?>
-					<li>
-						<a href="contact.html">Ingresar</a>
-					</li>
+				<li>
+					<a href="../AccesoVista/login.php">Ingresar</a>
+				</li>
 				<?php
-				}
+				 }
 				?>
 
 				<?php
-				if (isset($_SESSION['correo'])) {
+				if(isset($_SESSION['correo'])){
 				?>
-					<li>
-						<a href="perfilCliente.php">Mí perfíl</a>
-					</li>
+				<li>
+					<a href="perfilCliente.php?idCliente=<?php echo $_SESSION['id'] ?>">Mí perfíl</a>
+				</li>
 
-					<li>
-						<a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
-					</li>
+				<li>
+					<a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
+				</li>
 				<?php
-				}
+				 }
 				?>
 			</ul>
 		</div>

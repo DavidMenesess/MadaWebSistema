@@ -72,6 +72,11 @@ class ControladorCliente
 		$crudCliente->actualizarDatosCliente($cliente);
 		header("Location: ../../View/UsuariosVista/perfilCliente.php?idCliente=" . $idCliente);
 	}
+
+	public function listarCategoriasPerfilCliente(){
+		$crudCliente = new CrudCliente();
+       return $crudCliente-> listarCategoriasPerfilCliente();
+	}
 }
 
 $ControladorCliente = new ControladorCliente();

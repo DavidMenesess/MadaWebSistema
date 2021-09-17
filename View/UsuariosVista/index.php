@@ -63,7 +63,7 @@ session_start();
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Inicio</a>
+								<a href="index.php">Inicio</a>
 							</li>
 
 							<li>
@@ -85,11 +85,11 @@ session_start();
 							</li>
 
 							<li>
-								<a href="about.html">Nosotros</a>
+								<a href="nosotros.php">Nosotros</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contacto</a>
+								<a href="contacto.php">Contacto</a>
 							</li>
 							<?php
 							if(!isset($_SESSION['correo'])){
@@ -158,15 +158,15 @@ session_start();
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Inicio</a>
+					<a href="index.php">Inicio</a>
 				</li>
 
 				<li>
-					<a href="product.html">Productos</a>
+					<a href="productosC.php">Productos</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.html">Categorías</a>
+					<a href="#">Categorías</a>
 					<ul class="sub-menu-m">
 						<?php
 							foreach($listarcategorias as $listar){
@@ -183,11 +183,11 @@ session_start();
 				</li>
 
 				<li>
-					<a href="about.html">Nosotros</a>
+					<a href="nosotros.php">Nosotros</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Contacto</a>
+					<a href="contacto.php">Contacto</a>
 				</li>
 
 				<?php
@@ -208,7 +208,7 @@ session_start();
 				</li>
 
 				<li>
-					<a href="Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
+					<a href="../../Controller/AccesoControlador/controladorAcceso.php?cerrarSesion">Cerrar sesión</a>
 				</li>
 				<?php
 				 }
@@ -304,8 +304,6 @@ session_start();
 		</div>
 	</div>
 
-
-
 	<!-- Slider -->
 	<section class="section-slide">
 		<div class="wrap-slick1 rs2-slick1">
@@ -397,11 +395,10 @@ session_start();
 			?>
 				<div class="col-md-3 p-b-30 m-lr-auto">
 					<!-- Block1 -->
-					
-					<div class="block1 wrap-pic-w">
-						<img src="../../images/categorias/<?php echo $listar['UrlImagen']?>"  alt="IMG-BANNER">
+					<div class="block1 wrap-pic-w"> 
+						<img src="../../images/categorias/<?php echo $listar['UrlImagen']?>"  alt="<?php echo $listar['UrlImagen']?>">
 
-						<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<a href="#" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 								<?php echo $listar['NombreCategoria']?>
@@ -465,13 +462,9 @@ session_start();
 						</div>
 					</div>
 				</div>
-
-
-
-				
-					<?php
-				}
-					?>
+				<?php
+					}
+				?>
 			<!-- Pagination -->
 			<div class="flex-c-m flex-w w-full p-t-38">
 				<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">

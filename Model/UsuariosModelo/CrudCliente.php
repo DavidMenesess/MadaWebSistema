@@ -103,4 +103,14 @@ class CrudCliente{
 
 	}
 
+	public function listarCategoriasPerfilCliente()
+    {
+        $Db = Db::Conectar(); //cadena de conexion
+        $sql = $Db->query('SELECT * FROM categorias WHERE Estado = 1'); //definicion de sql
+        $sql->execute(); //ejectar la consulta
+        Db::CerrarConexion($Db);
+        return $sql->fetchAll(); //retornar todo el listado de la consulta
+
+    }
+
 }
