@@ -177,14 +177,16 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <form action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST" accept-charset="utf-8">
-                                                        <input type="hidden" name="IdCategoria" value="<?php echo $categoria['IdCategoria']; ?>">
+                                                    <!-- <form action="../../Controller/ProduccionControlador/controladorCategoria.php" method="POST" accept-charset="utf-8"> -->
+                                                      <!--   <input type="hidden" name="IdCategoria" value="<?php echo $categoria['IdCategoria']; ?>">
                                                         <input type="hidden" name="imagen" value="<?php echo $categoria['UrlImagen']; ?>">
-                                                        <input type="hidden" name="estadoCategoria" value="<?php echo $categoria['Estado']; ?>">
-                                                        <button type="submit" name="cambiarEstadoCategoria" id="cambiarEstadoCategoria" class="btn btn-primary" onclick="return confirm('¿Está seguro de cambiar el estado de la categoría?');"><i class="fas fa-exchange-alt"></i></button>
+                                                        <input type="hidden" name="estadoCategoria" value="<?php echo $categoria['Estado']; ?>"> -->
+
+                                                        <button type="submit" name="cambiarEstadoCategoria" id="cambiarEstadoCategoria" class="btn btn-primary" onclick="cambiarEstadoCategoria(<?php echo $categoria['IdCategoria'];?>,<?php echo $categoria['Estado'];?>);"><i class="fas fa-exchange-alt"></i></button>
+
                                                         <button type="submit" name="editarCategoria" id="editarCategoria" class="btn btn-info"><i class="fas fa-edit"></i></button>
                                                         <button type="submit" name="eliminarCategoria" id="eliminarCategoria" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
-                                                    </form>
+                                                    <!-- </form> -->
                                                 </td>
                                             </tr>
                                         <?php
@@ -216,12 +218,14 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
 
 
     <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
     <script src="../../libraries/bootstrap.bundle.min.js"></script>
     <script src="../../js/scripts.js"></script>
     <script src="../../js/validaciones/validacionesCategorias.js"></script>
     <script src="../../libraries/jquery.dataTables.min.js"></script>
     <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
     <script src="../../libraries/sweetalert2@11.js"></script>
+    
 </body>
 <script>
     $(document).ready(function() {
@@ -251,6 +255,66 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
         },
 
     });
+
+</script>
+
+<script>
+    function cambiarEstadoCategoria(IdCategoria, estadoCategoria){
+        Swal.fire({
+                title: 'Cambiar estado de la categoría',
+                text: "Se va a cambiar estado de la categoría ¿Seguro?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, cambiar estado!',
+                cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $estado = null;
+                    if (estadoCategoria == 0) {
+                        $estado = 1; 
+                    }else{
+                        $estado = 0;
+                    }
+                    estadoCategoria = $estado;
+
+                    var formData = new FormData();
+                    formData.append('cambiarEstadoCategoria','');
+                    formData.append('IdCategoria',IdCategoria);
+                    formData.append('estadoCategoria', estadoCategoria);
+
+                    $.ajax({
+                        url: '../../Controller/ProduccionControlador/controladorCategoria.php',
+                        type: 'post',
+                        data: formData,
+                        contentType:false,
+                        processData:false,
+                        success: function(response){
+                            // alert(response);
+                            Swal.fire({
+                              title: 'El estado se ha cambiado',
+                              icon: 'success',
+                              confirmButtonText: `OK`,
+
+                            }).then((result) => {
+                              /* Read more about isConfirmed, isDenied below */
+                              if (result.isConfirmed) {
+                                location.reload(); 
+                              }
+                            })
+                            
+                        }
+                        
+
+                    });
+                    // 
+
+                  }
+                })
+
+    }
 </script>
 
 </html>

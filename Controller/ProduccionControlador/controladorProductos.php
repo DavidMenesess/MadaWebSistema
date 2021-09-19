@@ -49,21 +49,14 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
 
         public function cambiarEstadoProducto($idProducto,$estadoActual){
 
-            $estadoActualizado = null;
-
-            if($estadoActual == 1){
-                $estadoActualizado = 0;
-            }elseif($estadoActual == 0){
-                $estadoActualizado = 1;
-            }
 
             $productoEstado = new Producto();
             $productoEstado->setId($idProducto);
-            $productoEstado->setEstado($estadoActualizado);
+            $productoEstado->setEstado($estadoActual);
 
             $crudProducto = new CrudProducto();
             $crudProducto->actualizarEstadoProducto($productoEstado);
-            header("Location: ../../View/ProduccionVista/productos.php");
+            // header("Location: ../../View/ProduccionVista/productos.php");
         }
 
         public function editarInformacionProducto($idProducto,$nombre,$descripcion,$precioNuevo,$categoria,$precioActual){

@@ -224,21 +224,20 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                     }
                                                     ?>
                                                 </td>
-
-                                                <!--<td><img class="img-thumbnail" width="100px" src="../../images/categorias/<?php //echo $categoria['UrlImagen'];
-                                                                                                                                ?>" alt="foto categoria"/></td>-->
                                                 <td>
+                                                    <button type="submit" name="cambiarEstado" id="cambiarEstado" class="btn btn-primary" onclick="cambiarEstado(<?php echo $producto['IdProducto'];?>,<?php echo $producto['Estado'];?>);"><i class="fas fa-exchange-alt"></i></button>
+ 
+                                                    <!-- <button type="submit" name="eliminarProducto" id="eliminarProducto" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button> -->
+
                                                     <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" accept-charset="utf-8">
                                                         <input type="hidden" name="IdProducto" value="<?php echo $producto['IdProducto']; ?>">
                                                         <input type="hidden" name="estadoProducto" value="<?php echo $producto['Estado']; ?>">
                                                         <input type="hidden" name="imagen1" value="<?php echo $producto['Imagen1']; ?>">
                                                         <input type="hidden" name="imagen2" value="<?php echo $producto['Imagen2']; ?>">
                                                         <input type="hidden" name="imagen3" value="<?php echo $producto['Imagen3']; ?>">
-                                                        <button type="submit" name="cambiarEstado" id="cambiarEstado" class="btn btn-primary" onclick="return confirm('¿Está seguro de cambiar el estado del producto?');"><i class="fas fa-exchange-alt"></i></button>
                                                         <button type="submit" name="editarProducto" id="editarProducto" class="btn btn-info"><i class="fas fa-edit"></i></button>
-                                                        <button type="submit" name="eliminarProducto" id="eliminarProducto" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
+
                                                         <button type="submit" name="agregarDetalle" id="agregarDetalle" class="btn btn-success"><i class="fas fa-plus"></i></button>
-                                                        <!--<button type="submit" name="verDetalle" id="verDetalle" class="btn btn-warning"><i class="fas fa-eye"></i></button>-->
                                                     </form>
                                                 </td>
                                             </tr>
@@ -268,13 +267,16 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
             </footer>
         </div>
     </div>
+
     <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
     <script src="../../libraries/bootstrap.bundle.min.js"></script>
     <script src="../../js/scripts.js"></script>
     <script src="../../js/validaciones/validacionesProductos.js"></script>
     <script src="../../libraries/jquery.dataTables.min.js"></script>
     <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
     <script src="../../libraries/sweetalert2@11.js"></script>
+    
 </body>
 <script>
     $(document).ready(function() {
@@ -304,6 +306,67 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
         },
 
     });
+</script>
+
+<script>
+
+    function cambiarEstado(IdProducto,estadoProducto){
+
+            Swal.fire({
+                title: 'Cambiar estado del producto',
+                text: "Se va a cambiar estado del producto ¿Seguro?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, cambiar estado!',
+                cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $estado = null;
+                    if (estadoProducto == 0) {
+                        $estado = 1; 
+                    }else{
+                        $estado = 0;
+                    }
+                    estadoProducto = $estado;
+
+                    var formData = new FormData();
+                    formData.append('cambiarEstado','');
+                    formData.append('IdProducto',IdProducto);
+                    formData.append('estadoProducto',estadoProducto);
+
+                    $.ajax({
+                        url: '../../Controller/ProduccionControlador/controladorProductos.php',
+                        type: 'post',
+                        data: formData,
+                        contentType:false,
+                        processData:false,
+                        success: function(response){
+                            // alert(response);
+                            Swal.fire({
+                              title: 'El estado se ha cambiado',
+                              icon: 'success',
+                              confirmButtonText: `OK`,
+
+                            }).then((result) => {
+                              /* Read more about isConfirmed, isDenied below */
+                              if (result.isConfirmed) {
+                                location.reload(); 
+                              }
+                            })
+                            
+                        }
+                        
+
+                    });
+                    // 
+
+                  }
+                })
+
+    }
 </script>
 
 </html>

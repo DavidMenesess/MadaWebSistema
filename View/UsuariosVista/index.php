@@ -15,7 +15,7 @@ session_start();
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="../../images/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -56,7 +56,7 @@ session_start();
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="images/icons/logo-02.png" alt="IMG-LOGO">
+						<img src="../../images/icons/logo-02.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -76,7 +76,7 @@ session_start();
 									<?php
 									foreach($listarcategorias as $listar){
 									?>
-									<li><a href="#"><?php echo $listar['NombreCategoria']?></a></li>
+									<li><a href="listarProductosCategoria.php?IdCategoria=<?php echo $listar['IdCategoria']?>"><?php echo $listar['NombreCategoria']?></a></li>
 									
 									<?php
 									}
@@ -308,7 +308,7 @@ session_start();
 	<section class="section-slide">
 		<div class="wrap-slick1 rs2-slick1">
 			<div class="slick1">
-				<div class="item-slick1 bg-overlay1" style="background-image: url(images/slide-05.jpg);" data-thumb="images/thumb-01.jpg" data-caption="Women’s Wear">
+				<div class="item-slick1 bg-overlay1" style="background-image: url(images/slide-05.jpg);" data-thumb="../../images/thumb-01.jpg" data-caption="Women’s Wear">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
@@ -332,7 +332,7 @@ session_start();
 					</div>
 				</div>
 
-				<div class="item-slick1 bg-overlay1" style="background-image: url(images/slide-06.jpg);" data-thumb="images/thumb-02.jpg" data-caption="Men’s Wear">
+				<div class="item-slick1 bg-overlay1" style="background-image: url(images/slide-06.jpg);" data-thumb="../../images/thumb-02.jpg" data-caption="Men’s Wear">
 					<div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
@@ -356,7 +356,7 @@ session_start();
 					</div>
 				</div>
 
-				<div class="item-slick1 bg-overlay1" style="background-image: url(images/slide-07.jpg);" data-thumb="images/thumb-03.jpg" data-caption="Men’s Wear">
+				<div class="item-slick1 bg-overlay1" style="background-image: url(images/slide-07.jpg);" data-thumb="../../images/thumb-03.jpg" data-caption="Men’s Wear">
 					  <div class="container h-full">
 						<div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
@@ -389,16 +389,22 @@ session_start();
 	<!-- Banner -->
 	<div class="sec-banner bg0 p-t-95 p-b-55">
 		<div class="container">
+			<div class="p-b-10">
+				<h3 class="ltext-103 cl5 text-center" >
+					Categorías
+				</h3>
+			</div>
+			<br>
 			<div class="row">
 			<?php
 				foreach($listarcategorias as $listar){
 			?>
 				<div class="col-md-3 p-b-30 m-lr-auto">
 					<!-- Block1 -->
-					<div class="block1 wrap-pic-w"> 
-						<img src="../../images/categorias/<?php echo $listar['UrlImagen']?>"  alt="<?php echo $listar['UrlImagen']?>">
+					<div class="block1 wrap-pic-w" > 
+						<img src="../../images/categorias/<?php echo $listar['UrlImagen']?>"  alt="<?php echo $listar['UrlImagen']?>" style="width: 268px; height: 300px; object-fit: cover;" >
 
-						<a href="#" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<a class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3" href="listarProductosCategoria.php?IdCategoria=<?php echo $listar['IdCategoria']?>">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 								<?php echo $listar['NombreCategoria']?>
@@ -442,7 +448,7 @@ session_start();
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="../../images/productos/<?php echo $listar['Imagen1']?>" alt="IMG-PRODUCT">
+							<img src="../../images/productos/<?php echo $listar['Imagen1']?>" alt="IMG-PRODUCT" style="width: 268px; height: 400px; object-fit: cover;">
 
 							<a href="detalleProductoCliente.php?idProducto=<?php echo $listar['IdProducto']?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 								Ver detalles
@@ -835,6 +841,16 @@ session_start();
 	</script>
 <!--===============================================================================================-->
 	<script src="../../js/main.js"></script>
+	<script src="../../js/jquery-3.6.0.min.js"></script>
+	<script src="../../js/validaciones/variable.js"></script>
+	<!-- <script>
+		function listarProductosCategoria(idCategoria){
+			capturarVariable(idCategoria);
+			window.location.href ="listarProductosCategoria.php?IdCategoria="+idCategoria;
+
+		}
+		
+	</script> -->
 
 </body>
 </html>

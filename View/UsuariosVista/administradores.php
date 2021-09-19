@@ -188,13 +188,13 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                 </td>
 
                                                 <td>
-                                                    <form action="../../Controller/UsuariosControlador/ControladorAdministrador.php" method="POST" accept-charset="utf-8">
+                                                    <!-- <form action="../../Controller/UsuariosControlador/ControladorAdministrador.php" method="POST" accept-charset="utf-8"> -->
                                                         <input type="hidden" name="IdUsuario" value="<?php echo $administrador['IdUsuario']; ?>">
                                                         <input type="hidden" name="Estado" value="<?php echo $administrador['Estado']; ?>">
                                                         <?php
                                                         if ($_SESSION['Rol'] == 1 && $administrador['IdUsuario'] != 1) {
                                                         ?>
-                                                            <button type="" id="actualizarUsuario" name="actualizarEstadoAdministrador" class="btn btn-primary" onclick="return confirm('¿Está seguro de cambiar el estado del usuario?');"><i class="fas fa-exchange-alt"></i></button>
+                                                            <button type="" id="actualizarUsuario" name="actualizarEstadoAdministrador" class="btn btn-primary" onclick="actualizarUsuario(<?php echo $administrador['IdUsuario']; ?>,<?php echo $administrador['Estado']; ?>);"><i class="fas fa-exchange-alt"></i></button>
                                                         <?php
                                                         }
                                                         ?>
@@ -205,14 +205,14 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                         <?php
                                                         }
                                                         ?>
-                                                        <?php
+                                                        <!-- <?php
                                                         if ($_SESSION['Rol'] == 1 && $administrador['IdUsuario'] != 1) {
                                                         ?>
-                                                            <button type="submit" name="eliminarAdministrador" id="eliminarAdministrador" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button>
+ -->                                                            <!-- <button type="submit" name="eliminarAdministrador" id="eliminarAdministrador" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el registro?');"><i class="fas fa-trash-alt"></i></button> -->
                                                         <?php
                                                         }
                                                         ?>
-                                                    </form>
+                                                    <!-- </form> -->
                                                 </td>
 
                                             </tr>
@@ -245,13 +245,15 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
 
 
     <script src="../../libraries/jquery-3.5.1.slim.min.js"></script>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script src="../../js/validaciones/validacionesUsuarios.js"></script>
+
     <script src="../../libraries/bootstrap.bundle.min.js"></script>
     <script src="../../js/scripts.js"></script>
     <script src="../../libraries/jquery.dataTables.min.js"></script>
     <script src="../../libraries/dataTables.bootstrap4.min.js"></script>
     <script src="../../libraries/sweetalert2@11.js"></script>
-    <script src="../../js/validaciones/validacionesUsuarios.js"></script>
-</body>
+    </body>
 <script>
     $(document).ready(function() {
         $('#tablaClientes').DataTable();
@@ -280,6 +282,61 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
         },
 
     });
+</script>
+<script >
+    function actualizarUsuario(IdUsuario,Estado){
+                Swal.fire({
+                title: 'Cambiar estado del administrador',
+                text: "Se va a cambiar estado del administrador ¿Seguro?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, cambiar estado!',
+                cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $estado = null;
+                    if (Estado == 0) {
+                        $estado = 1; 
+                    }else{
+                        $estado = 0;
+                    }
+                    Estado = $estado;
+                    var formData = new FormData();
+                    formData.append('actualizarEstadoAdministrador','');
+                    formData.append('IdUsuario',IdUsuario);
+                    formData.append('Estado', Estado);
+
+                    $.ajax({
+                        url: '../../Controller/UsuariosControlador/controladorAdministrador.php',
+                        type: 'post',
+                        data:formData,
+                        contentType:false,
+                        processData:false,
+                        success: function(response){
+                            Swal.fire({
+                              title: 'El estado se ha cambiado',
+                              icon: 'success',
+                              confirmButtonText: `OK`,
+
+                            }).then((result) => {
+                              /* Read more about isConfirmed, isDenied below */
+                              if (result.isConfirmed) {
+                                location.reload(); 
+                              }
+                            })
+                            
+                        }
+                        
+
+                    });
+                    // 
+
+                  }
+                })
+    }
 </script>
 
 </html>

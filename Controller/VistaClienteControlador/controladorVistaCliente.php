@@ -20,10 +20,14 @@ class controladorVistaCliente{
 		return $crudVista->obtenerDatosProducto($idProducto);
     }
 
+    public function listarProductosCategoria($IdCategoria){
+        $crudVista = new CrudVista();
+        return $crudVista->listarProductosCategoria($IdCategoria);
+    }
+
 }
 
 $controladorVistaCliente = new controladorVistaCliente();
-
 
 
 ?>

@@ -27,6 +27,23 @@ class crudVista{
 	    Db::CerrarConexion($Db);
 	    return $sql -> fetch();
     }
+
+    public function listarProductosCategoria($IdCategoria){
+    	$Db = Db::Conectar();
+		$sql = $Db -> query("SELECT `productos`.`Imagen1`, `productos`.`NombreProducto`, `productos`.`Precio`, `productos`.`IdProducto`, `categorias`.`NombreCategoria`\n"
+
+    . "FROM `productos` \n"
+
+    . " LEFT JOIN `categorias` ON `productos`.`IdCategoria` = `categorias`.`IdCategoria`\n"
+
+    . "    \n"
+
+    . "    WHERE `productos`.`IdCategoria` = $IdCategoria  AND `productos`.`Estado` = 1");
+		$sql -> execute();
+	    Db::CerrarConexion($Db);
+	    return $sql -> fetchAll();
+    }
+
     
 }
 

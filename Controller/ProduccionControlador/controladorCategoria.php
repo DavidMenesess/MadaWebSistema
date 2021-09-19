@@ -66,25 +66,17 @@ class controladorCategoria{
         header('Location: ../../View/ProduccionVista/categorias.php');
     }
 
-    public function cambiarEstado($idCategoria, $estado){
+    public function cambiarEstado($idCategoria, $estadoCategoria){
 
-        $estadoActualizado = null;
-        //var_dump($idCategoria);
-        if($estado == 1){
-            $estadoActualizado = 0;
-        }
-        elseif($estado == 0){
-            $estadoActualizado = 1;
-        }
 
         $categoria = new categoria;
         $categoria->setId_Categoria($idCategoria);
-        $categoria->setEstado($estadoActualizado);
+        $categoria->setEstado($estadoCategoria);
 
         //var_dump($estado);
         $crudCategoria = new crudCategoria();
         $crudCategoria->actualizarEstadoCategoria($categoria);
-        header ("Location: ../../View/ProduccionVista/categorias.php");
+        // header ("Location: ../../View/ProduccionVista/categorias.php");
 
     }
 
@@ -112,7 +104,7 @@ class controladorCategoria{
 
             if($tipoArchivo == "image/jpeg" || $tipoArchivo == "image/jpg" || $tipoArchivo == "image/png"){
                 //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
-                $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/categorias/';
+                $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema-main/images/categorias/';
 
                 //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
                 move_uploaded_file($_FILES['foto']['tmp_name'],$carpetaDestino.$nombreFoto);

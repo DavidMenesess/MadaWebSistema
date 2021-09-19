@@ -48,18 +48,18 @@ class ControladorAdministrador
 
 	public function actualizarEstadoAdministrador($IdUsuario, $Estado)
 	{
-		$EstadoActualizado = null;
-		if ($Estado == 1) {
-			$EstadoActualizado = 0;
-		} elseif ($Estado == 0) {
-			$EstadoActualizado = 1;
-		}
+		// $EstadoActualizado = null;
+		// if ($Estado == 1) {
+		// 	$EstadoActualizado = 0;
+		// } elseif ($Estado == 0) {
+		// 	$EstadoActualizado = 1;
+		// }
 		$usuario = new usuario();
 		$usuario->setIdUsuario($IdUsuario);
-		$usuario->setEstado($EstadoActualizado);
+		$usuario->setEstado($Estado);
 		$crudAdministrador = new CrudAdministrador();
 		$crudAdministrador->actualizarEstadoAdministrador($usuario);
-		header('Location:../../View/UsuariosVista/administradores.php');
+		// header('Location:../../View/UsuariosVista/administradores.php');
 	}
 
 	public function actualizarDatosAdmin($idUsuario, $nombre, $apellido)
