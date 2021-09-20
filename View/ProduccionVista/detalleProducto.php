@@ -4,7 +4,8 @@ require("../../Controller/ProduccionControlador/controladorProductos.php");
 //Al modelo, que me retorna los valores encontrados según el Id del producto.
 $producto = $controladorProductos->buscarProducto($_GET['idProducto']);
 $listaEntradas = $controladorProductos->listarEntradasProducto($_GET['idProducto']);
-
+$cantidadProducto = $controladorProductos->cantidadProducto($_GET['idProducto']);
+$idProducto = $_GET['idProducto'];
 session_start();
 if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión lo redirecciona al login
     header("Location: ../../View/AccesoVista/login.php");
@@ -99,7 +100,11 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                     <h1 class="mt-4 text-center">Detalles del producto - <?php echo $producto['NombreProducto'] ?></h1>
                     <br>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">¡Agrega los detalles de este producto</li>
+                        <li class="breadcrumb-item active">¡Agrega los detalles de este producto!</li>
+                    </ol>
+                    <br>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active"><b>La cantidad total del producto ( <?php echo $producto['NombreProducto']?>) es: <?php foreach( $cantidadProducto as $total){} echo $total; ;?></b></li>
                     </ol>
                     <!--FORMULARIO DE INGRESAR LAS ENTRADAS-->
                     <form action="../../Controller/ProduccionControlador/controladorProductos.php" method="POST" onsubmit="return validarRegistroDetalle()" accept-charset="utf-8" autocomplete="off">
@@ -177,8 +182,8 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-danger">Descargar <i class="fas fa-file-pdf"></i> pdf</button>
-                    <button type="button" class="btn btn-success">Descargar <i class="fas fa-file-excel"></i> excel</button>
+                    <a href="reporteDetalleProductoPdf.php?idProducto=<?php echo $idProducto ?>" target="_blank" class="btn btn-danger">Descargar <i class="fas fa-file-pdf"></i> pdf</a>
+                    <a href="reporteDetalleProductoExcel.php?idProducto=<?php echo $idProducto ?>" class="btn btn-success">Descargar <i class="fas fa-file-excel"></i> excel</a>
                     <br>
                     <br>
             </main>

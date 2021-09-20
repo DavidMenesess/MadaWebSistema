@@ -192,7 +192,6 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                             <th>Descripción</th>
                                             <th>Precio</th>
                                             <th>Categoría</th>
-                                            <th>Cantidad</th>
                                             <th>Imagen #1</th>
                                             <th>Imagen #2</th>
                                             <th>Imagen #3</th>
@@ -210,7 +209,6 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                 <td><?php echo $producto['Descripcion']; ?></td>
                                                 <td><?php echo $producto['Precio']; ?></td>
                                                 <td><?php echo $producto['NombreCategoria']; ?></td>
-                                                <td>Cantidad</td>
                                                 <td><img class="img-thumbnail" width="100px" src="../../images/productos/<?php echo $producto['Imagen1']; ?>" alt="<?php echo $producto['Imagen1'] ?>" /></td>
                                                 <td><img class="img-thumbnail" width="100px" src="../../images/productos/<?php echo $producto['Imagen2']; ?>" alt="<?php echo $producto['Imagen2'] ?>" /></td>
                                                 <td><img class="img-thumbnail" width="100px" src="../../images/productos/<?php echo $producto['Imagen3']; ?>" alt="<?php echo $producto['Imagen3'] ?>" /></td>
@@ -249,8 +247,8 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-danger">Descargar <i class="fas fa-file-pdf"></i> pdf</button>
-                    <button type="button" class="btn btn-success">Descargar <i class="fas fa-file-excel"></i> excel</button>
+                    <a href="reporteProductosPdf.php" target="_blank" class="btn btn-danger">Descargar <i class="fas fa-file-pdf"></i> pdf</a>
+                    <a href="reporteProductosExcel.php" class="btn btn-success">Descargar <i class="fas fa-file-excel"></i> excel</a>
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

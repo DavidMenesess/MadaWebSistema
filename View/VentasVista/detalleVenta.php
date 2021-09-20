@@ -20,7 +20,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>MADA || Administrador</title>
+  <title>Detalle de venta || Mada</title>
   <link href="../../css/styles.css" rel="stylesheet" />
   <link href="../../libraries/dataTables.bootstrap4.min.css" rel="stylesheet" />
   <script src="../../libraries/fontawesome.js"></script>
@@ -219,9 +219,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
 
               <form action="../../Controller/VentasControlador/ControladorVentas.php" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="IdPedido" value="<?php echo $detalle['IdPedido']; ?>">
-
-                <button type="submit" id="factura" name="factura" class="btn btn-danger">Generar recibo de venta <i class="fas fa-file-pdf"></i> pdf</button>
-
+                <button type="submit" id="factura" name="factura" class="btn btn-danger">Recibo de venta <i class="fas fa-file-pdf"></i> pdf</button>
               </form>
 
             </div>

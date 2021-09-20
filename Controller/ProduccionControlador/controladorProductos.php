@@ -115,6 +115,10 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
             header("Location: ../../View/ProduccionVista/productos.php");
         }
 
+        public function cantidadProducto($idProducto){
+            $crudProducto = new CrudProducto();
+           return $crudProducto->obtenerCantidadProducto($idProducto);
+        }
         //ENTRADAS Y DETALLES DEL PRODUCTO!!!
 
         public function listarEntradasProducto($idProducto){

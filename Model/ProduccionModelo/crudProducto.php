@@ -133,6 +133,14 @@
             return $mensaje;
         }
 
+        public function obtenerCantidadProducto($idProducto){
+            $Db = Db::Conectar();
+            $sql = $Db->query("SELECT SUM(Stock) FROM detalle_productos WHERE IdProducto = $idProducto");
+            $sql->execute();
+            Db::CerrarConexion($Db);
+            return $sql->fetch();
+        }
+
         //IMAGENES DEL PRODUCTO CRUD
 
         public function actualizarImagen1Producto($nuevaImagen1, $idProducto){

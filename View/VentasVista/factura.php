@@ -60,7 +60,7 @@ $pdf->SetFont('helvetica', 'B', 10);
 // add a page
 $pdf->AddPage();
 
-$pdf->Write(0, 'FACTURA DE VENTA #' .$detalle['IdPedido'], '', 0, 'C', true, 0, false, false, 0);
+$pdf->Write(0, 'RECIBO DE VENTA #' .$detalle['IdPedido'], '', 0, 'C', true, 0, false, false, 0);
 $pdf->Write(0, 'MEDELLÍN-COLOMBIA', '', 0, 'C', true, 0, false, false, 0);
 $pdf->Write(0, 'FECHA ' .$detalle['FechaPedido'] , '', 0, 'C', true, 0, false, false, 0);
 
