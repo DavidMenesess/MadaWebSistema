@@ -29,8 +29,9 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
 
         public function registrarProducto($nombre,$descripcion,$precio,$idCategoria,$imagen1,$imagen2,$imagen3){
 
+            error_reporting(0);
             $iva = (19 * $precio)/100;
-            $precioConIva = $iva + $precio;
+            $precioConIva = ($iva + $precio);
 
             $producto = new Producto();
             $producto->setNombre($nombre);
@@ -44,7 +45,7 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
             $crudProducto = new CrudProducto();
 
             return $crudProducto->registrarProducto($producto);
-            header("Location: ../../View/ProduccionVista/productos.php");
+            //header("Location: ../../View/ProduccionVista/productos.php");
         }
 
         public function cambiarEstadoProducto($idProducto,$estadoActual){

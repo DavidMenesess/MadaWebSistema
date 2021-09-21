@@ -3,7 +3,7 @@ function validarRegistroProducto(){
 
     let nombre, descripcion, precio, categoria, imagen1, imagen2, imagen3, expresionNumeros;
 
-    expresionNumeros = /^[0-9]+$/;
+    expresionNumeros = /[0-9]{1,3}(\,[0-9]{3})/;
 
     nombre = document.getElementById("nombreProducto").value;
     descripcion = document.getElementById("descripcionProducto").value;
@@ -18,7 +18,7 @@ function validarRegistroProducto(){
         return false;
     }
     else if(!expresionNumeros.test(precio)){
-        Swal.fire("El campo Precio solo debe contener números");
+        Swal.fire("Verifique que el campo precio se encuentre diligenciado correctamente");
         return false;
     }
     else if(categoria == "Seleccionar"){
@@ -44,7 +44,7 @@ function validarEditDatosProducto(){
 
     let nombre, descripcion, precio, expresionNumeros;
 
-    expresionNumeros = /^[0-9]+$/;
+    expresionNumeros = /[0-9]{1,3}(\,[0-9]{3})/;
 
     nombre = document.getElementById("nombre").value;
     descripcion = document.getElementById("descripcion").value;
@@ -55,7 +55,7 @@ function validarEditDatosProducto(){
         return false;
     }
     else if(!expresionNumeros.test(precio)){
-        Swal.fire("El campo Precio solo debe contener números");
+        Swal.fire("Verifique que el campo precio se encuentre diligenciado correctamente");
         return false;
     }
 }

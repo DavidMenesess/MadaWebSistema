@@ -44,6 +44,14 @@ class crudVista{
 	    return $sql -> fetchAll();
     }
 
+    public function obtenerNombreCategoria($idCategoria){
+        $Db = Db::Conectar();
+        $sql = $Db -> query("SELECT NombreCategoria FROM categorias WHERE IdCategoria = $idCategoria");
+        $sql -> execute();
+        Db::CerrarConexion($Db);
+        return $sql ->fetch();
+    }
+
     
 }
 

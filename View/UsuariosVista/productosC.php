@@ -80,7 +80,7 @@ session_start();
 									<?php
 									foreach($listarcategorias as $listar){
 									?>
-									<li><a href="#"><?php echo $listar['NombreCategoria']?></a></li>
+									<li><a href="listarProductosCategoria.php?IdCategoria=<?php echo $listar['IdCategoria']?>"><?php echo $listar['NombreCategoria']?></a></li>
 									
 									<?php
 									}
@@ -172,7 +172,7 @@ session_start();
 						<?php
 							foreach($listarcategorias as $listar){
 						?>
-							<li><a href="#"><?php echo $listar['NombreCategoria']?></a></li>
+							<li><a href="listarProductosCategoria.php?IdCategoria=<?php echo $listar['IdCategoria']?>"><?php echo $listar['NombreCategoria']?></a></li>
 									
 						<?php
 							}
@@ -321,7 +321,7 @@ session_start();
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="../../images/productos/<?php echo $listar['Imagen1']?>" alt="IMG-PRODUCT">
+							<img src="../../images/productos/<?php echo $listar['Imagen1']?>" style="width: 268px; height: 400px; object-fit: cover;" alt="IMG-PRODUCT">
 
 							<a href="detalleProductoCliente.php?idProducto=<?php echo $listar['IdProducto']?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 								Ver detalles

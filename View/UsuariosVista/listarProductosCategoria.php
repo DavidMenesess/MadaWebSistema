@@ -3,6 +3,7 @@ include "../../Controller/VistaClienteControlador/controladorVistaCliente.php";
 
 $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 $listarProductos = $controladorVistaCliente->listarProductosCategoria($_GET['IdCategoria']);
+$nombreCategoria = $controladorVistaCliente->obtenerNombreCategoria($_GET['IdCategoria']);
 
 session_start();
 
@@ -12,7 +13,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Productos || Mada</title>
+	<title><?php echo $nombreCategoria[0]; ?></title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -170,7 +171,7 @@ session_start();
 						<?php
 							foreach($listarcategorias as $listar){
 						?>
-							<li><a href="#"><?php echo $listar['NombreCategoria']?></a></li>
+							<li><a href="listarProductosCategoria.php?IdCategoria=<?php echo $listar['IdCategoria']?>"><?php echo $listar['NombreCategoria']?></a></li>
 									
 						<?php
 							}
@@ -307,13 +308,13 @@ session_start();
 		<div class="container">
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5 text-center" >
-					Caterogía 
 					<?php 
-						foreach($listarProductos as $listar){echo $listar['NombreCategoria']; }
+						echo $nombreCategoria[0];
 					?>
 				</h3>
 			</div>
 			<br>
+			<?php if(!empty($listarProductos)){ ?>
 			<div class="flex-w flex-sb-m p-b-52">
 				<?php
 				foreach($listarProductos as $listar){
@@ -344,6 +345,13 @@ session_start();
 				<?php
 					}
 				?>
+				<?php 
+					}else{ 
+				?>
+					<div class="alert alert-warning" role="alert">
+						La categoría no tiene productos.
+					</div>
+				<?php } ?>
 		</div>
 	</section>
 		

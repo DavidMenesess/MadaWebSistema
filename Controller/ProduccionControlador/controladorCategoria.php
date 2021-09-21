@@ -104,7 +104,7 @@ class controladorCategoria{
 
             if($tipoArchivo == "image/jpeg" || $tipoArchivo == "image/jpg" || $tipoArchivo == "image/png"){
                 //Ruta de la carpte a de destino en el servido , es decir , donde va a quedar alojada la imagen.
-                $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema-main/images/categorias/';
+                $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/MadaWebSistema/images/categorias/';
 
                 //Con la función move_uploaded_file movemos la foto de la capeta temporal a la ruta de destino que establecimos arriba.
                 move_uploaded_file($_FILES['foto']['tmp_name'],$carpetaDestino.$nombreFoto);
@@ -118,7 +118,7 @@ class controladorCategoria{
                 </script>";
                 }else{
                     echo "<script>
-                location.replace('../../View/ProduccionVista/categorias.php');
+                    location.replace('../../View/ProduccionVista/categorias.php');
                 alert('Registro exitoso.');
                 </script>";
                 }
