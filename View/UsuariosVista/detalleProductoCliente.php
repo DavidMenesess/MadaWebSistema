@@ -4,6 +4,7 @@ require("../../Controller/VistaClienteControlador/controladorVistaCliente.php");
 
 $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 $informacionProducto = $controladorVistaCliente->obtenerDatosProducto($_GET['idProducto']);
+$tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProducto']);
 
 ?>
 
@@ -355,12 +356,14 @@ $informacionProducto = $controladorVistaCliente->obtenerDatosProducto($_GET['idP
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="custom-select mr-sm-2" name="time">
+										<select class="custom-select mr-sm-2" name="tallaProducto">
 											<option>Selecciona</option>
-											<option>Size S</option>
-											<option>Size M</option>
-											<option>Size L</option>
-											<option>Size XL</option>
+
+				 							<?php foreach($tallasProducto as $talla) { ?>
+											<option value="<?php echo $talla[0] ?>">Talla <?php echo $talla[0] ?></option>
+											<?php } ?>
+
+
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
@@ -393,7 +396,7 @@ $informacionProducto = $controladorVistaCliente->obtenerDatosProducto($_GET['idP
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="cantidadProducto" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
@@ -587,7 +590,7 @@ $informacionProducto = $controladorVistaCliente->obtenerDatosProducto($_GET['idP
 						</div>
 					</div>
 					
-					<div class="col-md-6 col-lg-5 p-b-30">
+					<!--<div class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
 							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
 								Lightweight Jacket
@@ -683,7 +686,7 @@ $informacionProducto = $controladorVistaCliente->obtenerDatosProducto($_GET['idP
 								</a>
 							</div>
 						</div>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</div>
@@ -766,7 +769,7 @@ $informacionProducto = $controladorVistaCliente->obtenerDatosProducto($_GET['idP
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
+				swal(nameProduct, "¡Se agregó al carrito!", "success");
 			});
 		});
 	

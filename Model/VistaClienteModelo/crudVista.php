@@ -52,6 +52,13 @@ class crudVista{
         return $sql ->fetch();
     }
 
+    public function ObtenerTallasProducto($idProducto){
+        $Db = Db::Conectar();
+        $sql = $Db -> query("SELECT DISTINCT(Talla) FROM detalle_productos WHERE IdProducto = $idProducto");
+        $sql-> execute();
+        Db::CerrarConexion($Db);
+        return $sql->fetchAll();
+    }
     
 }
 
