@@ -29,14 +29,14 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
 
         public function registrarProducto($nombre,$descripcion,$precio,$idCategoria,$imagen1,$imagen2,$imagen3){
 
-            error_reporting(0);
-            $iva = (19 * $precio)/100;
-            $precioConIva = ($iva + $precio);
+            //error_reporting(0);
+            //$iva = (19 * $precio)/100;
+            //$precioConIva = ($iva + $precio);
 
             $producto = new Producto();
             $producto->setNombre($nombre);
             $producto->setDescripcion($descripcion);
-            $producto->setPrecio($precioConIva);
+            $producto->setPrecio($precio);
             $producto->setCategoria($idCategoria);
             $producto->setImagen1($imagen1);
             $producto->setImagen2($imagen2);
@@ -60,23 +60,23 @@ require("../../Model/ProduccionModelo/detalleProducto.php");
             // header("Location: ../../View/ProduccionVista/productos.php");
         }
 
-        public function editarInformacionProducto($idProducto,$nombre,$descripcion,$precioNuevo,$categoria,$precioActual){
+        public function editarInformacionProducto($idProducto,$nombre,$descripcion,$precioNuevo,$categoria){
 
             $producto = new Producto();
 
-            if($precioActual == $precioNuevo){
+            /*if($precioActual == $precioNuevo){
                 $producto->setPrecio($precioActual);
             }
             elseif($precioActual != $precioNuevo){
                 $iva = (19 * $precioNuevo)/100;
                 $precioConIva = $iva + $precioNuevo;
                 $producto->setPrecio($precioConIva);
-            }
+            }*/
 
             $producto->setId($idProducto);
             $producto->setNombre($nombre);
             $producto->setDescripcion($descripcion);
-            
+            $producto->setPrecio($precioNuevo);
             $producto->setCategoria($categoria);
 
             $crudProducto = new CrudProducto();

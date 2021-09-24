@@ -135,9 +135,9 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                     ?>
                                 </select>
                             </div>
-                            <div class="form-group col-md-6">
+                            <!--<div class="form-group col-md-6">
                                 <input type="hidden" class="form-control" id="precioActual" readonly name="precioActual" value="<?php echo $listarProducto['Precio'] ?>">
-                            </div>
+                            </div>-->
                         </div>
                         <button type="submit" class="btn btn-success" name="actualizarDatosProducto" id="actualizarDatosProducto">Guardar cambios</button>
                         <a href="productos.php" class="btn btn-danger">Cancelar</a>

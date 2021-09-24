@@ -1,6 +1,8 @@
 
 <?php
 require("../../Controller/VistaClienteControlador/controladorVistaCliente.php");
+include "../../Model/VistaClienteModelo/encriptarDatosCarrito.php";
+include "../../Controller/VistaClienteControlador/controladorCarrito.php"; 
 
 $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 $informacionProducto = $controladorVistaCliente->obtenerDatosProducto($_GET['idProducto']);
@@ -300,6 +302,12 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 		</div>
 	</div>
 
+	<div class="alert alert-success">
+		Pantalla de mensaje...
+		<?php echo $mensaje; ?>
+		<a href="" class="badge badge-success">Ver el carrito</a>
+	</div>
+
 	<!-- Product Detail -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
@@ -348,6 +356,11 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 						</p>
 						
 						<!--  -->
+						<form action="../../Controller/VistaClienteControlador/controladorCarrito.php" method="POST">
+							<input type="text" name="idProducto" id="idProducto" value="<?php echo openssl_encrypt($informacionProducto[0],COD,KEY)?>">
+							<input type="text" name="nombreProducto" id="nombreProducto" value="<?php echo openssl_encrypt($informacionProducto[1],COD,KEY)?>">
+							<input type="text" name="precioProducto" id="precioProducto" value="<?php echo openssl_encrypt($informacionProducto[3],COD,KEY)?>">
+							<input type="text" name="fotoProducto" id="fotoProducto" value="<?php echo $informacionProducto[6]?>">
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-203 flex-c-m respon6">
@@ -356,7 +369,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="custom-select mr-sm-2" name="tallaProducto">
+										<select class="custom-select mr-sm-2" name="tallaProducto" id="tallaProducto">
 											<option>Selecciona</option>
 
 				 							<?php foreach($tallasProducto as $talla) { ?>
@@ -377,7 +390,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="custom-select mr-sm-2" name="time">
+										<select class="custom-select mr-sm-2" name="colorProducto" id="colorProducto">
 											<option>Selecciona</option>
 											<option>Red</option>
 											<option>Blue</option>
@@ -403,12 +416,13 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button type="submit" name="btnAccion" value="Agregar" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Agregar al carrito
 									</button>
 								</div>
 							</div>	
 						</div>
+					</form>
 					</div>
 				</div>
 			</div>
@@ -791,6 +805,30 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 			})
 		});
 	</script>
+<!--===============================================================================================-->
+
+<!--===============================================================================================-->
+<script>
+	//OBTENER DATOS DEL COLOR POR MEDIO DEL SELECT DE LA TALLA
+		$(document).ready(function(){
+			let color = $('#colorProducto');
+
+			$('tallaProducto').change(function(){
+				let talla = $(this).val();
+				$.ajax({
+					data: {talla:talla},
+					dataType: 'html',
+					type: 'POST',
+					url: '../../Controller/VistaClienteControlador/controladorVistaCliente.php',
+				}).done(function(data){
+					color.html(data);
+				});
+			});
+		});
+</script>
+
+
+
 <!--===============================================================================================-->
 	<script src="../../js/main.js"></script>
 
