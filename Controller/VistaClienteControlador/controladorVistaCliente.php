@@ -31,13 +31,19 @@ class controladorVistaCliente{
     }
 
     public function listaTallasProducto($idProducto){
-        $crudVista = new CrudVista();
+        $crudVista = new crudVista();
         return $crudVista->ObtenerTallasProducto($idProducto);
     }
 
+    public function consultarColor($idProducto, $talla){
+        $crudVista = new crudVista();
+        return $crudVista->consultarColores($idProducto, $talla);
+    }
 }
 
 $controladorVistaCliente = new controladorVistaCliente();
 
-
+if(isset($_POST['consultarColor'])){
+    echo json_encode($controladorVistaCliente->consultarColor($_POST['idProducto'], $_POST['talla']));
+}
 ?>
