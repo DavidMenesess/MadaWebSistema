@@ -60,6 +60,15 @@ class crudVista{
         return $sql->fetchAll();
     }
     
+    public function consultarColores($idProducto, $talla){
+        $db = Db::Conectar();
+        $sql = $db->prepare("SELECT Color FROM detalle_productos WHERE Talla = :talla AND IdProducto = :idProducto");
+        $sql->bindValue('talla', $talla);
+        $sql->bindValue('idProducto', $idProducto);
+        $sql->execute();
+        Db::CerrarConexion($db);
+        return $sql->fetchAll();
+    }
 }
 
 

@@ -371,12 +371,9 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 									<div class="rs1-select2 bor8 bg0">
 										<select class="custom-select mr-sm-2" name="tallaProducto" id="tallaProducto">
 											<option>Selecciona</option>
-
 				 							<?php foreach($tallasProducto as $talla) { ?>
-											<option value="<?php echo $talla[0] ?>">Talla <?php echo $talla[0] ?></option>
+												<option value="<?php echo $talla[0] ?>" producto="<?php echo $_GET['idProducto'] ?>">Talla <?php echo $talla[0] ?></option>
 											<?php } ?>
-
-
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
@@ -390,13 +387,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="custom-select mr-sm-2" name="colorProducto" id="colorProducto">
-											<option>Selecciona</option>
-											<option>Red</option>
-											<option>Blue</option>
-											<option>White</option>
-											<option>Grey</option>
-										</select>
+										<select class="custom-select mr-sm-2" name="colorProducto" id="colorProducto"></select>
 										<div class="dropDownSelect2"></div>
 									</div>
 								</div>
@@ -810,21 +801,39 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 <!--===============================================================================================-->
 <script>
 	//OBTENER DATOS DEL COLOR POR MEDIO DEL SELECT DE LA TALLA
-		$(document).ready(function(){
-			let color = $('#colorProducto');
-
-			$('tallaProducto').change(function(){
-				let talla = $(this).val();
-				$.ajax({
-					data: {talla:talla},
-					dataType: 'html',
-					type: 'POST',
-					url: '../../Controller/VistaClienteControlador/controladorVistaCliente.php',
-				}).done(function(data){
-					color.html(data);
-				});
+	// function consultarColores(idProducto, talla){
+	// 	alert(idProducto, talla)
+	// }
+	$("#tallaProducto").on("change", function(){
+		talla = $("#tallaProducto option:selected").val()
+		idProducto = $("#tallaProducto option:selected").attr("producto")
+		if(talla != null && idProducto != null){
+			let form = new FormData();
+			form.append("idProducto", idProducto)
+			form.append("talla", talla)
+			form.append("consultarColor", "")
+			$.ajax({
+				url: "../../Controller/VistaClienteControlador/controladorVistaCliente.php", //Consultamos el controlador
+				type: "post",
+				data: form,
+				contentType: false,
+				processData: false,
+				success: function (response) {
+					if(response != "" && response != null){
+						$('#colorProducto').empty()
+						$('#colorProducto').append("<option value=''>Seleccione el color</option>")
+						colores = $.parseJSON(response)
+						colores.forEach(function(color) {
+							$('#colorProducto').append("<option value='"+color.Color+"'>"+color.Color+"</option>")
+						})
+					}else{
+						alert("No se encontraron colores para esta talla de la prenda.")
+					}
+				}, 	
 			});
-		});
+		}else
+			alert('Ocurrio un error, intente de nuevo.')
+	})
 </script>
 
 
