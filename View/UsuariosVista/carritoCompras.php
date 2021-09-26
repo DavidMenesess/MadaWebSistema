@@ -115,7 +115,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?php  echo (empty($_SESSION['CARRITOMADA']))?0:count($_SESSION['CARRITOMADA']); ?>">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 					</div>
@@ -216,7 +216,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
-					Your Cart
+					Carrito de compras
 				</span>
 
 				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -226,70 +226,49 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 			
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
+					<?php 
+						if(!empty($_SESSION['CARRITOMADA'])){
+					?>
+					<?php $totalPorProducto = 0; ?>
+					<?php foreach($_SESSION['CARRITOMADA'] as $indice => $producto) { ?>
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
+						<img class="img-thumbnail" width="80px" src="../../images/productos/<?php echo $producto['Foto'] ?>" alt="">
 						</div>
-
 						<div class="header-cart-item-txt p-t-8">
 							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
+							 <?php echo $producto['Nombre']?>
 							</a>
-
 							<span class="header-cart-item-info">
-								1 x $19.00
+							<?php echo $producto['Cantidad']?> x <?php echo $producto['Precio']?>
 							</span>
 						</div>
 					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
+					<?php } ?>
 				</ul>
 				
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
+						Total:
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
 						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
+							Ver carrito
 						</a>
 
 						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
+							Ir a pagar
 						</a>
 					</div>
 				</div>
+				<?php
+    				} else {
+    				?>
+						<div class="alert alert-warning" role="alert">
+							No hay productos en el carrito
+						</div>
+				<?php } ?>
 			</div>
 		</div>
 	</div>
@@ -306,8 +285,8 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 					<table class="table">
 						<thead>
 							<tr>
-							<th scope="col">Imagen</th>
-							<th scope="col">Nombre</th>
+							<th scope="col"></th>
+							<th scope="col">Producto</th>
 							<th scope="col">Cantidad</th>
 							<th scope="col">Talla</th>
 							<th scope="col">Color</th>
@@ -319,9 +298,9 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 						<?php $total = 0; ?>
 						<tbody>
 						<?php 
-							if(!empty($_SESSION['CARRITO'])) {
+							if(!empty($_SESSION['CARRITOMADA'])) {
 						?>
-							<?php foreach($_SESSION['CARRITO'] as $indice => $producto) { ?>
+							<?php foreach($_SESSION['CARRITOMADA'] as $indice => $producto) { ?>
 							<tr>
 							<th scope="row"><img class="img-thumbnail" width="80px" src="../../images/productos/<?php echo $producto['Foto'] ?>" alt=""></th>
 							<td><?php echo $producto['Nombre']?></td>
@@ -330,7 +309,12 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 							<td><?php echo $producto['Color'] ?></td>
 							<td><?php echo $producto['Precio']?></td>
 							<td><?php echo  number_format( $producto['Precio']*$producto['Cantidad'],3)?></td>
-							<td><button class="btn btn-dark"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+							<td>
+							<form action="../../Controller/VistaClienteControlador/controladorCarrito.php" method="post">
+								<input type="hidden" name="idProducto" value="<?php echo openssl_encrypt($producto['ID'],COD,KEY)?>">
+								<button type="submit" class="btn btn-dark" name="btnAccion" value="eliminar"><i class="fa fa-times" aria-hidden="true"></i></button>
+							</form>
+							</td>
 							</tr>
 							<?php } ?>
 						<?php

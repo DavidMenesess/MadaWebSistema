@@ -1,6 +1,8 @@
 <?php 
 
-include "../../Model/VistaClienteModelo/encriptarDatosCarrito.php";
+define("COD", "AES-128-ECB");
+define("KEY", "mada");
+
 session_start();
 
 $mensaje ="";
@@ -44,7 +46,7 @@ if(isset($_POST['btnAccion'])){
             //Y lo almacenamos en la posicion 0 de nuestra variable de session.
             //De lo contrario contaremos cuantos productos se encuentran en la variable de session
             //Y llevaremos ese control con la variable numero de productos
-            if(!isset($_SESSION['CARRITO'])){
+            if(!isset($_SESSION['CARRITOMADA'])){
                 $producto = array(
 
                     'ID'=>$id,
@@ -56,11 +58,11 @@ if(isset($_POST['btnAccion'])){
                     'Foto'=>$foto
                 );
 
-                $_SESSION['CARRITO'][0]=$producto;
+                $_SESSION['CARRITOMADA'][0]=$producto;
 
             }
             else{
-                $numeroProductos = count($_SESSION['CARRITO']);
+                $numeroProductos = count($_SESSION['CARRITOMADA']);
                 $producto = array(
 
                     'ID'=>$id,
@@ -71,11 +73,31 @@ if(isset($_POST['btnAccion'])){
                     'Color'=>$color,
                     'Foto'=>$foto
                 );
-                $_SESSION['CARRITO'][$numeroProductos]=$producto;
+                $_SESSION['CARRITOMADA'][$numeroProductos]=$producto;
             }
-            print_r($_SESSION['CARRITO'],true);
+        break;
+        
+        case "eliminar":
+        if(is_numeric(openssl_decrypt($_POST['idProducto'],COD,KEY))){
 
-        break;    
+            $id = openssl_decrypt($_POST['idProducto'],COD,KEY);
+
+            foreach( $_SESSION['CARRITOMADA'] as $indice => $producto){
+
+                if($producto['ID'] == $id){
+                    unset($_SESSION['CARRITOMADA'][$indice]);
+                    header('Location: ../../View/UsuariosVista/carritoCompras.php');
+                }
+
+            }
+
+            $mensaje = "El id es correcto";
+
+        }
+        else{
+            $mensaje = "Algo pasa con el id";
+        }
+        break;
 
     }
 

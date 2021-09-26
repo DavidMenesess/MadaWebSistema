@@ -1,7 +1,7 @@
 
 <?php
 require("../../Controller/VistaClienteControlador/controladorVistaCliente.php");
-include "../../Model/VistaClienteModelo/encriptarDatosCarrito.php";
+//include "../../Model/VistaClienteModelo/encriptarDatosCarrito.php";
 include "../../Controller/VistaClienteControlador/controladorCarrito.php"; 
 
 $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
