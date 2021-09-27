@@ -120,7 +120,7 @@ session_start();
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">							
 						<div class="flex-c-m h-full p-r-25 bor6">
-							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php  echo (empty($_SESSION['CARRITO']))?0:count($_SESSION['CARRITO']);?>">
+							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php  echo (empty($_SESSION['CARRITOMADA']))?0:count($_SESSION['CARRITOMADA']); ?>">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div>
 						</div>
@@ -139,7 +139,7 @@ session_start();
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
 				<div class="flex-c-m h-full p-r-5">
-					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php  echo (empty($_SESSION['CARRITO']))?0:count($_SESSION['CARRITO']);?>">
+					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php  echo (empty($_SESSION['CARRITOMADA']))?0:count($_SESSION['CARRITOMADA']); ?>">
 						<i class="zmdi zmdi-shopping-cart"></i>
 					</div>
 				</div>
@@ -226,7 +226,7 @@ session_start();
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
-					CARRITO DE COMPRAS
+					Carrito de compras
 				</span>
 
 				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -236,58 +236,30 @@ session_start();
 			
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
+					<?php 
+						if(!empty($_SESSION['CARRITOMADA'])){
+					?>
+					<?php $totalPorProducto = 0; ?>
+					<?php foreach($_SESSION['CARRITOMADA'] as $indice => $producto) { ?>
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="../../images/item-cart-01.jpg" alt="IMG">
+						<img class="img-thumbnail" width="80px" src="../../images/productos/<?php echo $producto['Foto'] ?>" alt="">
 						</div>
-
 						<div class="header-cart-item-txt p-t-8">
 							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
+							 <?php echo $producto['Nombre']?>
 							</a>
-
 							<span class="header-cart-item-info">
-								1 x $19.00
+							<?php echo $producto['Cantidad']?> x <?php echo $producto['Precio']?>
 							</span>
 						</div>
 					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="../../images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="../../images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
+					<?php } ?>
 				</ul>
 				
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
+						Total:
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
@@ -296,10 +268,24 @@ session_start();
 						</a>
 
 						<a href="carritoCompras.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Verificar
+							Ir a pagar
 						</a>
 					</div>
 				</div>
+				<?php
+    				} else {
+    				?>
+						<div class="alert alert-dark" role="alert">
+							No hay productos en el carrito
+						</div>
+				<div class="w-full">
+					<div class="header-cart-buttons flex-w w-full">
+						<a href="carritoCompras.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+							Ver carrito
+						</a>
+					</div>
+				</div>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

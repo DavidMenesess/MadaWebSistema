@@ -123,7 +123,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 					</div>			
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?php  echo (empty($_SESSION['CARRITOMADA']))?0:count($_SESSION['CARRITOMADA']); ?>">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 					</div>
@@ -140,7 +140,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?php  echo (empty($_SESSION['CARRITOMADA']))?0:count($_SESSION['CARRITOMADA']); ?>">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 			</div>
@@ -224,7 +224,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
-					Your Cart
+					Carrito de compras
 				</span>
 
 				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -234,70 +234,56 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 			
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
+					<?php 
+						if(!empty($_SESSION['CARRITOMADA'])){
+					?>
+					<?php $totalPorProducto = 0; ?>
+					<?php foreach($_SESSION['CARRITOMADA'] as $indice => $producto) { ?>
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
+						<img class="img-thumbnail" width="80px" src="../../images/productos/<?php echo $producto['Foto'] ?>" alt="">
 						</div>
-
 						<div class="header-cart-item-txt p-t-8">
 							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
+							 <?php echo $producto['Nombre']?>
 							</a>
-
 							<span class="header-cart-item-info">
-								1 x $19.00
+							<?php echo $producto['Cantidad']?> x <?php echo $producto['Precio']?>
 							</span>
 						</div>
 					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
+					<?php } ?>
 				</ul>
 				
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
+						Total:
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
 						<a href="carritoCompras.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
+							Ver carrito
 						</a>
 
 						<a href="carritoCompras.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
+							Ir a pagar
 						</a>
 					</div>
 				</div>
+				<?php
+    				} else {
+    				?>
+						<div class="alert alert-dark" role="alert">
+							No hay productos en el carrito
+						</div>
+				<div class="w-full">
+					<div class="header-cart-buttons flex-w w-full">
+						<a href="carritoCompras.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+							Ver carrito
+						</a>
+					</div>
+				</div>
+				<?php } ?>
 			</div>
 		</div>
 	</div>
@@ -357,10 +343,10 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 						
 						<!--  -->
 						<form action="../../Controller/VistaClienteControlador/controladorCarrito.php" method="POST">
-							<input type="text" name="idProducto" id="idProducto" value="<?php echo openssl_encrypt($informacionProducto[0],COD,KEY)?>">
-							<input type="text" name="nombreProducto" id="nombreProducto" value="<?php echo openssl_encrypt($informacionProducto[1],COD,KEY)?>">
-							<input type="text" name="precioProducto" id="precioProducto" value="<?php echo openssl_encrypt($informacionProducto[3],COD,KEY)?>">
-							<input type="text" name="fotoProducto" id="fotoProducto" value="<?php echo $informacionProducto[6]?>">
+							<input type="hidden" name="idProducto" id="idProducto" value="<?php echo openssl_encrypt($informacionProducto[0],COD,KEY)?>">
+							<input type="hidden" name="nombreProducto" id="nombreProducto" value="<?php echo openssl_encrypt($informacionProducto[1],COD,KEY)?>">
+							<input type="hidden" name="precioProducto" id="precioProducto" value="<?php echo openssl_encrypt($informacionProducto[3],COD,KEY)?>">
+							<input type="hidden" name="fotoProducto" id="fotoProducto" value="<?php echo $informacionProducto[6]?>">
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-203 flex-c-m respon6">
@@ -594,104 +580,6 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 							</div>
 						</div>
 					</div>
-					
-					<!--<div class="col-md-6 col-lg-5 p-b-30">
-						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								Lightweight Jacket
-							</h4>
-
-							<span class="mtext-106 cl2">
-								$58.79
-							</span>
-
-							<p class="stext-102 cl3 p-t-23">
-								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-							</p>
-							
-							<!--  -->
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
-									</div>
-								</div>	
-							</div>
-
-							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-									<i class="fa fa-google-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>-->
 				</div>
 			</div>
 		</div>
@@ -821,7 +709,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 				success: function (response) {
 					if(response != "" && response != null){
 						$('#colorProducto').empty()
-						$('#colorProducto').append("<option value=''>Seleccione el color</option>")
+						$('#colorProducto').append("<option value=''>Selecciona</option>")
 						colores = $.parseJSON(response)
 						colores.forEach(function(color) {
 							$('#colorProducto').append("<option value='"+color.Color+"'>"+color.Color+"</option>")
