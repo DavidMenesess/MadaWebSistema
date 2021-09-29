@@ -47,6 +47,9 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../css/util.css">
 	<link rel="stylesheet" type="text/css" href="../../css/main.css">
+	<style>
+		
+	</style>
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -234,21 +237,23 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 			
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-					<?php 
+					<?php
+					$total = 0; 
 						if(!empty($_SESSION['CARRITOMADA'])){
 					?>
 					<?php $totalPorProducto = 0; ?>
 					<?php foreach($_SESSION['CARRITOMADA'] as $indice => $producto) { ?>
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-						<img class="img-thumbnail" width="80px" src="../../images/productos/<?php echo $producto['Foto'] ?>" alt="">
+								<img class="img-thumbnail" width="80px" src="../../images/productos/<?php echo $producto['Foto'] ?>" alt="">
 						</div>
 						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+							<a href="../../Controller/VistaClienteControlador/controladorVistaCliente.php?idProducto=<?php echo $producto['ID'] ?> class="header-cart-item-name m-b-18 hov-cl1 trans-04">
 							 <?php echo $producto['Nombre']?>
 							</a>
 							<span class="header-cart-item-info">
 							<?php echo $producto['Cantidad']?> x <?php echo $producto['Precio']?>
+							<?php  $total+= number_format( $producto['Precio']*$producto['Cantidad'],3) ?>
 							</span>
 						</div>
 					</li>
@@ -257,7 +262,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 				
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total:
+						Total: <?php echo number_format($total,3) ?>
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
@@ -288,10 +293,12 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 		</div>
 	</div>
 
-	<div class="alert alert-success">
-		Pantalla de mensaje...
-		<?php echo $mensaje; ?>
-		<a href="" class="badge badge-success">Ver el carrito</a>
+	<div id="alerta" class="alert alert-success">
+		Agregado al carrito!
+		<?php 
+		// include "../../Controller/VistaClienteControlador/controladorCarrito.php";
+		echo $mensaje ?>
+
 	</div>
 
 	<!-- Product Detail -->
@@ -393,7 +400,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 										</div>
 									</div>
 
-									<button type="submit" name="btnAccion" value="Agregar" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button type="submit" name="btnAccion" value="Agregar" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 										Agregar al carrito
 									</button>
 								</div>
@@ -587,6 +594,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 
 <!--===============================================================================================-->	
 	<script src="../../vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../../js/jquery-3.6.0.min.js"></script>
 <!--===============================================================================================-->
 	<script src="../../vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -615,7 +623,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 	</script>
 <!--===============================================================================================-->
 	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-	<script>
+	<!-- <script>
 		$('.gallery-lb').each(function() { // the containers for all your galleries
 			$(this).magnificPopup({
 		        delegate: 'a', // the selector for gallery item
@@ -626,7 +634,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 		        mainClass: 'mfp-fade'
 		    });
 		});
-	</script>
+	</script> -->
 <!--===============================================================================================-->
 	<script src="../../vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
@@ -723,6 +731,46 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 			alert('Ocurrio un error, intente de nuevo.')
 	})
 </script>
+<!-- <script>
+	function enviarDatos(){
+		var tallaProducto = document.getElementById("tallaProducto").value;
+		var colorProducto = document.getElementById("colorProducto").value;
+
+		var idProducto = document.getElementById("idProducto").value;
+		var nombreProducto = document.getElementById("nombreProducto").value;
+		var precioProducto = document.getElementById("precioProducto").value;
+		var fotoProducto = document.getElementById("fotoProducto").value;
+
+		var formData = new FormData();
+		formData.append('Agregar', '');
+		formData.append("idProducto", idProducto);
+		formData.append("nombreProducto", nombreProducto);
+		formData.append("precioProducto", precioProducto);
+		formData.append("fotoProducto", fotoProducto);
+		formData.append("tallaProducto", tallaProducto);
+		formData.append("colorProducto", colorProducto);
+		$.ajax({
+			url: '../../Controller/VistaClienteControlador/controladorCarrito.php',
+			type: 'post',
+			data: formData,
+            contentType: false,
+            processData: false,
+		})
+		.done(function() {
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+
+
+	}
+	
+</script> -->
 
 
 

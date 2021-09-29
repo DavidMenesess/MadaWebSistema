@@ -236,7 +236,8 @@ session_start();
 			
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-					<?php 
+					<?php
+					$total = 0; 
 						if(!empty($_SESSION['CARRITOMADA'])){
 					?>
 					<?php $totalPorProducto = 0; ?>
@@ -251,6 +252,7 @@ session_start();
 							</a>
 							<span class="header-cart-item-info">
 							<?php echo $producto['Cantidad']?> x <?php echo $producto['Precio']?>
+							<?php  $total+= number_format( $producto['Precio']*$producto['Cantidad'],3) ?>
 							</span>
 						</div>
 					</li>
@@ -259,7 +261,7 @@ session_start();
 				
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total:
+						Total: <?php echo number_format($total,3) ?>
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">

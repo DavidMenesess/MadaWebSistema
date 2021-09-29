@@ -46,4 +46,10 @@ $controladorVistaCliente = new controladorVistaCliente();
 if(isset($_POST['consultarColor'])){
     echo json_encode($controladorVistaCliente->consultarColor($_POST['idProducto'], $_POST['talla']));
 }
+
+if(isset($_GET['idProducto'])){
+    $id = $_GET['idProducto'];
+    header("Location ../../View/UsuariosVista/detalleProductoCliente.php?idProducto=$id");
+}
+
 ?>

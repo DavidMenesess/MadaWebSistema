@@ -4,9 +4,10 @@ include "../../Controller/VistaClienteControlador/controladorCarrito.php";
 
 
 $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
+// $clienteDatos = $controladorVistaCliente->cliente($_SESSION['id']);
 
 
-//session_start();
+// session_start();
 ?>
 
 
@@ -39,6 +40,14 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../css/util.css">
 	<link rel="stylesheet" type="text/css" href="../../css/main.css">
+	<style>
+		#botonPago{
+			display:  none;
+		}
+		#alerta{
+			display:  none;
+		}
+	</style>
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -284,7 +293,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 
 	
 
-	<form class="bg0 p-t-75 p-b-85">
+	<!-- <form class="bg0 p-t-75 p-b-85"> -->
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -302,7 +311,10 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 							<th scope="col">Quitar</th>
 							</tr>
 						</thead>
-						<?php $total = 0; ?>
+						<?php 
+						$total = 0;
+						$cont;
+						 ?>
 						<tbody>
 						<?php 
 							if(!empty($_SESSION['CARRITOMADA'])) {
@@ -310,20 +322,25 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 							<?php foreach($_SESSION['CARRITOMADA'] as $indice => $producto) { ?>
 							<tr>
 							<th scope="row"><img class="img-thumbnail" width="80px" src="../../images/productos/<?php echo $producto['Foto'] ?>" alt=""></th>
-							<td><?php echo $producto['Nombre']?></td>
+							<td><?php echo $producto['Nombre'];?></td>
 							<td><?php echo $producto['Cantidad']?></td>
 							<td><?php echo $producto['Talla']?></td>
 							<td><?php echo $producto['Color'] ?></td>
 							<td><?php echo $producto['Precio']?></td>
-							<td><?php echo  number_format( $producto['Precio']*$producto['Cantidad'],3)?></td>
+							<td><?php echo  number_format( $producto['Precio']*$producto['Cantidad'],3)?> <?php $total+= number_format( $producto['Precio']*$producto['Cantidad'],3) ?></td>
 							<td>
 							<form action="../../Controller/VistaClienteControlador/controladorCarrito.php" method="post">
 								<input type="hidden" name="idProducto" value="<?php echo openssl_encrypt($producto['ID'],COD,KEY)?>">
+								<input type="hidden" name="tallaProducto" value="<?php echo openssl_encrypt($producto['Talla'],COD,KEY)?>">
+								<input type="hidden" name="colorProducto" value="<?php echo openssl_encrypt($producto['Color'],COD,KEY)?>">
 								<button type="submit" class="btn btn-dark" name="btnAccion" value="eliminar"><i class="fa fa-times" aria-hidden="true"></i></button>
 							</form>
 							</td>
 							</tr>
-							<?php } ?>
+							<?php 
+							$cont = $producto['Nombre']." Talla ".$producto['Talla']." ".$producto['Color']."\n";
+
+						} ?>
 						<?php
     					} else {
     					?>
@@ -350,7 +367,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 
 							<div class="size-209">
 								<span class="mtext-110 cl2">
-									$$$
+									<?php echo number_format($total,3) ?>
 								</span>
 							</div>
 						</div>
@@ -364,7 +381,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 								<p class="stext-111 cl6 p-t-2">
-									Por favor ingrese su dirección para realizar el envío, recuerde que este tiene un costo de $$$$...
+									Por favor ingrese su dirección para realizar el envío, recuerde que este tiene un costo de <?php echo number_format($total,3) ?>
 								</p>
 								
 								<div class="p-t-15">
@@ -373,27 +390,34 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 									</span>
 
 									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-										<select class="js-select2" name="ciudad">
+										<select class="js-select2"  id= "ciudad" name="ciudad">
 											<option>Ciudad</option>
-											<option>Medellín</option>
+											<option value="Medellin">Medellín</option>
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
+									<?php 
+										if(isset($_SESSION['correo'])){
+									?>
 
+									<input type="hidden" id="idCliente" name="idCliente" value="<?php echo $_SESSION['id']?>">
+									<?php
+										}
+									?>
 									<div class="bor8 bg0 m-b-12">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="Dirección de envío">
+										<input id="direccion" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="Dirección de envío">
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Documento">
+										<input id="documento" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Documento">
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Número de teléfono">
+										<input id="celular" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Número de celular">
 									</div>
 
 									<div class="bor8 bg0 m-b-22">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Describe tu residencia">
+										<input id="descrip" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Describe tu residencia">
 									</div>	
 								</div>
 							</div>
@@ -408,19 +432,57 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 
 							<div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-									$79.65
+									<?php echo number_format($total,3) ?>
 								</span>
 							</div>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-							Proceder a pagar
-						</button>
+						<div>
+							<button class="btn btn-dark btn-block" onclick="mostrarBoton()">Guardar</button>
+						</div>
+						<div>
+
+						</div>
+
+						<br>
+						<div id="alerta">
+							<div class="alert alert-danger" role="alert">
+							  Llena todos los campos!
+							</div>
+						</div>
+						<br>
+						<div id="botonPago">
+							<form>
+					        <script
+					        <?php 
+							if(isset($_SESSION['correo'])){
+							?>
+					            src="https://checkout.epayco.co/checkout.js"
+					            class="epayco-button"
+					            data-epayco-key="491d6a0b6e992cf924edd8d3d088aff1"
+					            data-epayco-amount="<?php echo number_format($total,3) ?>"
+					            data-epayco-name="Productos MadaWeb"
+					            data-epayco-description="<?php echo $cont ?>"
+					            data-epayco-currency="cop"
+					            data-epayco-country="co"
+					            data-epayco-test="true"
+					            data-epayco-external="true"
+					            data-epayco-rejected="http://madastore.infinityfreeapp.com/MadaWebSistema/View/UsuariosVista/carritoCompras.php"
+					            data-epayco-confirmation="http://madastore.infinityfreeapp.com/MadaWebSistema/View/UsuariosVista/carritoCompras.php"
+					            data-epayco-name-billing="<?php echo $_SESSION['nombre'];?>"
+					            data-epayco-type-doc-billing="CC"
+					            data-epayco-number-doc-billing= "1000887442"
+						        data-epayco-mobilephone-billing=celular
+						        data-epayco-address-billing=direccion>
+						    <?php } ?>
+						        </script>
+						    </form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+	<!-- </form> -->
 	
 		
 	
@@ -551,6 +613,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 
 <!--===============================================================================================-->	
 	<script src="../../vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../../js/jquery-3.6.0.min.js"></script>
 <!--===============================================================================================-->
 	<script src="../../vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -587,6 +650,30 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 	</script>
 <!--===============================================================================================-->
 	<script src="../../js/main.js"></script>
+	<script>
+		function mostrarBoton(){
+			const direccion = document.getElementById("direccion").value;
+			const documento = document.getElementById("documento").value;
+			const celular = document.getElementById("celular").value;
+			const descrip = document.getElementById("descrip").value;
+			const ciudad = document.getElementById("ciudad").value;
+			//const idCliente = document.getElementById("idCliente").value;
+
+
+			if (direccion == "" || documento == "" || celular == "" || descrip == "" || ciudad == "") {
+				document.getElementById("alerta").style.display = "block";
+			}else{
+				document.getElementById("botonPago").style.display = "block";
+				document.getElementById("alerta").style.display = "none";
+
+
+				
+				
+			}
+
+
+		}
+	</script>
 
 </body>
 </html>

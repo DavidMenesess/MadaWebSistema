@@ -42,6 +42,10 @@ if(isset($_POST['btnAccion'])){
             }
 
             header("Location: ../../View/UsuariosVista/detalleProductoCliente.php?idProducto=" . $id);
+
+            "<script>
+                    document.getElementById('alerta').style.display = 'block';
+            </script>";
             //Si no existe la variable de session guardamos en una arreglo los datos de nuestro poducto
             //Y lo almacenamos en la posicion 0 de nuestra variable de session.
             //De lo contrario contaremos cuantos productos se encuentran en la variable de session
@@ -81,10 +85,13 @@ if(isset($_POST['btnAccion'])){
         if(is_numeric(openssl_decrypt($_POST['idProducto'],COD,KEY))){
 
             $id = openssl_decrypt($_POST['idProducto'],COD,KEY);
+            $talla = openssl_decrypt($_POST['tallaProducto'],COD,KEY);
+            $color = openssl_decrypt($_POST['colorProducto'],COD,KEY);
+
 
             foreach( $_SESSION['CARRITOMADA'] as $indice => $producto){
 
-                if($producto['ID'] == $id){
+                if($producto['ID'] == $id && $producto['Talla'] == $talla && $producto['Color'] == $color){
                     unset($_SESSION['CARRITOMADA'][$indice]);
                     header('Location: ../../View/UsuariosVista/carritoCompras.php');
                 }
