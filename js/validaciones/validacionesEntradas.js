@@ -1,24 +1,42 @@
 
 function validarRegistroDetalle(){
 
-    /*let color,talla, cantidad;
+    let color,talla, cantidad, expresionNumeros;
 
     color = document.getElementById("color").value;
     talla = document.getElementById("talla").value;
     cantidad = document.getElementById("cantidad").value;
 
+    expresionNumeros = /^[0-9]+$/;
+
+    expresionColor = /^([a-zA-Z_][a-zA-Z ]*[a-zA-Z_]$)/;
+
+    expresionTalla = /[a-zA-Z0-9_]/;
+
     if(color == ""){
-        alert("Debe ingresar el color");
+        Swal.fire("Debe ingresar el color");
         return false;
     }
     else if(talla == ""){
-        alert("Debe ingresar la talla");
+        Swal.fire("Debe ingresar la talla");
         return false;
     }
     else if(cantidad == ""){
         alert("Debe ingresar la cantidad");
         return false;
-    }*/
+    }
+    else if(expresionNumeros.test(cantidad)){
+        Swal.fire("El campo de cantidad solo debe contener números");
+        return false;
+    }
+    else if(!expresionColor.test(color)){
+        Swal.fire("El Campo color no debe contener caracteres especiales o números");
+        return false;
+    }
+    else if(!expresionTalla.test(talla)){
+        Swal.fire("El Campo talla no debe contener caracteres especiales o números");
+        return false;
+    }
 
 }
 
@@ -46,7 +64,7 @@ function validarRegistroEntrada(){
         return false;
     }
     else if(!expresionNumeros.test(nuevaCantidad)){
-        Swal.fire("El campo de agregar más cantidad solo debe contener números");
+        Swal.fire("El campo de agregar nueva cantidad solo debe contener números");
         return false;
     }
 

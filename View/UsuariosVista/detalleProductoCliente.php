@@ -63,8 +63,8 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
-						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+					<a href="index.php" class="logo">
+						<img src="../../images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -138,7 +138,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.php"><img src="../../images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -248,7 +248,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 								<img class="img-thumbnail" width="80px" src="../../images/productos/<?php echo $producto['Foto'] ?>" alt="">
 						</div>
 						<div class="header-cart-item-txt p-t-8">
-							<a href="../../Controller/VistaClienteControlador/controladorVistaCliente.php?idProducto=<?php echo $producto['ID'] ?> class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
 							 <?php echo $producto['Nombre']?>
 							</a>
 							<span class="header-cart-item-info">
@@ -349,7 +349,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 						</p>
 						
 						<!--  -->
-						<form action="../../Controller/VistaClienteControlador/controladorCarrito.php" method="POST">
+						<form action="../../Controller/VistaClienteControlador/controladorCarrito.php" method="POST" onsubmit="return validarSeleccionProducto();">
 							<input type="hidden" name="idProducto" id="idProducto" value="<?php echo openssl_encrypt($informacionProducto[0],COD,KEY)?>">
 							<input type="hidden" name="nombreProducto" id="nombreProducto" value="<?php echo openssl_encrypt($informacionProducto[1],COD,KEY)?>">
 							<input type="hidden" name="precioProducto" id="precioProducto" value="<?php echo openssl_encrypt($informacionProducto[3],COD,KEY)?>">
@@ -393,7 +393,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="cantidadProducto" value="1">
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="cantidadProducto" id="cantidadProducto" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
@@ -595,6 +595,9 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 <!--===============================================================================================-->	
 	<script src="../../vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="../../js/jquery-3.6.0.min.js"></script>
+	<script src="../../js/validaciones/validacionesProductosC.js"></script>
+	<script src="../../libraries/sweetalert2@11.js"></script>
+
 <!--===============================================================================================-->
 	<script src="../../vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -635,6 +638,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 		    });
 		});
 	</script> -->
+
 <!--===============================================================================================-->
 	<script src="../../vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
@@ -772,6 +776,7 @@ $tallasProducto = $controladorVistaCliente->listaTallasProducto($_GET['idProduct
 	
 </script> -->
 
+<!--===============================================================================================-->
 
 
 <!--===============================================================================================-->

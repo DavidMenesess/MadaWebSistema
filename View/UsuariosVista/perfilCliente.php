@@ -56,7 +56,7 @@ if (!isset($_SESSION['correo'])) {
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="#" class="logo">
+					<a href="index.php" class="logo">
 						<img src="../../images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
@@ -134,7 +134,7 @@ if (!isset($_SESSION['correo'])) {
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.php"><img src="../../images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -233,7 +233,8 @@ if (!isset($_SESSION['correo'])) {
 			
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-					<?php 
+					<?php
+					$total = 0; 
 						if(!empty($_SESSION['CARRITOMADA'])){
 					?>
 					<?php $totalPorProducto = 0; ?>

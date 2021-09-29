@@ -30,7 +30,7 @@ function validarCamposIngreso(){
 
 function validarCamposRegistrar(){
 
-    let nombre, apellido, correo, contrasena, expresionCorreo;
+    let nombre, apellido, correo, contrasena, expresionCorreo, expresionNombreApellido;
 
     nombre = document.getElementById("nombre").value;
     apellido = document.getElementById("apellido").value;
@@ -39,12 +39,22 @@ function validarCamposRegistrar(){
 
     expresionCorreo = /\w+@\w+\.+[a-z]/;
 
+    expresionNombreApellido = /^([a-zA-Z_][a-zA-Z ]*[a-zA-Z_]$)/;
+
     if(nombre == "" || apellido == "" || correo == "" || contrasena == ""){
         Swal.fire("Todos los campos deben ser diligenciados");
         return false;
     }
     else if(!expresionCorreo.test(correo)){
         Swal.fire("Debe ingresar un formato válido de correo electrónico");
+        return false;
+    }
+    else if(!expresionNombreApellido.test(nombre)){
+        Swal.fire("El campo Nombre no debe contener caracteres especiales o números");
+        return false;
+    }
+    else if(!expresionNombreApellido.test(apellido)){
+        Swal.fire("El campo Apellidos no debe contener caracteres especiales o números");
         return false;
     }
     else if(contrasena.length < 8){

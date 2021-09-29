@@ -12,9 +12,9 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-	<title>Shoping Cart</title>
+	<title>Carrito de compras || Mada</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -61,7 +61,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="../../images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -136,7 +136,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.html"><img src="../../images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -484,10 +484,6 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 		</div>
 	<!-- </form> -->
 	
-		
-	
-		
-
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">

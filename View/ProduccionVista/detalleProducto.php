@@ -66,7 +66,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                         </div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-tshirt"></i></div>
-                            Producción
+                            Producto
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
@@ -214,7 +214,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
             var contador = $("input[type='text']").length;
 
 
-            $(this).before('<div class="input-group"><div class="input-group-prepend"><span class="input-group-text" id="">Entrada</span></div><input type="text" name="color[]" class="form-control" id="color" required  placeholder="Color"><input type="text" name="talla[]" class="form-control" id="talla" required  placeholder="Talla"><input type="text" name="cantidad[]" class="form-control" id="cantidad" required placeholder="Cantidad"><button type="button" class="btn btn-danger eliminarEntrada">Eliminar</button></div>');
+            $(this).before('<div class="input-group"><div class="input-group-prepend"><span class="input-group-text" id="">Entrada</span></div><input type="text" name="color[]" class="form-control" id="color" required pattern="[A-Za-z]+"  placeholder="Color"><input type="text" name="talla[]" class="form-control" id="talla" required pattern="[A-Za-z0-9]+"  placeholder="Talla"><input type="number" name="cantidad[]" class="form-control" id="cantidad" required pattern="[^[0-9]+$]+" placeholder="Cantidad"><button type="button" class="btn btn-danger eliminarEntrada">Eliminar</button></div>');
 
 
         });

@@ -55,7 +55,7 @@ session_start();
 				<nav class="limiter-menu-desktop p-l-45">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
+					<a href="index.php" class="logo">
 						<img src="../../images/icons/logo-02.png" alt="IMG-LOGO">
 					</a>
 
@@ -133,7 +133,7 @@ session_start();
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.php"><img src="../../images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
