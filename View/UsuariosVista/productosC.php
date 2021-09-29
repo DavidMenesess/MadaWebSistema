@@ -59,8 +59,11 @@ session_start();
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="index.php" class="logo">
+					<!--<a href="index.php" class="logo">
 						<img src="../../images/icons/logo-01.png" alt="IMG-LOGO">
+					</a>-->
+					<a href="index.php" class="logo">
+						<h2 style="color: #212121;">Mada</h2>
 					</a>
 
 					<!-- Menu desktop -->
@@ -135,8 +138,13 @@ session_start();
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
-			<div class="logo-mobile">
+			<!--<div class="logo-mobile">
 				<a href="index.php"><img src="../../images/icons/logo-01.png" alt="IMG-LOGO"></a>
+			</div>-->
+			<div class="logo-mobile">
+				<a href="index.php">
+					<h2 style="color: #212121;">Mada</h2>
+				</a>
 			</div>
 
 			<!-- Icon header -->

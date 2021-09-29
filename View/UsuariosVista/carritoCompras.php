@@ -60,8 +60,8 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
-						<img src="../../images/icons/logo-01.png" alt="IMG-LOGO">
+					<a href="index.php" class="logo">
+						<h2 style="color: #212121;">Mada</h2>
 					</a>
 
 					<!-- Menu desktop -->
@@ -136,8 +136,11 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="../../images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.php">
+					<h2 style="color: #212121;">Mada</h2>
+				</a>
 			</div>
+
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">

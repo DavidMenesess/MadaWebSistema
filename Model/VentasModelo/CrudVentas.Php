@@ -7,7 +7,7 @@ class CrudVentas{
 	public function listarVentas(){
 		$Db = Db::Conectar();
 
-		$sql = $Db -> query("SELECT `pedidos`.`IdPedido`, `pedidos`.`FechaPedido`, `pedidos`.`Subtotal`, `pedidos`.`Total`, `pedidos`.`IdEstadoPedido`, `pedidos`.`IdUsuario`, `usuarios`.`Nombre`\n"
+		$sql = $Db -> query("SELECT `pedidos`.`IdPedido`, `pedidos`.`FechaPedido`,  `pedidos`.`Total`, `pedidos`.`IdEstadoPedido`, `pedidos`.`IdUsuario`, `usuarios`.`Nombre`\n"
 
     . "FROM `pedidos` \n"
 
@@ -54,7 +54,7 @@ class CrudVentas{
 	public function listarDetalleVenta($IdPedido){
 		$Db = Db::Conectar();
 
-		$sql = $Db->query("SELECT `usuarios`.`Nombre`, `usuarios`.`Apellido`, `usuarios`.`Correo`, `usuarios`.*, `pedidos`.`FechaPedido`, `pedidos`.`Subtotal`, `pedidos`.`Total`,  `pedidos`.`IdEstadoPedido`, `pedidos`.*\n"
+		$sql = $Db->query("SELECT `usuarios`.`Nombre`, `usuarios`.`Apellido`, `usuarios`.`Correo`, `usuarios`.*, `pedidos`.`FechaPedido`, `pedidos`.`Total`,  `pedidos`.`IdEstadoPedido`, `pedidos`.*\n"
 
     . "FROM `usuarios` \n"
 

@@ -125,6 +125,10 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
               <label for="Direccion">Dirección: </label>
               <input type="text" class="form-control" name="Direccion" id="Direccion" readonly value="">
             </div>
+            <div class="form-group col-md-4">
+              <label for="Direccion">Descripción del lugar: </label>
+              <input type="text" class="form-control" name="Direccion" id="Direccion" readonly value="">
+            </div>
             <!-- <div class="form-group col-md-4">
                                     <label for="Telefono">Telefono: </label>
                                     <input type="number" class="form-control" name="Telefono" id="Telefono" readonly value="<?php echo $detalle['Telefono']; ?>">
@@ -150,7 +154,6 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                   <th scope="col">Talla</th>
                   <th scope="col">Valor Unitario</th>
                   <th scope="col">Cantidad</th>
-                  <th scope="col">Iva</th>
                   <th scope="col">Anular</th>
                 </tr>
               </thead>
@@ -163,23 +166,18 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                     <td><?php echo $deta['NombreProducto']; ?></td>
                     <td><?php echo $deta['Color']; ?></td>
                     <td><?php echo $deta['Talla']; ?></td>
-                    <td>$<?php echo $deta['ValorUnitario'];
-                          $valor = $deta['ValorUnitario'];
-                          $iva = ($valor * 19) / 100;
-                          ?></td>
-
-                    <td><?php echo $deta['Cantidad'];
-                        $TotalIvaIndi = $iva * $deta['Cantidad'];
-                        ?></td>
-
-                    <td><?php echo $TotalIvaIndi;
-                        $TotalIva += $TotalIvaIndi; ?></td>
+                    <td>$<?php  echo number_format($deta['ValorUnitario'],3);?></td>
+                    <td>
+                        <?php 
+                           echo $deta['Cantidad'];
+                        ?>
+                    </td>
 
                     <td>
                       <?php
                       if ($deta['IdEstadoPedido'] < 3) {
                       ?>
-                        <button type="button" id="anularProductoVenta" onclick="anularProductoVenta(<?php echo $deta['IdDetallePedido']; ?>,<?php echo $deta['ValorUnitario']; ?>,<?php echo $detalle['Total']; ?>,<?php echo $detalle['Subtotal']; ?>,<?php echo $deta['IdPedido']; ?>,<?php echo $deta['Cantidad']; ?>,<?php echo $deta['IdDetalleProducto']; ?>,<?php echo $deta['Stock']; ?>,<?php echo $TotalIvaIndi; ?>);" name="anularProductoVenta" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button type="button" id="anularProductoVenta" onclick="anularProductoVenta(<?php echo $deta['IdDetallePedido']; ?>,<?php echo $deta['ValorUnitario']; ?>,<?php echo $detalle['Total']; ?>,<?php echo $deta['IdPedido']; ?>,<?php echo $deta['Cantidad']; ?>,<?php echo $deta['IdDetalleProducto']; ?>,<?php echo $deta['Stock']; ?>,<?php echo $TotalIvaIndi; ?>);" name="anularProductoVenta" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
                       <?php
                       } else if ($deta['IdEstadoPedido'] == 3) {
                         echo '<span class="badge bg-danger">Cancelado</span>';
@@ -195,27 +193,19 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                 ?>
               </tbody>
             </table>
-            <div class="form-group col-md-3">
-              <label for="Subtotal">SubTotal: </label>
-              <input type="number" class="form-control" name="Subtotal" id="Correo" readonly value="<?php echo $detalle['Subtotal']; ?>">
-            </div>
-            <div class="form-group col-md-2">
-              <label for="ToatalIva">Total Iva: </label>
-              <input type="number" class="form-control" name="TotalIva" id="TotalIva" readonly value="<?php echo $TotalIva ?>">
-            </div>
-
-            <div class="form-group col-md-4">
+            
+            <div class="form-group col-md-6">
               <label for="Total">Total: </label>
               <input type="text" class="form-control" name="Total" id="Correo" readonly value="<?php echo $detalle['Total']; ?>">
             </div>
-            <div class="form-group col-md-3">
-              <label for="Fecha">Fecha de la venta: </label>
+            <div class="form-group col-md-6">
+              <label for="Fecha">Fecha del pedido: </label>
               <input type="text" class="form-control" name="Fecha" id="Correo" readonly value="<?php echo $detalle['FechaPedido']; ?>">
             </div>
 
 
             <!-- Factuta -->
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
 
               <form action="../../Controller/VentasControlador/ControladorVentas.php" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="IdPedido" value="<?php echo $detalle['IdPedido']; ?>">

@@ -56,7 +56,7 @@ session_start();
 					
 					<!-- Logo desktop -->		
 					<a href="index.php" class="logo">
-						<img src="../../images/icons/logo-02.png" alt="IMG-LOGO">
+						<h2 style="color: white;">Mada</h2>
 					</a>
 
 					<!-- Menu desktop -->
@@ -133,9 +133,12 @@ session_start();
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.php"><img src="../../images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.php">
+					<h2 style="color: #212121;">Mada</h2>
+				</a>
 			</div>
 
+			
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
 				<div class="flex-c-m h-full p-r-5">

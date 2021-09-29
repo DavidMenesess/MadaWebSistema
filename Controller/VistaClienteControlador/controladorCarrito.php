@@ -43,9 +43,7 @@ if(isset($_POST['btnAccion'])){
 
             header("Location: ../../View/UsuariosVista/detalleProductoCliente.php?idProducto=" . $id);
 
-            "<script>
-                    document.getElementById('alerta').style.display = 'block';
-            </script>";
+            
             //Si no existe la variable de session guardamos en una arreglo los datos de nuestro poducto
             //Y lo almacenamos en la posicion 0 de nuestra variable de session.
             //De lo contrario contaremos cuantos productos se encuentran en la variable de session

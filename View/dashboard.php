@@ -114,7 +114,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                     <div class="row">
                                         <div class="col-xl-3 col-md-6">
                                             <div class="card bg-dark text-white mb-4">
-                                                <div class="card-body">Producción</div>
+                                                <div class="card-body">Producto</div>
                                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                                     <a class="small text-white stretched-link" href="#">Ver detalles</a>
                                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>

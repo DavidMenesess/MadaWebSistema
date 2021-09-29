@@ -109,8 +109,8 @@ $tbl .= ' <tr>
         <td style="text-align:center;" colspan="3">'.$deta['Color'].'</td>
         <td style="text-align:center;" colspan="2">'.$deta['Talla'].'</td>
         <td style="text-align:center;" colspan="2">'.$deta['Cantidad'].'</td>
-        <td style="text-align:center;" colspan="3">$'.$deta['ValorUnitario'].'</td>
-        <td style="text-align:center;" colspan="3">$'.$deta['Cantidad']*$deta['ValorUnitario'].'</td>
+        <td style="text-align:center;" colspan="3">$'. number_format($deta['ValorUnitario'],3) .'</td>
+        <td style="text-align:center;" colspan="3">$'. number_format($deta['Cantidad']*$deta['ValorUnitario'],3) .'</td>
 
 
     </tr> '; 
@@ -122,7 +122,7 @@ $tbl .= '<tr>
 <br>
 <td colspan="12"></td>
 <td style="text-align:center; background-color: black; color:white" colspan="3">SubTotal</td>
-<td style="text-align:center; " colspan="3">$'.$detalle['Subtotal'].'</td>
+<td style="text-align:center; " colspan="3">$'.$total.'</td>
 </tr>
 
 <tr>
@@ -134,7 +134,7 @@ $tbl .= '<tr>
 <tr>
 <td colspan="12"></td>
 <td style="text-align:center; background-color: black; color:white" colspan="3">Total</td>
-<td style="text-align:center; " colspan="3">$'.$detalle['Total'].'</td>
+<td style="text-align:center; " colspan="3">$'. number_format($detalle['Total'],3).'</td>
 </tr>
 
 
