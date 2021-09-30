@@ -174,7 +174,7 @@ session_start();
 						<?php
 							foreach($listarcategorias as $listar){
 						?>
-							<li><a href="#"><?php echo $listar['NombreCategoria']?></a></li>
+							<li><a href="listarProductosCategoria.php?IdCategoria=<?php echo $listar['IdCategoria']?>"><?php echo $listar['NombreCategoria']?></a></li>
 									
 						<?php
 							}
