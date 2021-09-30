@@ -188,7 +188,6 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                 </td>
 
                                                 <td>
-                                                    <!-- <form action="../../Controller/UsuariosControlador/ControladorAdministrador.php" method="POST" accept-charset="utf-8"> -->
                                                         <input type="hidden" name="IdUsuario" value="<?php echo $administrador['IdUsuario']; ?>">
                                                         <input type="hidden" name="Estado" value="<?php echo $administrador['Estado']; ?>">
                                                         <?php
@@ -198,6 +197,10 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                         <?php
                                                         }
                                                         ?>
+                                                        <form action="../../Controller/UsuariosControlador/ControladorAdministrador.php" method="POST" accept-charset="utf-8">
+
+                                                        <input type="hidden" name="IdUsuario" value="<?php echo $administrador['IdUsuario']; ?>">
+                                                        <input type="hidden" name="Estado" value="<?php echo $administrador['Estado']; ?>">
                                                         <?php
                                                         if ($_SESSION['Rol'] == 1  && $administrador['IdUsuario'] != 1) {
                                                         ?>
@@ -212,7 +215,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                         <?php
                                                         }
                                                         ?>
-                                                    <!-- </form> -->
+                                                      </form>
                                                 </td>
 
                                             </tr>
