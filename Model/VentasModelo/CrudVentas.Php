@@ -36,7 +36,7 @@ class CrudVentas{
 	public function listarVentasEnviadas(){
 		$Db = Db::Conectar();
 
-		$sql = $Db -> query("SELECT `pedidos`.`IdPedido`, `pedidos`.`FechaPedido`, `pedidos`.`Subtotal`, `pedidos`.`Total`, `pedidos`.`IdEstadoPedido`, `pedidos`.`IdUsuario`, `usuarios`.`Nombre`\n"
+		$sql = $Db -> query("SELECT `pedidos`.`IdPedido`, `pedidos`.`FechaPedido`,  `pedidos`.`Total`, `pedidos`.`IdEstadoPedido`, `pedidos`.`IdUsuario`, `usuarios`.`Nombre`\n"
 
     . "FROM `pedidos` \n"
 

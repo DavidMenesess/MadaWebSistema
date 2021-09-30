@@ -117,7 +117,6 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Fecha</th>
-                                                <th>Subtotal</th>
                                                 <th>Total</th>
                                                 <th>Estado</th>
                                                 <th>Nombre Cliente</th>
@@ -131,7 +130,6 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                                                 <tr>
                                                     <td><?php echo $ventas['IdPedido']; ?></td>
                                                     <td><?php echo $ventas['FechaPedido']; ?></td>
-                                                    <td><?php echo $ventas['Subtotal']; ?></td>
                                                     <td><?php echo $ventas['Total']; ?></td>
                                                     <td>
                                                         <?php if ($ventas['IdEstadoPedido'] == 1) {
