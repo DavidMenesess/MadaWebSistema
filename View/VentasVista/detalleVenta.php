@@ -119,25 +119,22 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
             </div>
             <div class="form-group col-md-4">
               <label for="Documento">Documento: </label>
-              <input type="text" class="form-control" name="Documento" id="Documento" readonly value="<>">
+              <input type="text" class="form-control" name="Documento" id="Documento" readonly value="">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="Documento">Teléfono: </label>
+              <input type="text" class="form-control" name="Documento" id="Documento" readonly value="">
             </div>
             <div class="form-group col-md-4">
               <label for="Direccion">Dirección: </label>
               <input type="text" class="form-control" name="Direccion" id="Direccion" readonly value="">
             </div>
-            <!-- <div class="form-group col-md-4">
-                                    <label for="Telefono">Telefono: </label>
-                                    <input type="number" class="form-control" name="Telefono" id="Telefono" readonly value="<?php echo $detalle['Telefono']; ?>">
-                                </div> -->
             <div class="form-group col-md-4">
               <label for="Correo">Correo: </label>
               <input type="email" class="form-control" name="Correo" id="Correo" readonly value="<?php echo $detalle['Correo']; ?>">
             </div>
-
             <br>
             <br>
-
-
             <div class="form-group col-md-12">
               <h3 align="center">Productos</h3>
             </div>
@@ -148,7 +145,7 @@ if (!isset($_SESSION['correoUsuario'])) { //Si no existe la varible de sesión l
                   <th scope="col">Producto</th>
                   <th scope="col">Color</th>
                   <th scope="col">Talla</th>
-                  <th scope="col">Valor Unitario</th>
+                  <th scope="col">Precio Unitario</th>
                   <th scope="col">Cantidad</th>
                   <th scope="col">Anular</th>
                 </tr>

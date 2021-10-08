@@ -301,7 +301,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
-					<table class="table">
+					<table class="table table-responsive">
 						<thead>
 							<tr>
 							<th scope="col"></th>
@@ -342,6 +342,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 							</tr>
 							<?php 
 							$cont = $producto['Nombre']." Talla ".$producto['Talla']." ".$producto['Color']."\n";
+							$productoCompra = $producto["Nombre"];
 
 						} ?>
 						<?php
@@ -454,7 +455,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 							</div>
 						</div>
 						<br>
-						<div id="botonPago">
+						<div id="botonPago" class="btn btn-block">
 							<form>
 					        <script
 					        <?php 
@@ -464,14 +465,14 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 					            class="epayco-button"
 					            data-epayco-key="491d6a0b6e992cf924edd8d3d088aff1"
 					            data-epayco-amount="<?php echo number_format($total,3) ?>"
-					            data-epayco-name="Productos MadaWeb"
+					            data-epayco-name=<?php echo $productoCompra ?>
 					            data-epayco-description="<?php echo $cont ?>"
 					            data-epayco-currency="cop"
 					            data-epayco-country="co"
 					            data-epayco-test="true"
-					            data-epayco-external="true"
-					            data-epayco-rejected="http://madastore.infinityfreeapp.com/MadaWebSistema/View/UsuariosVista/carritoCompras.php"
-					            data-epayco-confirmation="http://madastore.infinityfreeapp.com/MadaWebSistema/View/UsuariosVista/carritoCompras.php"
+					            data-epayco-external="false"
+					            data-epayco-rejected="http://localhost:8888/MadaWebSistema/View/UsuariosVista/carritoCompras.php"
+					            data-epayco-confirmation="http://localhost:8888/MadaWebSistema/View/UsuariosVista/carritoCompras.php"
 					            data-epayco-name-billing="<?php echo $_SESSION['nombre'];?>"
 					            data-epayco-type-doc-billing="CC"
 					            data-epayco-number-doc-billing= "1000887442"
@@ -480,7 +481,7 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 						    <?php } ?>
 						        </script>
 						    </form>
-						</div>
+						 </div>
 					</div>
 				</div>
 			</div>
@@ -664,10 +665,6 @@ $listarcategorias = $controladorVistaCliente->listarCategoriasVista();
 			}else{
 				document.getElementById("botonPago").style.display = "block";
 				document.getElementById("alerta").style.display = "none";
-
-
-				
-				
 			}
 
 
